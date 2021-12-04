@@ -8,18 +8,19 @@
             <div class="col-12 col-lg-4"></div>
         </div>
         <Toast position="center"/>
+        <Dialog header="Success!" v-model:visible="success" @hide="closeSuccess" :modal="true">
+            {{successMessage}}
+            <template #footer>
+                <Button label="OK" icon="pi pi-check" @click="closeSuccess" autofocus></Button>
+            </template>
+        </Dialog>
+        <Dialog header="Failure :(" v-model:visible="fail" :modal="true">{{failMessage}}
+            <template #footer>
+                <Button label="OK" icon="pi pi-check" @click="this.fail = false" autofocus></Button>
+            </template>
+        </Dialog>
     </div>
-    <Dialog header="Success!" v-model:visible="success" @hide="closeSuccess" :modal="true">
-        {{successMessage}}
-        <template #footer>
-            <Button label="OK" icon="pi pi-check" @click="closeSuccess" autofocus></Button>
-        </template>
-    </Dialog>
-    <Dialog header="Failure :(" v-model:visible="fail" :modal="true">{{failMessage}}
-        <template #footer>
-            <Button label="OK" icon="pi pi-check" @click="this.fail = false" autofocus></Button>
-        </template>
-    </Dialog>
+
 </template>
 
 <script>

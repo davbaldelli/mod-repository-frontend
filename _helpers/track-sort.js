@@ -1,4 +1,4 @@
-import moment from "moment-timezone/moment-timezone-utils";
+import moment from 'moment-timezone/moment-timezone-utils'
 
 export const trackSort = {
     sortBySubmission,
@@ -6,7 +6,7 @@ export const trackSort = {
     sortByName
 }
 
-function sortBySubmission() {
+function sortBySubmission () {
     return (a, b) => {
         let timeA = moment(a.createdAt)
         let timeB = moment(b.createdAt)
@@ -14,14 +14,14 @@ function sortBySubmission() {
     }
 }
 
-function sortByName(desc) {
+function sortByName (desc) {
     return (a, b) => XOR(desc, a.name.toLowerCase() < b.name.toLowerCase()) ? 1 : -1
 }
 
-function sortByYear(desc) {
+function sortByYear (desc) {
     return (a, b) => XOR(desc, b.year < a.year) ? 1 : -1
 }
 
-function XOR(a, b) {
-    return (a || b) && !(a && b);
+function XOR (a, b) {
+    return (a || b) && !(a && b)
 }

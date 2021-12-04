@@ -1,4 +1,4 @@
-import moment from "moment-timezone/moment-timezone-utils";
+import moment from 'moment-timezone/moment-timezone-utils'
 
 export const carsFilters = {
     filterByName,
@@ -11,7 +11,7 @@ export const carsFilters = {
     filterByBrands
 }
 
-function lastUpdated(n) {
+function lastUpdated (n) {
     return cars => {
         cars.sort((a, b) => {
             let timeA = moment(a.updatedAt)
@@ -22,7 +22,7 @@ function lastUpdated(n) {
     }
 }
 
-function lastAdded(n) {
+function lastAdded (n) {
     return cars => {
         cars.sort((a, b) => {
             let timeA = moment(a.createdAt)
@@ -33,27 +33,27 @@ function lastAdded(n) {
     }
 }
 
-function filterByAuthor(author) {
+function filterByAuthor (author) {
     return cars => cars.filter(car => car.author.name === author)
 }
 
-function filterByNation(nation) {
+function filterByNation (nation) {
     return cars => cars.filter(car => car.brand.nation.name === nation)
 }
 
-function filterByBrand(brand) {
+function filterByBrand (brand) {
     return cars => cars.filter(car => car.brand.name === brand)
 }
 
-function filterByBrands(brands) {
+function filterByBrands (brands) {
     return cars => cars.filter(car => brands.includes(car.brand.name))
 }
 
-function filterByCategory(category) {
+function filterByCategory (category) {
     return cars => cars.filter(car => car.categories && car.categories.some(e => e.name === category))
 }
 
-function filterByName(name) {
+function filterByName (name) {
     return cars => cars.filter(car => `${car.brand.name} ${car.modelName}`.toLowerCase().includes(name.toLowerCase()))
 }
 

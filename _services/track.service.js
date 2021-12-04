@@ -1,12 +1,12 @@
-import axios from "axios";
-import {authHeader} from "@/_helpers";
-import {API_URL} from "@/_services/config";
+import axios from 'axios'
+import { authHeader } from '@/_helpers'
+import { API_URL } from '@/_services/config'
 
 axios.interceptors.response.use((response) => {
-    return response;
+    return response
 }, function (error) {
-    return Promise.reject(error);
-});
+    return Promise.reject(error)
+})
 
 export const trackService = {
     getAll,
@@ -16,36 +16,36 @@ export const trackService = {
     updateTrack
 }
 
-function getAll() {
+function getAll () {
     return axios
-        .get(`${API_URL}/track/all`, {headers: authHeader()})
+        .get(`${API_URL}/track/all`, { headers: authHeader() })
         .then(response => response.data)
-        .catch(error => Promise.reject(error.response ? error.response : error));
+        .catch(error => Promise.reject(error.response ? error.response : error))
 }
 
-function getTracksNations() {
+function getTracksNations () {
     return axios
-        .get(`${API_URL}/nation/track/all`, {headers: authHeader()})
-        .then(res => res.data)
-        .catch(error => Promise.reject(error.response ? error.response : error));
-}
-
-function getTracksAuthors() {
-    return axios.get(`${API_URL}/track/author/all`, {headers: authHeader()})
+        .get(`${API_URL}/nation/track/all`, { headers: authHeader() })
         .then(res => res.data)
         .catch(error => Promise.reject(error.response ? error.response : error))
 }
 
-function addTrack(track) {
-    return axios
-        .post(`${API_URL}/track/new`, track, {headers: authHeader()})
+function getTracksAuthors () {
+    return axios.get(`${API_URL}/track/author/all`, { headers: authHeader() })
         .then(res => res.data)
         .catch(error => Promise.reject(error.response ? error.response : error))
 }
 
-function updateTrack(track) {
+function addTrack (track) {
     return axios
-        .post(`${API_URL}/track/update`, track, {headers: authHeader()})
+        .post(`${API_URL}/track/new`, track, { headers: authHeader() })
+        .then(res => res.data)
+        .catch(error => Promise.reject(error.response ? error.response : error))
+}
+
+function updateTrack (track) {
+    return axios
+        .post(`${API_URL}/track/update`, track, { headers: authHeader() })
         .then(res => res.data)
         .catch(error => Promise.reject(error.response ? error.response : error))
 }
