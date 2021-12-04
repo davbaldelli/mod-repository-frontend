@@ -81,36 +81,6 @@ export default {
                     separator: true,
                     style: 'width = 100%'
                 },
-                {
-                    label: 'Login',
-                    icon: 'fas fa-user',
-                    command: this.toggleDialog,
-                    visible: () => !this.logged,
-                },
-                {
-                    label: this.loggedUsername,
-                    icon: 'fas fa-user',
-                    visible: () => this.logged,
-                    items: [
-                        {
-                            label: 'Add Car',
-                            to: '/cars/new',
-                            visible: () => this.loggedUsername === 'admin',
-                            icon: 'fas fa-plus'
-                        },
-                        {
-                            label: 'Add Track',
-                            to: '/tracks/new',
-                            visible: () => this.loggedUsername === 'admin',
-                            icon: 'fas fa-plus'
-                        },
-                        {
-                            label: 'Logout',
-                            command: this.logOut,
-                            icon: 'fas fa-sign-out-alt'
-                        },
-                    ]
-                },
             ],
             display: false,
             submitted: false,
@@ -147,10 +117,6 @@ export default {
         $route () {
             // clear alert on location change
             this.$store.dispatch('alert/clear')
-        },
-        loggedUsername () {
-            console.log(this.loggedUsername)
-            this.menuItems[5].label = this.loggedUsername
         },
         alert: {
             async handler (value) {

@@ -4,7 +4,6 @@
         <div class="p-md-12 p-lg-6 text-center">
             <div class="p-col-12">
                 <h1 class="display-3 p-mt-4">Assetto Corsa Mod Repository</h1>
-                <h2 class="display-6 p-mt-2"><em>By Davide Baldelli</em></h2>
                 <Divider/>
                 <p class="lead"><strong>Benvenuto!</strong></p>
                 <p class="lead">
