@@ -57,7 +57,7 @@
                           removable @remove="clearAuthorFilter"
                     />
                 </div>
-                <div v-if="this.$store.getters['cars/loadingCars']" class="p-col-12">
+                <div v-if="this.$store.getters['car/loadingCars']" class="p-col-12">
                     <div v-for="i in 25" :key="i" class="p-mb-2">
                         <div class="custom-skeleton p-card container-fluid p-py-2">
                             <div class="row">
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="filteredCars.length === 0 && !this.$store.getters['cars/loadingCars']"
+                <div v-if="filteredCars.length === 0 && !this.$store.getters['car/loadingCars']"
                      class="p-mt-3 text-center p-col-12"
                 >
                     <h3 class="display-6">I'm sorry, no car match your request</h3>

@@ -31,6 +31,12 @@ export default {
         Dialog,
         Button,
     },
+    middleware ({ store, redirect }) {
+        // If the user is not authenticated
+        if (!store.getters['authentication/isAdmin']) {
+            return redirect('/')
+        }
+    },
     data() {
         return {
             initialTrack: {

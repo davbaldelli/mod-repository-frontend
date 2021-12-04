@@ -66,7 +66,7 @@
                           removable @remove="clearAuthorFilter"
                     />
                 </div>
-                <div v-if="this.$store.getters['tracks/loadingTracks']" class="p-col-12">
+                <div v-if="this.$store.getters['track/loadingTracks']" class="p-col-12">
                     <div v-for="i in 5" :key="i" class="p-mb-2">
                         <div class="custom-skeleton p-card container-fluid p-py-2">
                             <div class="row">
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="filteredTracks.length === 0 && !this.$store.getters['tracks/loadingTracks']"
+                <div v-if="filteredTracks.length === 0 && !this.$store.getters['track/loadingTracks']"
                      class="text-center p-col-12 p-my-3"
                 >
                     <h3 class="display-6">I'm sorry, no track match your request</h3>

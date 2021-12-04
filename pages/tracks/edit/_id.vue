@@ -28,6 +28,12 @@ import Button from 'primevue/button'
 export default {
     name: 'TrackEdit',
     props: ['initialTrack'],
+    middleware ({ store, redirect }) {
+        // If the user is not authenticated
+        if (!store.getters['authentication/isAdmin']) {
+            return redirect('/')
+        }
+    },
     components: {
         Dialog,
         Button,

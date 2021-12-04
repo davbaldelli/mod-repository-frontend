@@ -86,9 +86,6 @@ export default {
             submitted: false,
         }
     },
-    mounted () {
-        this.menuItems[6].label = this.loggedUsername
-    },
     validations () {
         return {
             username: {

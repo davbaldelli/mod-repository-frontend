@@ -27,6 +27,12 @@ import Button from "primevue/button";
 export default {
     props: ['initialCar'],
     name: "CarEdit",
+    middleware ({ store, redirect }) {
+        // If the user is not authenticated
+        if (!store.getters['authentication/isAdmin']) {
+            return redirect('/')
+        }
+    },
     components: {
         Dialog,
         Button
