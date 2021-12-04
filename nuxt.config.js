@@ -3,7 +3,7 @@ export default {
     ssr: false,
     target : "static",
     head: {
-        title: 'ac-mod-repo-frontend',
+        title: 'Assetto Corsa Mod Repository',
         meta: [
             { charset: 'utf-8' },
             {
@@ -13,7 +13,7 @@ export default {
             {
                 hid: 'description',
                 name: 'description',
-                content: ''
+                content: 'Here you can download a large selection of quality cars and tracks mods for the famous Assetto Corsa simulator developed by kunos simulations'
             },
             {
                 name: 'format-detection',
@@ -24,9 +24,13 @@ export default {
             {
                 rel: 'icon',
                 type: 'image/x-icon',
-                href: '/favicon.ico'
+                href: '/favicon.png'
             }
-        ]
+        ],
+        script: [{
+            src: 'https://kit.fontawesome.com/2fa6fb0d69.js',
+            crossOrigin: 'anonymous'
+        }]
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css

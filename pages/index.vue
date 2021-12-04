@@ -56,25 +56,6 @@ import Divider from 'primevue/divider'
 
 export default {
     name: 'main',
-    head: {
-        title: 'Assetto Corsa Mod Repository',
-        meta: [
-            { charset: 'utf-8' },
-            {
-                name: 'viewport',
-                content: 'width=device-width, initial-scale=1'
-            },
-            {
-                hid: 'description',
-                name: 'description',
-                content: 'Here you can download a large selection of quality cars and tracks mods for the famous Assetto Corsa simulator developed by kunos simulations'
-            }
-        ],
-        script: [{
-            src: 'https://kit.fontawesome.com/2fa6fb0d69.js',
-            crossOrigin: 'anonymous'
-        }]
-    },
     components: {
         FontAwesomeIcon,
         Button,
