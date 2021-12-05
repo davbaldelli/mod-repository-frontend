@@ -18,6 +18,10 @@ export default {
             {
                 name: 'format-detection',
                 content: 'telephone=no'
+            },
+            {
+                name : "google-site-verification",
+                content : "f6gm0ypHvGLB3K5Zm-RSPBrJqQ89LAOQpDJsK9lWnjw"
             }
         ],
         link: [
