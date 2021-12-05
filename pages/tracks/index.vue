@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="p-col-12">
-                    <Paginator v-model:first="offset" :rows="pageRows" :total-records="filteredTracks.length"
+                    <Paginator :first.sync="offset" :rows="pageRows" :total-records="filteredTracks.length"
                     ></Paginator>
                 </div>
                 <div class="p-col-12">
@@ -118,7 +118,7 @@
                                         <span v-if="track.premium" class="badge badge-warning">Premium</span>
                                     </div>
                                     <div class="p-card-body">
-                                        <Rating :cancel="false" :model-value="track.rating/2" :readonly="true"
+                                        <Rating :cancel="false" v-model="track.rating/2" :readonly="true"
                                                 class="p-mb-1"
                                         />
                                         <strong>Location: </strong>{{ track.location }}, {{ track.nation.name }}<br/>
@@ -148,7 +148,7 @@
                     </div>
                 </div>
                 <div class="p-col-12">
-                    <Paginator v-model:first="offset" :rows="pageRows" :total-records="filteredTracks.length"
+                    <Paginator :first.sync="offset" :rows="pageRows" :total-records="filteredTracks.length"
                     ></Paginator>
                 </div>
             </div>

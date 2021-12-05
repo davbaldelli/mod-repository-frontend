@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="p-col-12">
-                    <Paginator v-model:first="offset" :rows="pageRows" :total-records="filteredCars.length"></Paginator>
+                    <Paginator :first.sync="offset" :rows="pageRows" :total-records="filteredCars.length"></Paginator>
                 </div>
                 <div class="p-col-12">
                     <Dropdown v-model="selectedBrand" :filter="true" :loading="this.$store.getters['car/loadingBrands']"
@@ -144,7 +144,7 @@
                     </div>
                 </div>
                 <div class="p-col-12">
-                    <Paginator v-model:first="offset" :rows="pageRows" :total-records="filteredCars.length"></Paginator>
+                    <Paginator :first.sync="offset" :rows="pageRows" :total-records="filteredCars.length"></Paginator>
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ export const state = () => initialState
 export const getters = {
     loadingCars: state => state.cars.fetching,
     cars: state => state.cars.items,
+    sortedCars : state => sorter => state.cars.items.sort(sorter),
     getCarById: state => (id) => state.cars.items.find(c => c.id === parseInt(id)),
     loadingBrands: state => state.brands.fetching,
     brands: state => state.brands.items,
