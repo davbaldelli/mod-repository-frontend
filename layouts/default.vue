@@ -26,6 +26,7 @@
                 </div>
             </Dialog>
         </div>
+        <cookie-law theme="base"></cookie-law>
     </div>
 </template>
 

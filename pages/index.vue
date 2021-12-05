@@ -38,9 +38,7 @@
                         <span class="p-ml-2 p-text-bold">Tracks</span>
                     </Button>
                 </NuxtLink>
-
             </div>
-
         </div>
 
         <div class="p-md-0 p-lg-3"></div>

@@ -31,6 +31,8 @@
         "primevue": "^2.7.0",
         "vue": "^2.6.14",
         "vue-axios": "^3.4.0",
+        "vue-cookie-law": "^1.13.3",
+        "vue-cookieconsent-component": "^1.2.0",
         "vuelidate": "^0.7.6",
         "vuex": "^3.6.2"
     },

@@ -47,6 +47,7 @@ export default {
         '~/plugins/login-check.js',
         '~/plugins/bootstrap.js',
         '~/plugins/primevue.js',
+        '~/plugins/cookieconsent.js',
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
