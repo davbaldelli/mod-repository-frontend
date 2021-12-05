@@ -21,7 +21,7 @@
                 </div>
                 <div class="p-col-12">
                     <Dropdown v-model="selectedNation" :filter="true"
-                              :loading="this.$store.getters['tracks/loadingNations']"
+                              :loading="this.$store.getters['track/loadingNations']"
                               :options="nations" aria-label="nation filter selection" class="p-mr-2 p-mb-2 p-mb-sm-0" option-label="name"
                               option-value="name"
                               placeholder="Nation" @change="e => onNationSelected(e.value)"
@@ -377,5 +377,7 @@ export default {
 </script>
 
 <style scoped>
-
+.p-dropdown{
+    width: 10rem;
+}
 </style>

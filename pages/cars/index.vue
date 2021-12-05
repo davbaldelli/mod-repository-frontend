@@ -17,10 +17,10 @@
                     <Paginator v-model:first="offset" :rows="pageRows" :total-records="filteredCars.length"></Paginator>
                 </div>
                 <div class="p-col-12">
-                    <Dropdown v-model="selectedBrand" :filter="true" :loading="this.$store.getters['cars/loadingBrands']"
-                              :options="brandOpts"
+                    <Dropdown v-model="selectedBrand" :filter="true" :loading="this.$store.getters['car/loadingBrands']"
+                              :options="brands"
                               aria-label="car brand selection" class="p-mr-2 p-mb-2 p-mb-sm-0"
-                              optionGroupChildren="brands" optionGroupLabel="nation" optionLabel="name"
+                              option-label="name"
                               placeholder="Brand" @change="e => onBrandSelected(e.value.name)"
                     >
                     </Dropdown>
@@ -29,7 +29,7 @@
                               option-label="name" placeholder="Category"
                               @change="e => onSelectedCategory(e.value.name)"
                     />
-                    <Dropdown v-model="selectedAuthor" :filter="true" :loading="this.$store.getters['cars/loadingAuthors']"
+                    <Dropdown v-model="selectedAuthor" :filter="true" :loading="this.$store.getters['car/loadingAuthors']"
                               :options="authors"
                               aria-label="mod author selection" class="p-mr-2 p-mb-2 p-mb-sm-0"
                               option-label="name" placeholder="Author"
@@ -249,25 +249,16 @@ export default {
         cars () {
             return this.$store.getters['car/cars']
         },
-        brandGrouped () {
-            return this.$store.getters['car/brands'].reduce((r, a) => {
-                r.set(a.nation.name, [...r.get(a.nation.name) || [], { name: a.name }])
-                return r
-            }, new Map())
+        brands() {
+            return this.$store.getters['car/brands']
         },
         authors () {
             return this.$store.getters['car/authors']
         },
     },
     watch: {
-        brandGrouped () {
-            this.brandOpts = []
-            this.brandGrouped.forEach((value, key) => {
-                this.brandOpts.push({
-                    nation: key,
-                    brands: value
-                })
-            })
+        brand () {
+            this.brandOpts = this.brands
         },
         loggedIn () {
             if (this.loggedIn) {
@@ -387,5 +378,8 @@ export default {
 
 .custom-skeleton ul {
     list-style: none;
+}
+.p-dropdown{
+    width: 10rem;
 }
 </style>
