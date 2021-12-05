@@ -52,15 +52,11 @@
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import Button from 'primevue/button'
-import Divider from 'primevue/divider'
 
 export default {
     name: 'main',
     components: {
         FontAwesomeIcon,
-        Button,
-        Divider,
     }
 }
 </script>

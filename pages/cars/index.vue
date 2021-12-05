@@ -50,7 +50,7 @@
                         <v-chip v-if="activeNameFilter" close @click:close="clearNameFilter" >Name: {{this.activeNameFilter}}</v-chip>
                         <v-chip v-if="selectedBrand" close @click:close="clearBrandFilter">Brand: {{this.selectedBrand}}</v-chip>
                         <v-chip v-if="selectedCategory" close @click:close="clearCategoryFilter">Category: {{this.selectedCategory}}</v-chip>
-                        <v-chip v-if="selectedAuthor" close @click:close="clearAuthorFilter">Category: {{this.selectedAuthor}}</v-chip>
+                        <v-chip v-if="selectedAuthor" close @click:close="clearAuthorFilter">Author: {{this.selectedAuthor}}</v-chip>
                     </v-col>
                 </v-row>
                 <v-row v-for="(car, index) in pageCars" :key="index" class="mb-2">
@@ -109,27 +109,10 @@
 </template>
 
 <script>
-import Paginator from 'primevue/paginator'
-import Dropdown from 'primevue/dropdown'
-import Button from 'primevue/button'
-import InputText from 'primevue/inputtext'
-import Chip from 'primevue/chip'
-import Skeleton from 'primevue/skeleton'
-import Rating from 'primevue/rating'
-
 import { carsFilters, carSort } from '@/_helpers'
 
 export default {
     name: 'CarList',
-    components: {
-        Paginator,
-        Dropdown,
-        Button,
-        InputText,
-        Chip,
-        Skeleton,
-        Rating,
-    },
     setup () {
     },
     data () {
