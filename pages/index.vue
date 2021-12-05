@@ -1,48 +1,53 @@
 <template>
-    <div class="p-grid">
-        <div class="p-md-0 p-lg-3"></div>
-        <div class="p-md-12 p-lg-6 text-center">
-            <div class="p-col-12">
-                <h1 class="display-3 p-mt-4">Assetto Corsa Mod Repository</h1>
-                <Divider/>
-                <p class="lead"><strong>Benvenuto!</strong></p>
-                <p class="lead">
-                    Questo sito è una raccolta di mod di qualità, un tentativo di riunire nello stesso punto le migliori
-                    macchine e
-                    piste sparse sul web.<br/>
-                    Le mod qui presenti sono rimaste inalterate, e, ove possibile, sono presenti i riferimenti ai
-                    rispettivi autori.<br/>
-                </p>
-                <p class="lead">
-                    Se ti piace il nostro lavoro e vorresti premiarci ti invito a fare una piccola donazione
-                    <a href="https://paypal.me/teamItaliaracing?locale.x=it_IT" rel="noopener" target="_blank">qui</a>
-                </p>
-                <p class="lead">
-                    Se invece siete in ricerca di una comunità dove poter girare in compagnia vi invitiamo sul nostro
-                    gruppo <a
-                    href="https://discord.gg/5HTA8xZgTA"
-                    rel="noopener" target="_blank"
-                >discord</a>
-                </p>
-            </div>
-            <div class="p-col-12">
-                <NuxtLink to="/cars/">
-                    <Button class="p-button-lg p-button-outlined p-mr-2 p-px-4" type="button">
-                        <FontAwesomeIcon icon="car"></FontAwesomeIcon>
-                        <span class="p-ml-2 p-text-bold">Cars</span>
-                    </Button>
-                </NuxtLink>
-                <NuxtLink to="/tracks/">
-                    <Button class="p-button-lg p-button-outlined" type="button">
-                        <FontAwesomeIcon icon="road"></FontAwesomeIcon>
-                        <span class="p-ml-2 p-text-bold">Tracks</span>
-                    </Button>
-                </NuxtLink>
-            </div>
-        </div>
+    <v-container>
+        <v-row>
+            <v-col cols="0" lg="3"></v-col>
+            <v-col cols="12" lg="6" class="text-center">
+                <v-row>
+                    <v-col>
+                        <h1 class="text-h2">Assetto Corsa Mod Repository</h1>
+                        <h2 class="text-h5"><em>Finding mod has never been so easy</em></h2>
+                        <p class="text-body mt-4">
+                            <strong>Benvenuto!</strong><br>
+                            Questo sito è una raccolta di mod di qualità, un tentativo di riunire nello stesso punto le
+                            migliori
+                            macchine e
+                            piste sparse sul web.<br/>
+                            Le mod qui presenti sono rimaste inalterate, e, ove possibile, sono presenti i riferimenti
+                            ai
+                            rispettivi autori.<br/>
+                        </p>
+                        <p class="text-body">
+                            Se ti piace il nostro lavoro e vorresti premiarci ti invito a fare una piccola donazione
+                            <a href="https://paypal.me/teamItaliaracing?locale.x=it_IT" rel="noopener" target="_blank">qui</a>
+                        </p>
+                        <p class="text-body">
+                            Se invece siete in ricerca di una comunità dove poter girare in compagnia vi invitiamo sul
+                            nostro
+                            gruppo <a
+                            href="https://discord.gg/5HTA8xZgTA"
+                            rel="noopener" target="_blank"
+                        >discord</a>
+                        </p>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col>
+                        <v-btn to="/cars/" color="primary" elevation="2" outlined x-large>
+                            <FontAwesomeIcon icon="car" class="mr-1"></FontAwesomeIcon>
+                            Cars
+                        </v-btn>
+                        <v-btn to="/tracks" color="primary" elevation="2" outlined x-large>
+                            <FontAwesomeIcon icon="road" class="mr-1"></FontAwesomeIcon>
+                            Tracks
+                        </v-btn>
+                    </v-col>
+                </v-row>
 
-        <div class="p-md-0 p-lg-3"></div>
-    </div>
+            </v-col>
+            <v-col cols="0" lg="3"></v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <script>

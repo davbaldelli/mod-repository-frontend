@@ -31,10 +31,6 @@ export default {
                 href: '/favicon.png'
             }
         ],
-        script: [{
-            src: 'https://kit.fontawesome.com/2fa6fb0d69.js',
-            crossOrigin: 'anonymous'
-        }]
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
@@ -45,7 +41,6 @@ export default {
         '~/plugins/fontawesome.js',
         '~/plugins/vuelidate.js',
         '~/plugins/login-check.js',
-        '~/plugins/bootstrap.js',
         '~/plugins/primevue.js',
         '~/plugins/cookieconsent.js',
     ],
@@ -74,7 +69,8 @@ export default {
                 theme: 'saga-blue',
                 ripple: true,
             }
-        ]
+        ],
+        '@nuxtjs/vuetify',
     ],
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios

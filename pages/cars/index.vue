@@ -1,155 +1,111 @@
 <template>
-    <div class="p-grid">
-        <div class="p-col-12 text-center p-mt-4">
-            <h1 class="display-4">Cars Repository</h1>
-            <h2 class="lead"><em>A collection of quality cars</em></h2>
-        </div>
-        <div class="p-col-12 p-lg-3"></div>
-        <div class="p-col-12 p-lg-6">
-            <div class="p-grid">
-                <div class="p-col-12">
-                    <div class="p-inputgroup p-mb-2">
-                        <InputText v-model="nameFilter" placeholder="Type Car Name" v-on:keyup.enter="nameFilterClick"/>
-                        <Button aria-label="search" icon="pi pi-search" @click="nameFilterClick"/>
-                    </div>
-                </div>
-                <div class="p-col-12">
-                    <Paginator :first.sync="offset" :rows="pageRows" :total-records="filteredCars.length"></Paginator>
-                </div>
-                <div class="p-col-12">
-                    <Dropdown v-model="selectedBrand" :filter="true" :loading="this.$store.getters['car/loadingBrands']"
-                              :options="brands"
-                              aria-label="car brand selection" class="p-mr-2 p-mb-2 p-mb-sm-0"
-                              option-label="name"
-                              placeholder="Brand" @change="e => onBrandSelected(e.value.name)"
-                    >
-                    </Dropdown>
-                    <Dropdown v-model="selectedCategory" :options="categories" aria-label="car category selection"
-                              class="p-mr-2 p-mb-2 p-mb-sm-0"
-                              option-label="name" placeholder="Category"
-                              @change="e => onSelectedCategory(e.value.name)"
-                    />
-                    <Dropdown v-model="selectedAuthor" :filter="true" :loading="this.$store.getters['car/loadingAuthors']"
-                              :options="authors"
-                              aria-label="mod author selection" class="p-mr-2 p-mb-2 p-mb-sm-0"
-                              option-label="name" placeholder="Author"
-                              @change="e => onAuthorSelected(e.value.name)"
-                    />
-                    <Dropdown v-model="selectedSort" :options="sortOpts" aria-label="sort type selection"
-                              class="p-mr-2 p-mb-2 p-mb-sm-0"
-                              option-label="label" option-value="value" placeholder="Sort By"
-                              @change="e => sort(e.value)"
-                    ></Dropdown>
-                </div>
-                <div class="p-col-12">
-                    <Chip v-if="selectedCategory" :label="`Category: ${selectedCategory.name}`" class="p-mr-2"
-                          removable @remove="clearCategoryFilter"
-                    />
-                    <Chip v-if="activeNameFilter" :label="`Name: ${activeNameFilter}`" class="p-mr-2"
-                          removable
-                          @remove="clearNameFilter"
-                    />
-                    <Chip v-if="selectedBrand" :label="`Brand: ${selectedBrand.name}`" class="p-mr-2"
-                          removable
-                          @remove="clearBrandFilter"
-                    />
-                    <Chip v-if="selectedAuthor" :label="`Author: ${selectedAuthor.name}`" class="p-mr-2"
-                          removable @remove="clearAuthorFilter"
-                    />
-                </div>
-                <div v-if="this.$store.getters['car/loadingCars']" class="p-col-12">
-                    <div v-for="i in 25" :key="i" class="p-mb-2">
-                        <div class="custom-skeleton p-card container-fluid p-py-2">
-                            <div class="row">
-                                <div class="col-lg-12 col-xl-4">
-                                    <Skeleton height="200px" shape="rectangle" width="100%"></Skeleton>
-                                </div>
-                                <div class="col-lg-12 col-xl-8 mt-2 d-flex flex-column">
-                                    <div class="p-card-title">
-                                        <Skeleton height="40px" width="100%"></Skeleton>
+    <v-container fluid>
+        <v-row>
+            <v-col cols="12" class="text-center">
+                <h1 class="text-h2">Cars Repository</h1>
+                <h2 class="text-h5"><em>A collection of quality cars</em></h2>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="0" md="2" lg="3"/>
+            <v-col cols="12" md="8" lg="6">
+                <v-row>
+                    <v-col>
+                        <v-text-field v-model="nameFilter" label="Type car name" outlined append-icon="mdi-magnify"
+                                      clearable v-on:keyup.enter="nameFilterClick" @click:append="onNameSelected"
+                        />
+                    </v-col>
+                </v-row>
+                <v-row v-if="this.totPaginatorPages">
+                    <v-col>
+                        <v-pagination v-model="offset" :length="totPaginatorPages"/>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col cols="2">
+                        <v-autocomplete v-model="selectedBrand" :items="brands" @change="v => onBrandSelected(v)"
+                                        item-text="name" item-value="name" label="Brand" outlined dense clearable
+                        ></v-autocomplete>
+                    </v-col>
+                    <v-col cols="2">
+                        <v-select v-model="selectedCategory" @change="v => onSelectedCategory(v)"
+                                  :items="categories" item-text="name" item-value="name" label="Category" outlined
+                                  dense clearable
+                        ></v-select>
+                    </v-col>
+                    <v-col cols="2">
+                        <v-autocomplete v-model="selectedAuthor" @change="v => onAuthorSelected(v)" :items="authors"
+                                        item-text="name" item-value="name" label="Author" outlined dense clearable
+                        ></v-autocomplete>
+                    </v-col>
+                    <v-spacer/>
+                    <!--
+                    <v-col cols="2">
+                        <v-select v-model="selectedSort" item-text="label" item-value="sorter" :items="sortOpts" label="Sort" @change="v => sort(v)" ></v-select>
+                    </v-col>
+                    -->
+                </v-row>
+                <v-row>
+                    <v-col cols="12">
+                        <v-chip v-if="activeNameFilter" close @click:close="clearNameFilter" >Name: {{this.activeNameFilter}}</v-chip>
+                        <v-chip v-if="selectedBrand" close @click:close="clearBrandFilter">Brand: {{this.selectedBrand}}</v-chip>
+                        <v-chip v-if="selectedCategory" close @click:close="clearCategoryFilter">Category: {{this.selectedCategory}}</v-chip>
+                        <v-chip v-if="selectedAuthor" close @click:close="clearAuthorFilter">Category: {{this.selectedAuthor}}</v-chip>
+                    </v-col>
+                </v-row>
+                <v-row v-for="(car, index) in pageCars" :key="index" class="mb-2">
+                    <v-col cols="12">
+                        <v-card>
+                            <v-row>
+                                <v-col cols="12" md="4">
+                                    <div class="d-flex align-center h-100">
+                                        <v-img class="ma-3" contain :src="car.image" alt="car thumbnail"/>
                                     </div>
-                                    <div class="p-card-subtitle">
-                                        <Skeleton height="20px" width="20%"></Skeleton>
-                                    </div>
-                                    <div class="p-card-body p-my-2">
-                                        <Skeleton class="p-mb-1" height="15px" width="10%"></Skeleton>
-                                        <Skeleton class="p-mb-1" height="15px" width="30%"></Skeleton>
-                                        <Skeleton height="15px" width="80%"></Skeleton>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div v-if="filteredCars.length === 0 && !this.$store.getters['car/loadingCars']"
-                     class="p-mt-3 text-center p-col-12"
-                >
-                    <h3 class="display-6">I'm sorry, no car match your request</h3>
-                </div>
-                <div v-else class="p-col-12">
-                    <div class="p-grid p-p-2">
-                        <div v-for="(car,index) in pageCars" :key="index" class="p-col-12">
-                            <div class="p-grid p-card p-p-2">
-                                <div class="p-col-12 p-xl-4 p-p-2">
-                                    <div class="d-flex align-items-center" style="height: 100%">
-                                        <img :src="car.image" alt="car thumbnail" class="rounded-4 card-img"
-                                             loading="lazy"
-                                        >
-                                    </div>
-                                </div>
-                                <div class="p-col-12 p-xl-8 p-p-3 d-flex flex-column">
-                                    <div class="p-card-title p-mb-0">
-                                        <h3>
-                                            <NuxtLink
-                                                :to="`/cars/${car.id}`"
-                                            >{{
-                                                    `${car.brand.name} ${car.modelName}`
-                                                }}
-                                            </NuxtLink>
-                                        </h3>
-                                    </div>
-                                    <div class="p-card-subtitle">
-                <span v-for="category in car.categories" :key="category.name"
-                      class="badge badge-secondary p-mr-1"
-                >{{ category.name }}</span>
+                                </v-col>
+                                <v-col cols="12" md="8" class="d-flex flex-column">
+                                    <v-card-title class="text-h5">
+                                        <NuxtLink :to="`/cars/${car.id}`">
+                                            <h3 class="text-h7">{{ `${car.brand.name} ${car.modelName}` }}</h3>
+                                        </NuxtLink>
+                                        <v-spacer/>
+                                        <v-rating v-model="car.rating/2" background-color="orange lighten-3"
+                                                  color="orange" half-increments readonly dense class="pb-2"
+                                        ></v-rating>
+                                    </v-card-title>
+                                    <v-card-subtitle>
+                                            <span v-for="category in car.categories" :key="category.name"
+                                                  class="badge badge-secondary p-mr-1"
+                                            >{{ category.name }}</span>
                                         <span v-if="car.premium" class="badge badge-warning">Premium</span>
-                                    </div>
-                                    <div class="p-card-body">
-                                        <Rating v-model="car.rating/2" :cancel="false" :readonly="true" class="p-mb-1"/>
+
+                                    </v-card-subtitle>
+                                    <v-card-text>
                                         <strong>Year: </strong>{{ car.year }}
                                         <br>
-                                        <strong>Author: </strong><a :href="car.author.link" rel="noopener"
-                                                                    target="_blank"
-                                    >{{
-                                            car.author.name
-                                        }}</a> v{{ car.version }}
+                                        <strong>Author: </strong>
+                                        <a :href="car.author.link" rel="noopener" target="_blank">
+                                            {{ car.author.name }}
+                                        </a> v{{ car.version }}
                                         <br>
-                                    </div>
-                                    <div class="p-card-footer p-pt-0  p-text-right mt-auto">
-                                        <NuxtLink :to="`/cars/edit/${car.id}`" aria-label="mod edit link">
-                                            <Button v-if="userRole === 'admin'" aria-label="edit button"
-                                                    class="p-mr-2 p-button-warning"
-                                                    icon="far fa-edit"
-                                            ></Button>
-                                        </NuxtLink>
-                                        <a :href="car.downloadLink" aria-label="mod download link" rel="noopener"
-                                           target="_blank"
-                                        >
-                                            <Button aria-label="download button" icon="pi pi-download"></Button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-col-12">
-                    <Paginator :first.sync="offset" :rows="pageRows" :total-records="filteredCars.length"></Paginator>
-                </div>
-            </div>
-        </div>
-        <div class="p-col-0 p-lg-3"></div>
-    </div>
+                                    </v-card-text>
+                                    <v-card-actions class="mt-auto px-4">
+                                        <v-spacer></v-spacer>
+                                        <v-btn :href="car.downloadLink" color="primary">Download</v-btn>
+                                    </v-card-actions>
+                                </v-col>
+                            </v-row>
+                        </v-card>
+                    </v-col>
+                </v-row>
+                <v-row v-if="!this.$store.getters['car/loadingCars'] && filteredCars.length === 0">
+                    <v-col class="text-center">
+                        <h3 class="display-6">I'm sorry, no car match your request</h3>
+                    </v-col>
+                </v-row>
+            </v-col>
+            <v-col cols="0" md="2" lg="3"/>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
@@ -181,23 +137,23 @@ export default {
             sortOpts: [
                 {
                     label: 'Name (A-Z)',
-                    value: carSort.sortByName(true)
+                    sorter: carSort.sortByName(true)
                 },
                 {
                     label: 'Name (Z-A)',
-                    value: carSort.sortByName(false)
+                    sorter: carSort.sortByName(false)
                 },
                 {
                     label: 'Latest Submitted',
-                    value: carSort.sortByDate()
+                    sorter: carSort.sortByDate()
                 },
                 {
                     label: 'Production Year (Newer)',
-                    value: carSort.sortByYear(true)
+                    sorter: carSort.sortByYear(true)
                 },
                 {
                     label: 'Production Year (Older)',
-                    value: carSort.sortByYear(false)
+                    sorter: carSort.sortByYear(false)
                 }
             ],
             categoryOpts: [],
@@ -222,7 +178,7 @@ export default {
             ],
             sorter: carSort.sortByName(true),
             pageRows: 20,
-            offset: 0,
+            offset: 1,
             categorySearch: '',
             selectedCategory: '',
             selectedAuthor: '',
@@ -231,6 +187,13 @@ export default {
         }
     },
     computed: {
+        totPaginatorPages(){
+          if(this.filteredCars){
+              return (this.filteredCars.length / this.pageRows) + 1
+          } else {
+              return 0
+          }
+        },
         loggedIn () {
             return this.$store.getters['authentication/loggedIn']
         },
@@ -244,12 +207,12 @@ export default {
             return [...this.selector(this.cars)].sort(this.sorter)
         },
         pageCars () {
-            return this.filteredCars.slice(this.offset, this.offset + this.pageRows)
+            return this.filteredCars.slice((this.offset - 1) * this.pageRows, ((this.offset - 1) * this.pageRows) + this.pageRows)
         },
         cars () {
             return this.$store.getters['car/cars']
         },
-        brands() {
+        brands () {
             return this.$store.getters['car/brands']
         },
         authors () {
@@ -293,18 +256,32 @@ export default {
         nameFilterClick () {
             this.onNameSelected(this.nameFilter)
         },
-        onNameSelected (name) {
-            this.activeNameFilter = name
-            this.nameSelector = carsFilters.filterByName(name)
+        onNameSelected () {
+            this.activeNameFilter = this.nameFilter
+            this.nameSelector = carsFilters.filterByName(this.nameFilter)
         },
         onBrandSelected (name) {
-            this.brandSelector = carsFilters.filterByBrand(name)
+            if(name){
+                this.brandSelector = carsFilters.filterByBrand(name)
+            } else {
+                this.clearBrandFilter()
+            }
+
         },
         onAuthorSelected (name) {
-            this.authorSelector = carsFilters.filterByAuthor(name)
+            if(name){
+                this.authorSelector = carsFilters.filterByAuthor(name)
+            } else {
+                this.clearAuthorFilter()
+            }
+
         },
         onSelectedCategory (name) {
-            this.categorySelector = carsFilters.filterByCategory(name)
+            if(name) {
+                this.categorySelector = carsFilters.filterByCategory(name)
+            } else {
+                this.clearCategoryFilter()
+            }
         },
         clearNameFilter () {
             this.activeNameFilter = ''
@@ -379,7 +356,8 @@ export default {
 .custom-skeleton ul {
     list-style: none;
 }
-.p-dropdown{
+
+.p-dropdown {
     width: 10rem;
 }
 </style>

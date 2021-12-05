@@ -1,52 +1,38 @@
 <template class="p-grid p-m-0">
-    <div class="p-grid p-m-0">
-        <div class="p-col-12 p-p-0 sticky-top">
-            <Menubar :model="menuItems"/>
-        </div>
-        <div class="p-col-12">
-            <Nuxt keep-alive :keep-alive-props="{include:['CarList','TracksList']}"/>
-            <Dialog :modal="true" :visible.sync="display" header="Login" @hide="resetModal">
-                <div class="p-py-2">
-                    <form class="p-fluid" v-on:keyup.enter="handleSubmit(!v$.$invalid)"
-                          @submit.prevent="handleSubmit(!v$.$invalid)"
-                    >
-                        <div class="p-field">
-                            <InputText id="username-1" v-model="v$.username.$model"
-                                       :class="{'p-invalid':v$.username.$invalid && submitted}"
-                            />
-                        </div>
-                        <div class="p-field">
-                            <Password id="password" v-model="v$.password.$model"
-                                      :class="{'p-invalid':v$.password.$invalid && submitted}" :feedback="false"
-                                      toggleMask
-                            ></Password>
-                        </div>
-                        <Button class="p-mt-2" label="Submit" type="submit"/>
-                    </form>
-                </div>
-            </Dialog>
-        </div>
+    <v-app>
+        <v-app-bar elevation="4" elevate-on-scroll app>
+            <v-btn plain to="/">
+                <FontAwesomeIcon icon="home" class="mr-1"></FontAwesomeIcon>
+                Home
+            </v-btn>
+            <v-btn plain to="/cars/">
+                <FontAwesomeIcon icon="car" class="mr-1"></FontAwesomeIcon>
+                Cars
+            </v-btn>
+            <v-btn plain to="/tracks/">
+                <FontAwesomeIcon icon="road" class="mr-1"></FontAwesomeIcon>
+                Tracks
+            </v-btn>
+            <v-btn plain to="/logs/">
+                <FontAwesomeIcon icon="clipboard-list" class="mr-1"></FontAwesomeIcon>
+                Logs
+            </v-btn>
+        </v-app-bar>
+        <v-main app><Nuxt keep-alive :keep-alive-props="{include:['CarList','TracksList']}"/></v-main>
         <cookie-law theme="base"></cookie-law>
-    </div>
+    </v-app>
 </template>
 
 <script>
-import Menubar from 'primevue/menubar'
-import Dialog from 'primevue/dialog'
-import InputText from 'primevue/inputtext'
-import Password from 'primevue/password'
-import Button from 'primevue/button'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import useVuelidate from '@vuelidate/core'
 import required from 'vuelidate/lib/validators/required'
+
 
 export default {
     name: 'App',
     components: {
-        Menubar,
-        Dialog,
-        InputText,
-        Password,
-        Button,
+     FontAwesomeIcon
     },
     emits: ['loggedOut', 'loggedIn'],
     setup () {
