@@ -241,7 +241,7 @@ export default {
             return this.$store.getters['authentication/user'].role
         },
         filteredCars () {
-            return this.selector(this.cars)
+            return [...this.selector(this.cars)].sort(this.sorter)
         },
         pageCars () {
             return this.filteredCars.slice(this.offset, this.offset + this.pageRows)

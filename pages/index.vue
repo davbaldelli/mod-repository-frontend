@@ -27,15 +27,13 @@
             </div>
             <div class="p-col-12">
                 <NuxtLink to="/cars/">
-                    <Button class="p-button-lg p-button-outlined p-mr-2 p-px-4" type="button"
-                            @click="this.$router.push('cars')"
-                    >
+                    <Button class="p-button-lg p-button-outlined p-mr-2 p-px-4" type="button">
                         <FontAwesomeIcon icon="car"></FontAwesomeIcon>
                         <span class="p-ml-2 p-text-bold">Cars</span>
                     </Button>
                 </NuxtLink>
                 <NuxtLink to="/tracks/">
-                    <Button class="p-button-lg p-button-outlined" type="button" @click="this.$router.push('tracks')">
+                    <Button class="p-button-lg p-button-outlined" type="button">
                         <FontAwesomeIcon icon="road"></FontAwesomeIcon>
                         <span class="p-ml-2 p-text-bold">Tracks</span>
                     </Button>

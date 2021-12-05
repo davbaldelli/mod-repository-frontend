@@ -296,7 +296,7 @@ export default {
             return this.$store.getters['track/nations']
         },
         filteredTracks () {
-            return this.filter(this.tracks)
+            return [...this.filter(this.tracks)].sort(this.sorter)
         },
         pageTracks () {
             return this.filteredTracks.slice(this.offset, this.offset + this.pageRows)

@@ -4,7 +4,7 @@
             <Menubar :model="menuItems"/>
         </div>
         <div class="p-col-12">
-            <Nuxt/>
+            <Nuxt keep-alive :keep-alive-props="{include:['CarList','TracksList']}"/>
             <Dialog :modal="true" :visible.sync="display" header="Login" @hide="resetModal">
                 <div class="p-py-2">
                     <form class="p-fluid" v-on:keyup.enter="handleSubmit(!v$.$invalid)"
