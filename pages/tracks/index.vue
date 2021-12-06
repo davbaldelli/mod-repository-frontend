@@ -22,24 +22,24 @@
                     </v-col>
                 </v-row>
                 <v-row>
-                    <v-col cols="2">
+                    <v-col cols="4" lg="2">
                         <v-autocomplete v-model="selectedNation" :items="nations" @change="v => onNationSelected(v)"
                                         item-text="name" item-value="name" label="Nation" outlined dense clearable
                         ></v-autocomplete>
                     </v-col>
-                    <v-col cols="2">
+                    <v-col cols="4" lg="2">
                         <v-select v-model="selectedTag" @change="v => onTagSelected(v)"
                                   :items="tagsOpts" item-text="text" item-value="value" label="Tags" outlined
                                   dense clearable
                         ></v-select>
                     </v-col>
-                  <v-col cols="2">
+                  <v-col cols="4" lg="2">
                     <v-select v-model="selectedLayoutType" @change="v => onLayoutCategorySelected(v)"
                               :items="categoryOpts" item-text="text" item-value="value" label="Layout Type" outlined
                               dense clearable
                     ></v-select>
                   </v-col>
-                    <v-col cols="2">
+                    <v-col cols="4" lg="2">
                         <v-autocomplete v-model="selectedAuthor" @change="v => onAuthorSelected(v)" :items="authors"
                                         item-text="name" item-value="name" label="Author" outlined dense clearable
                         ></v-autocomplete>
@@ -80,7 +80,7 @@
                                     </v-card-title>
                                     <v-card-subtitle>
                                             <span v-for="tag in track.tags" :key="tag"
-                                                  class="badge badge-secondary p-mr-1"
+                                                  class="badge badge-secondary mr-1"
                                             >{{ tag }}</span>
                                         <span v-if="track.premium" class="badge badge-warning">Premium</span>
 
@@ -222,7 +222,7 @@ export default {
     computed: {
         totPaginatorPages(){
             if(this.filteredTracks){
-                return (this.filteredTracks.length / this.pageRows) + 1
+                return parseInt(this.filteredTracks.length / this.pageRows) + 1
             } else {
                 return 0
             }
@@ -332,7 +332,5 @@ export default {
 </script>
 
 <style scoped>
-.p-dropdown{
-    width: 10rem;
-}
+
 </style>

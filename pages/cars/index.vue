@@ -22,18 +22,18 @@
                     </v-col>
                 </v-row>
                 <v-row>
-                    <v-col cols="2">
+                    <v-col cols="4" lg="2">
                         <v-autocomplete v-model="selectedBrand" :items="brands" @change="v => onBrandSelected(v)"
                                         item-text="name" item-value="name" label="Brand" outlined dense clearable
                         ></v-autocomplete>
                     </v-col>
-                    <v-col cols="2">
+                    <v-col cols="4" lg="2">
                         <v-select v-model="selectedCategory" @change="v => onSelectedCategory(v)"
                                   :items="categories" item-text="name" item-value="name" label="Category" outlined
                                   dense clearable
                         ></v-select>
                     </v-col>
-                    <v-col cols="2">
+                    <v-col cols="4" lg="2">
                         <v-autocomplete v-model="selectedAuthor" @change="v => onAuthorSelected(v)" :items="authors"
                                         item-text="name" item-value="name" label="Author" outlined dense clearable
                         ></v-autocomplete>
@@ -58,7 +58,7 @@
                         <v-card>
                             <v-row>
                                 <v-col cols="12" md="4">
-                                    <div class="d-flex align-center h-100">
+                                    <div class="h-100">
                                         <v-img class="ma-3" contain :src="car.image" alt="car thumbnail"/>
                                     </div>
                                 </v-col>
@@ -74,7 +74,7 @@
                                     </v-card-title>
                                     <v-card-subtitle>
                                             <span v-for="category in car.categories" :key="category.name"
-                                                  class="badge badge-secondary p-mr-1"
+                                                  class="badge badge-secondary mr-1"
                                             >{{ category.name }}</span>
                                         <span v-if="car.premium" class="badge badge-warning">Premium</span>
 
@@ -172,7 +172,7 @@ export default {
     computed: {
         totPaginatorPages(){
           if(this.filteredCars){
-              return (this.filteredCars.length / this.pageRows) + 1
+              return parseInt(this.filteredCars.length / this.pageRows) + 1
           } else {
               return 0
           }
@@ -302,45 +302,5 @@ export default {
 </script>
 
 <style>
-.p-card .p-card-content {
-    padding: 0 !important;
-}
 
-.p-card .p-card-body {
-    padding: 0.25rem !important;
-}
-
-.p-panel-content {
-    padding: 0 !important;
-}
-
-.p-listbox {
-    border: none !important;
-}
-
-.p-listbox .p-listbox-header {
-    border-top-left-radius: 0 !important;
-    border-top-right-radius: 0 !important;
-}
-
-.p-accordion .p-accordion-content {
-    padding: 0 !important;
-}
-
-.p-dropdown > span {
-    padding: 0.5rem;
-}
-
-.custom-skeleton {
-    border: 1px solid var(--surface-d);
-    border-radius: 4px;
-}
-
-.custom-skeleton ul {
-    list-style: none;
-}
-
-.p-dropdown {
-    width: 10rem;
-}
 </style>
