@@ -73,7 +73,9 @@ export default {
     exclude: [
       '/cars/new',
       '/tracks/new',
-      '/login'
+      '/login',
+      '/tracks/edit',
+      'cars/edit',
     ],
     gzip: true,
   },

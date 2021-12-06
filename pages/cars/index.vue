@@ -93,6 +93,7 @@
                   </v-card-text>
                   <v-card-actions class="mt-auto px-4">
                     <v-spacer></v-spacer>
+                    <v-btn v-if="userRole === 'admin'" :to="`/cars/edit/${car.id}`" color="orange">Edit</v-btn>
                     <v-btn :href="car.downloadLink" color="primary">Download</v-btn>
                   </v-card-actions>
                 </v-col>

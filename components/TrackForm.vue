@@ -82,9 +82,26 @@
               <v-col>
                 <v-select v-model="layout.category" :items="layoutTypeOptions" label="Layout Type"></v-select>
               </v-col>
+              <v-col cols="1">
+                <v-btn icon color="red" @click="removeLayout(i)">
+                  <v-icon>mdi-minus</v-icon>
+                </v-btn>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-spacer/>
+              <v-col cols="1">
+                <v-btn icon color="blue" @click="addLayout">
+                  <v-icon>mdi-plus</v-icon>
+                </v-btn>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12">
+                <v-btn block type="submit">Insert</v-btn>
+              </v-col>
             </v-row>
           </v-container>
-          <v-btn block type="submit">Insert</v-btn>
         </v-form>
       </v-col>
       <v-col/>
@@ -194,6 +211,16 @@ export default {
         name: '',
         code: '',
       }
+    },
+    removeLayout(index){
+      this.form.layouts.splice(index, 1)
+    },
+    addLayout(){
+      this.form.layouts.push({
+        lengthM: 0,
+        category: "",
+        name: "",
+      })
     }
   }
 }
