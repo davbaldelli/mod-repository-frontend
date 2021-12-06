@@ -15,16 +15,20 @@
             </v-row>
             <v-row>
               <v-col cols="10">
-                <v-autocomplete v-if="existingBrand" :items="brands" item-text="name"  return-object v-model="form.brand" :rules="rules.brand" label="Brand" required/>
+                <v-autocomplete v-if="existingBrand" :items="brands" item-text="name" return-object v-model="form.brand"
+                                :rules="rules.brand" label="Brand" required
+                />
                 <v-text-field v-else v-model="form.brand.name" :rules="rules.brandName" label="Brand Name"/>
               </v-col>
               <v-col cols="2">
-                <v-checkbox v-model="existingBrand" label="Existing"/>
+                <v-checkbox v-model="existingBrand" label="Existing" @change="clearBrand"/>
               </v-col>
             </v-row>
             <v-row>
               <v-col v-if="existingNation && !existingBrand" cols="10">
-                <v-autocomplete v-model="form.brand.nation" :items="nations" return-object item-text="name" :rules="rules.nation" label="Nation" required/>
+                <v-autocomplete v-model="form.brand.nation" :items="nations" return-object item-text="name"
+                                :rules="rules.nation" label="Nation" required
+                />
               </v-col>
               <v-col v-if="!existingNation && !existingBrand" cols="5">
                 <v-text-field v-model="form.brand.nation.name" :rules="rules.nationName" label="Nation Name" required/>
@@ -33,15 +37,17 @@
                 <v-text-field v-model="form.brand.nation.code" :rules="rules.nationCode" label="Nation Code" required/>
               </v-col>
               <v-col v-if="!existingBrand" cols="2">
-                <v-checkbox v-model="existingNation" label="Existing"/>
+                <v-checkbox v-model="existingNation" label="Existing" @change="clearNation"/>
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <v-text-field v-model="form.year" :rules="rules.year" label="Year" required type="number" />
+                <v-text-field v-model.number="form.year" :rules="rules.year" label="Year" required type="number"/>
               </v-col>
               <v-col>
-                <v-select v-model="form.categories" :items="categories" item-text="name" label="Categories" multiple return-object></v-select>
+                <v-select v-model="form.categories" :items="categories" item-text="name" label="Categories" multiple
+                          return-object
+                ></v-select>
               </v-col>
             </v-row>
             <v-row>
@@ -54,41 +60,57 @@
             </v-row>
             <v-row>
               <v-col>
-                <v-text-field v-model="form.bhp" :rules="rules.power" label="Power" suffix="BHP" required type="number" />
+                <v-text-field v-model.number="form.bhp" :rules="rules.power" label="Power" suffix="BHP" required
+                              type="number"
+                />
               </v-col>
               <v-col>
-                <v-text-field v-model="form.torque" :rules="rules.torque" label="Torque" suffix="Nm" required type="number" />
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col>
-                <v-text-field v-model="form.weight" :rules="rules.weight" label="Weight" suffix="Kg" required type="number" />
-              </v-col>
-              <v-col>
-                <v-text-field v-model="form.topSpeed" :rules="rules.topSpeed" label="Top Speed" suffix="Km/h" required type="number" />
+                <v-text-field v-model.number="form.torque" :rules="rules.torque" label="Torque" suffix="Nm" required
+                              type="number"
+                />
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <v-select v-model="form.drivetrain" :items="drivetrainOptions" :rules="rules.drivetrain" label="Drivetrain" required/>
+                <v-text-field v-model.number="form.weight" :rules="rules.weight" label="Weight" suffix="Kg" required
+                              type="number"
+                />
               </v-col>
               <v-col>
-                <v-select v-model="form.transmission" :items="transmissionOptions" :rules="rules.transmission" label="Transmission" required/>
+                <v-text-field v-model.number="form.topSpeed" :rules="rules.topSpeed" label="Top Speed" suffix="Km/h"
+                              required type="number"
+                />
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <v-text-field v-model="form.downloadLink" :rules="rules.downloadLink" label="Download Link" required type="url" />
+                <v-select v-model="form.drivetrain" :items="drivetrainOptions" :rules="rules.drivetrain"
+                          label="Drivetrain" required
+                />
+              </v-col>
+              <v-col>
+                <v-select v-model="form.transmission" :items="transmissionOptions" :rules="rules.transmission"
+                          label="Transmission" required
+                />
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <v-text-field v-model="form.image" :rules="rules.image" label="Image Link" required type="url" />
+                <v-text-field v-model="form.downloadLink" :rules="rules.downloadLink" label="Download Link" required
+                              type="url"
+                />
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-text-field v-model="form.image" :rules="rules.image" label="Image Link" required type="url"/>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="10" v-if="existingAuthor">
-                <v-select v-model="form.author" :items="authors" :rules="rules.author" item-text="name" label="Author" return-object required/>
+                <v-select v-model="form.author" :items="authors" :rules="rules.author" item-text="name" label="Author"
+                          return-object required
+                />
               </v-col>
               <v-col v-if="!existingAuthor" cols="5">
                 <v-text-field v-model="form.author.name" :rules="rules.authorName" label="Author Name"/>
@@ -97,7 +119,7 @@
                 <v-text-field v-model="form.author.link" :rules="rules.authorLink" label="Author Link"/>
               </v-col>
               <v-col cols="2">
-                <v-checkbox v-model="existingAuthor" label="Existing"></v-checkbox>
+                <v-checkbox v-model="existingAuthor" label="Existing" @change="clearAuthor"></v-checkbox>
               </v-col>
             </v-row>
           </v-container>
@@ -126,8 +148,8 @@
 <script>
 export default {
   name: 'CarForm',
-  props: ["initialValue"],
-  emits : ['submit'],
+  props: ['initialValue'],
+  emits: ['submit'],
   data () {
     return {
       valid: true,
@@ -135,27 +157,42 @@ export default {
       existingNation: true,
       existingAuthor: true,
       form: this.initialValue,
-      confirm : false,
+      confirm: false,
       transmissionOptions: [
-        {value: "SEQUENTIAL", text: "Sequential"},
-        {value: "MANUAL", text: "Manual"},
+        {
+          value: 'SEQUENTIAL',
+          text: 'Sequential'
+        },
+        {
+          value: 'MANUAL',
+          text: 'Manual'
+        },
       ],
       drivetrainOptions: [
-        {value: "AWD", text: "AWD"},
-        {value: "RWD", text: "RWD"},
-        {value: "FWD", text: "FWD"},
+        {
+          value: 'AWD',
+          text: 'AWD'
+        },
+        {
+          value: 'RWD',
+          text: 'RWD'
+        },
+        {
+          value: 'FWD',
+          text: 'FWD'
+        },
       ],
-      categories : [
-        {name : "Endurance"},
-        {name : "Formula"},
-        {name : "GT"},
-        {name : "Prototype"},
-        {name : "Rally"},
-        {name : "Stock Car"},
-        {name : "Street"},
-        {name : "Tuned"},
-        {name : "Touring"},
-        {name : "Vintage"},
+      categories: [
+        { name: 'Endurance' },
+        { name: 'Formula' },
+        { name: 'GT' },
+        { name: 'Prototype' },
+        { name: 'Rally' },
+        { name: 'Stock Car' },
+        { name: 'Street' },
+        { name: 'Tuned' },
+        { name: 'Touring' },
+        { name: 'Vintage' },
       ],
       rules: {
         name: [v => !!v || 'Name is required'],
@@ -164,7 +201,7 @@ export default {
         nation: [v => !!v || 'Nation is required'],
         nationName: [v => !!v || 'Nation Name is required'],
         nationCode: [v => !!v || 'Nation Cod is required'],
-        year: [v => !!v || 'Year is required' ],
+        year: [v => !!v || 'Year is required'],
         version: [v => !!v || 'Version is required'],
         rating: [v => !!v || 'Rating is required'],
         power: [v => !!v || 'Power is required'],
@@ -181,14 +218,14 @@ export default {
       }
     }
   },
-  computed:{
-    nations(){
+  computed: {
+    nations () {
       return this.$store.getters['car/nations']
     },
-    brands(){
+    brands () {
       return this.$store.getters['car/brands']
-    } ,
-    authors(){
+    },
+    authors () {
       return this.$store.getters['author/authors']
     },
   },
@@ -196,20 +233,41 @@ export default {
     this.initiate()
   },
   methods: {
-    initiate(){
+    initiate () {
       this.$store.dispatch('author/getAll')
       this.$store.dispatch('car/getCarBrands')
       this.$store.dispatch('car/getBrandNations')
     },
-    confirmed(){
+    confirmed () {
       this.confirm = false
       this.$emit('submit', this.form)
     },
-    onsubmit(){
+    onsubmit () {
       this.$refs.form.validate()
-      if(this.valid){
+      if (this.valid) {
         this.confirm = true
       }
+    },
+    clearBrand () {
+      this.form.brand = {
+        name: '',
+        nation: {
+          name: '',
+          code: '',
+        }
+      }
+    },
+    clearAuthor () {
+      this.form.author = {
+        name : "",
+        link : "",
+      }
+    },
+    clearNation () {
+      this.form.brand.nation = {
+          name: '',
+          code: '',
+        }
     }
   }
 }

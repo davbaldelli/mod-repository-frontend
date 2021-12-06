@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row>
       <v-col>
-        <LazyCarForm :initialValue="this.form" @submit="onSubmit"/>
+        <LazyTrackForm :initialValue="this.form" @submit="onSubmit"/>
       </v-col>
     </v-row>
     <v-snackbar v-model="showMsg">
@@ -17,48 +17,49 @@
 </template>
 
 <script>
-
 export default {
-  name: 'CarInput',
-  middleware : 'admin',
+  name: 'TrackInput',
+  middleware : 'auth',
   data(){
-    return{
+    return {
       showMsg :false,
       message : "",
-      form: {
-        torque: 0,
-        bhp: 0,
-        weight: 0,
-        topSpeed: 0,
+      form : {
         downloadLink: "",
         image: "",
-        modelName: "",
+        name: "",
+        location: "",
+        tags: [],
+        year: 0,
+        nation: {
+          name: "",
+        },
+        premium: false,
+        layouts: [
+          {
+            lengthM: 0,
+            category: "",
+            name: "",
+          },
+        ],
         author: {
           name: "",
           link: "",
         },
-        brand: {
-          name: "",
-          nation: {
-            name: "",
-            code: "",
-          },
-        },
-        year: 0,
-        drivetrain: "",
-        transmission: "",
-        categories: [],
-        premium: false,
-        rating: 0,
+        rating : 0,
         version : "",
-      }
+      },
+      success : false,
+      successMessage : "",
+      fail : false,
+      failMessage : "",
     }
   },
   methods:{
     onSubmit(form){
-      this.$store.dispatch('car/addCar', form)
+      this.$store.dispatch('track/addTrack', form)
         .then(() => {
-          this.message="Car added successfully"
+          this.message="Track added successfully"
           this.showMsg = true
         })
         .catch(e => {

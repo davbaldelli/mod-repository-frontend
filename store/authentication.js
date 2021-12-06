@@ -1,18 +1,9 @@
 import { userService } from '@/_services'
 
-const user = JSON.parse(localStorage.getItem('user'))
+const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user
-    ? {
-        status: { loggedIn: true },
-        user
-    }
-    : {
-        status: {},
-        user: {
-            username: 'base',
-            token: ''
-        }
-    }
+  ? {status: {loggedIn: true}, user}
+  : {status: {}, user: { username : 'base' }};
 
 export const state = () => initialState
 

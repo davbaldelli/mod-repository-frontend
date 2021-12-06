@@ -72,6 +72,7 @@ export default {
     hostname: 'https://www.acmodrepository.com',
     exclude: [
       '/cars/new',
+      '/tracks/new',
       '/login'
     ],
     gzip: true,

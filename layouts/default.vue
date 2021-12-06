@@ -114,8 +114,7 @@ export default {
                             .then(() => this.$store.dispatch('alert/clear'))
                         this.$emit('loggedOut')
                     } else {
-                        this.toggleDialog()
-                        this.username = this.$store.getters['authentication/user'].username
+                      await this.$router.push('/login')
                     }
                 }
             },
