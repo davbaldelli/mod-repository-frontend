@@ -1,158 +1,97 @@
 <template>
-    <div class="p-grid">
-        <div class="p-col-12 p-lg-2 p-xl-4"></div>
-        <div class="p-col-12 p-lg-8 p-xl-4">
-            <div class="p-grid">
-                <div v-if="!car && !carLoading" class="p-col-12">
-                    <h3 class="p-mt-4">I'm sorry, but I can't find the car that you are looking for. You can turn back
-                        to the
-                        <router-link to="/cars/">cars list</router-link>
-                        and see if that exits.
-                    </h3>
-                </div>
-                <div v-if="carLoading" class="p-col-12">
-                    <div class="p-grid">
-                        <div class="p-col-12">
-                            <Skeleton height="450px" width="100%"></Skeleton>
-                        </div>
-                        <div class="p-col-12">
-                            <div class="p-grid">
-                                <div class="p-col-12">
-                                    <Skeleton height="60px" width="70%"></Skeleton>
-                                </div>
-                                <div class="p-col-12 p-p-3">
-                                    <div class="p-grid p-card">
-                                        <div class="p-col-12 p-sm-6 p-p-sm-3 p-pt-3 p-pb-0">
-                                            <Skeleton class="p-m-2" height="30px" width="auto"></Skeleton>
-                                            <Skeleton class="p-m-2" height="30px" width="auto"></Skeleton>
-                                            <Skeleton class="p-m-2" height="30px" width="auto"></Skeleton>
-                                            <Skeleton class="p-m-2" height="30px" width="auto"></Skeleton>
-                                            <Skeleton class="p-m-2" height="30px" width="auto"></Skeleton>
-                                        </div>
-                                        <div class="p-col-12 p-sm-6 p-p-sm-3 p-pt-0">
-                                            <Skeleton class="p-m-2" height="30px" width="auto"></Skeleton>
-                                            <Skeleton class="p-m-2" height="30px" width="auto"></Skeleton>
-                                            <Skeleton class="p-m-2" height="30px" width="auto"></Skeleton>
-                                            <Skeleton class="p-m-2" height="30px" width="auto"></Skeleton>
-                                            <Skeleton class="p-m-2" height="30px" width="auto"></Skeleton>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="p-col-12">
-                                    <Skeleton class="p-p-2" height="40px"></Skeleton>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div v-if="car" class="p-col-12">
-                    <div class="p-grid">
-                        <div class="p-col-12">
-                            <img :src="car.image" alt="car thumbnail" class="rounded-3 card-img">
-                        </div>
-                        <div class="p-col-12">
-                            <div class="p-grid">
-                                <div class="p-col-12 p-text-center ">
-                                    <h1 class="display-4 p-mb-0">{{ `${car.brand.name} ${car.modelName}` }}</h1>
-                                </div>
-                                <div class="p-col-12 p-text-center">
-                                    <Rating v-model="car.rating" :cancel="false" :readonly="true" :stars="10"></Rating>
-                                </div>
-                                <div class="p-col-12 p-p-3">
-                                    <div class="p-grid p-card">
-                                        <div class="p-col-12 p-sm-6 p-p-sm-3 p-pt-3 p-pb-0">
-                                            <strong>Brand</strong> {{ car.brand.name }}
-                                            <hr>
-                                            <strong>Nation</strong> {{ car.brand.nation.name }}
-                                            <hr>
-                                            <strong>Year</strong> {{ car.year }}
-                                            <hr>
-                                            <strong>Author</strong> <a :href="car.author.link">{{ car.author.name }}</a>
-                                            <hr>
-                                            <strong>Mod Version</strong> {{ car.version }}
-                                            <hr>
-                                        </div>
-                                        <div class="p-col-12 p-sm-6 p-p-sm-3 p-pt-0">
-                                            <strong>Power</strong> {{ car.bhp }} BHP
-                                            <hr>
-                                            <strong>Torque</strong> {{ car.torque }} Nm
-                                            <hr>
-                                            <strong>Max Speed</strong> {{ car.topSpeed }} Km/h
-                                            <hr>
-                                            <strong>Drivetrain</strong> {{ car.drivetrain }}
-                                            <hr>
-                                            <strong>Transmission</strong> {{ car.transmission }}
-                                            <hr>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="p-col-12">
-                            <Button label="Download" style="width: 100%" @click="openInNewTab(car.downloadLink)"
-                            ></Button>
-                        </div>
-                        <div class="p-col-12">
-                            <Button v-if="userRole === 'admin'" class="p-button-warning" label="Edit"
-                                    style="width: 100%" @click="openEditTab(car)"
-                            ></Button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="p-col-12 p-lg-2 p-xl-4"></div>
-    </div>
+  <v-container fluid>
+    <v-row v-if="car">
+      <v-col cols="0" md="3" lg="4"/>
+      <v-col cols="12" md="6" lg="4">
+        <v-row>
+          <v-col cols="12">
+            <v-img contain :src="car.image"></v-img>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <h1 class="text-h2">{{`${car.brand.name} ${car.modelName}`}}</h1>
+          </v-col>
+        </v-row>
+        <v-row class="mt-0">
+          <v-col>
+            <v-rating v-model="car.rating" readonly dense length="10" background-color="orange lighten-3"
+                      color="orange"/>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-card class="pa-4">
+              <v-row class="pt-3">
+                <v-col cols="12" md="6">
+                  <strong>Brand</strong> {{car.brand.name}}
+                  <hr>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <strong>Nation</strong> {{car.brand.nation.name}}
+                  <hr>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <strong>Year</strong> {{car.year}}
+                  <hr>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <strong>Author</strong><a :href="car.author.link" rel="noopener" target="_blank"> {{car.author.name}}</a>
+                  <hr>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <strong>Mod Version</strong> {{car.version}}
+                  <hr>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <strong>Power</strong> {{car.bhp}}
+                  <hr>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <strong>Torque</strong> {{car.torque}}
+                  <hr>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <strong>Top Speed</strong> {{car.topSpeed}}
+                  <hr>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <strong>Transmission</strong> {{car.transmission}}
+                  <hr>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <strong>Drivetrain</strong>
+                  <hr>
+                </v-col>
+              </v-row>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col cols="0" md="3" lg="4"/>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-
-import Button from 'primevue/button'
-import Skeleton from 'primevue/skeleton'
-import Rating from 'primevue/rating'
-
 export default {
-    name: 'CarDetail',
-    components: {
-        Button,
-        Skeleton,
-        Rating,
+  name: 'CarDetail',
+  data(){
+    return{
+      id : this.$route.params.id
+    }
+  },
+  computed:{
+    car() {
+      return this.$store.getters['car/getCarById'](this.id)
     },
-    data () {
-        return {
-            id: this.$route.params.id,
-        }
-    },
-    computed: {
-        car () {
-            return this.$store.getters['car/getCarById'](this.id)
-        },
-        carLoading () {
-            return this.$store.getters['car/loadingCars']
-        },
-        userRole () {
-            return this.$store.getters['authentication/user'].role
-        },
-    },
-    mounted () {
-        this.init()
-    },
-    methods: {
-        init () {
-            this.$store.dispatch('car/getAll')
-        },
-        openInNewTab (url) {
-            window.open(url, '_blank').focus()
-        },
-        openEditTab (car) {
-            this.$router.push({
-                name: 'CarEdit',
-                params: { id: car.id }
-            })
-        }
-
-    },
+    loading(){
+      return this.$store.getters['car/loadingCars']
+    }
+  },
+  mounted () {
+    this.$store.dispatch('car/getAll')
+  }
 }
 </script>
 

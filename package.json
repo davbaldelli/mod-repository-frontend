@@ -1,49 +1,34 @@
 {
-    "name": "ac-mod-repo-frontend",
-    "version": "1.0.0",
-    "private": true,
-    "scripts": {
-        "dev": "nuxt",
-        "build": "nuxt build",
-        "start": "nuxt start",
-        "generate": "nuxt generate",
-        "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-        "lint": "npm run lint:js"
-    },
-    "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^1.2.36",
-        "@fortawesome/free-solid-svg-icons": "^5.15.4",
-        "@fortawesome/vue-fontawesome": "^2.0.6",
-        "@nuxt/content": "^1.14.0",
-        "@nuxtjs/axios": "^5.13.6",
-        "@nuxtjs/pwa": "^3.3.5",
-        "@vue/composition-api": "^1.4.1",
-        "@vuelidate/core": "^2.0.0-alpha.32",
-        "@vuelidate/validators": "^2.0.0-alpha.25",
-        "axios": "^0.24.0",
-        "bootstrap": "^4.6.0",
-        "bootstrap-vue": "^2.21.2",
-        "core-js": "^3.15.1",
-        "moment-timezone": "^0.5.34",
-        "nuxt": "^2.15.7",
-        "primeflex": "^2.0.0",
-        "primeicons": "^5.0.0",
-        "primevue": "^2.7.0",
-        "vue": "^2.6.14",
-        "vue-axios": "^3.4.0",
-        "vue-cookie-law": "^1.13.3",
-        "vue-cookieconsent-component": "^1.2.0",
-        "vuelidate": "^0.7.6",
-        "vuex": "^3.6.2"
-    },
-    "devDependencies": {
-        "@babel/eslint-parser": "^7.14.7",
-        "@nuxtjs/eslint-config": "^6.0.1",
-        "@nuxtjs/eslint-module": "^3.0.2",
-        "eslint-plugin-nuxt": "^2.0.0",
-        "eslint-plugin-vue": "^7.12.1",
-        "fibers": "^5.0.0",
-        "sass": "^1.44.0",
-        "sass-loader": "^10.2.0"
-    }
+  "name": "ac-mod-repo-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/vue-fontawesome": "^2.0.6",
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/pwa": "^3.3.5",
+    "@vue/composition-api": "^1.4.1",
+    "@vuelidate/core": "^2.0.0-alpha.32",
+    "@vuelidate/validators": "^2.0.0-alpha.25",
+    "bootstrap-vue": "^2.21.2",
+    "core-js": "^3.15.1",
+    "moment-timezone": "^0.5.34",
+    "nuxt": "^2.15.7",
+    "sass-loader": "^10.1.1",
+    "vue-cookie-law": "^1.13.3",
+    "vuelidate": "^0.7.6",
+    "vuetify": "^2.5.5",
+    "webpack": "^4.46.0"
+  },
+  "devDependencies": {
+    "@nuxt/types": "~2.15.0",
+    "@nuxtjs/vuetify": "^1.12.1"
+  }
 }

@@ -1,51 +1,46 @@
 <template>
-    <div class="p-grid">
-        <div class="p-col-12 text-center p-mt-4">
-            <h1 class="display-4">Repository Logs</h1>
-            <h2 class="lead"><em>Stay updated on what's happening inside the repository</em></h2>
-        </div>
-        <div class="p-col-12 p-lg-3"></div>
-        <div class="p-col-12 p-lg-6" style="height: calc(70vh)">
-            <DataTable :scrollable="true" :value="logs" responsive-layout="scroll" scrollHeight="flex">
-                <Column header="Type">
-                    <template #body="slotProps">
-                        <FontAwesomeIcon :icon="slotProps.data.name ? 'road' : 'car'" class="p-mr-2"></FontAwesomeIcon>
-                        <FontAwesomeIcon v-if="slotProps.data.premium" icon="dollar-sign"></FontAwesomeIcon>
+    <v-container fluid>
+        <v-row>
+            <v-col cols="12" class="text-center">
+                <h1 class="text-h2">Repository Logs</h1>
+                <h2 class="text-h5"><em>Stay updated on what's happening inside the repository</em></h2>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="0" md="2" lg="3"/>
+            <v-col cols="12" md="8" lg="6">
+                <v-data-table
+                    :headers="headers"
+                    :items="logs"
+                    class="elevation-1"
+                >
+                    <template v-slot:item.type="{ item }">
+                        <FontAwesomeIcon :icon="item.name ? 'road' : 'car'" class="p-mr-2"></FontAwesomeIcon>
+                        <FontAwesomeIcon v-if="item.premium" icon="dollar-sign"></FontAwesomeIcon>
                     </template>
-                </Column>
-                <Column header="Mod">
-                    <template #body="slotProps">
-                        <router-link
-                            :to="slotProps.data.name ? `/track/${slotProps.data.id}` : `/car/${slotProps.data.id}`"
+                    <template v-slot:item.name="{item}" >
+                        <NuxtLink
+                            :to="item.name ? `/track/${item.id}` : `/car/${item.id}`"
                         >
-                            {{ slotProps.data.name ? slotProps.data.name : `${slotProps.data.brand} ${slotProps.data.model}` }}
-                        </router-link>
+                            {{ item.name ? item.name : `${item.brand} ${item.model}` }}
+                        </NuxtLink>
                     </template>
-                </Column>
-                <Column header="Action">
-                    <template #body="slotProps">
-                        <Tag :severity="slotProps.data.action==='Insert' ? 'success' : 'primary'">
-                            {{ slotProps.data.action === 'Insert' ? 'Added' : 'Updated' }}
-                        </Tag>
+                    <template v-slot:item.action="{item}">
+                        <v-chip :color="item.action==='Insert' ? 'green' : 'blue'" label>{{ item.action }}</v-chip>
                     </template>
-                </Column>
-                <Column header="Date">
-                    <template #body="slotProps">
-                        {{ getDate(slotProps.data.happenedAt) }}
+                    <template v-slot:item.happenedAt="{item}">
+                        {{ getDate(item.happenedAt) }}
                     </template>
-                </Column>
-            </DataTable>
-        </div>
-        <div class="p-col-12 p-lg-3"></div>
-    </div>
+                </v-data-table>
+            </v-col>
+            <v-col cols="0" md="2" lg="3"/>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
-import DataTable from 'primevue/datatable'
-import Column from 'primevue/column'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import moment from 'moment-timezone'
-import Tag from 'primevue/tag'
 
 const sortByDate = (a, b) => {
     let timeA = moment(a.happenedAt)
@@ -56,10 +51,33 @@ const sortByDate = (a, b) => {
 export default {
     name: 'LogList',
     components: {
-        DataTable,
-        Column,
         FontAwesomeIcon,
-        Tag,
+    },
+    data(){
+        return {
+            headers: [
+                {
+                    text: 'Type',
+                    value: 'type',
+                    sortable: false,
+                },
+                {
+                    text: 'Mod Name',
+                    value: 'name',
+                    sortable: false,
+                },
+                {
+                    text: 'Action',
+                    value: 'action',
+                    sortable: false,
+                },
+                {
+                    text: 'Date',
+                    value: 'happenedAt',
+                    sortable: false,
+                },
+            ],
+        }
     },
     computed: {
         logs () {

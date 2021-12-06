@@ -1,164 +1,89 @@
 <template>
-    <div class="p-grid">
-        <div class="p-col-12 p-lg-2 p-xl-4"></div>
-        <div class="p-col-12 p-lg-8 p-xl-4">
-            <div v-if="!track && !trackLoading" class="p-col-12">
-                <h3 class="p-mt-4">I'm sorry, but I can't find the track that you are looking for. You can turn back to
-                    the
-                    <router-link to="/tracks/">tracks list</router-link>
-                    and see if that exits.
-                </h3>
-            </div>
-            <div v-if="trackLoading">
-                <div class="p-grid">
-                    <div class="p-col-12">
-                        <Skeleton height="450px" width="100%"></Skeleton>
-                    </div>
-                    <div class="p-col-12">
-                        <div class="p-grid">
-                            <div class="p-col-12">
-                                <Skeleton height="60px" width="70%"></Skeleton>
-                            </div>
-                            <div class="p-col-12 p-p-3">
-                                <div class="p-grid p-card">
-                                    <div class="p-col-12 p-sm-6 p-p-sm-3 p-pt-3 p-pb-0">
-                                        <Skeleton class="p-m-2" height="30px" width="auto"></Skeleton>
-                                        <Skeleton class="p-m-2" height="30px" width="auto"></Skeleton>
-                                    </div>
-                                    <div class="p-col-12 p-sm-6 p-p-sm-3 p-pt-0">
-                                        <Skeleton class="p-m-2" height="30px" width="auto"></Skeleton>
-                                        <Skeleton class="p-m-2" height="30px" width="auto"></Skeleton>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-col-12 p-mt-2">
-                                <Skeleton height="40px" width="30%"></Skeleton>
-                            </div>
-                            <div class="p-col-12 p-p-3">
-                                <div class="p-grid p-card">
-                                    <div class="p-col-12 p-sm-4">
-                                        <Skeleton height="30px" width="40%"/>
-                                    </div>
-                                    <div class="p-col-12 p-sm-4">
-                                        <Skeleton height="30px" width="60%"/>
-                                    </div>
-                                    <div class="p-col-12 p-sm-4">
-                                        <Skeleton height="30px" width="50%"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-col-12">
-                                <Skeleton class="p-p-2" height="40px"></Skeleton>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div v-if="track" class="p-col-12">
-                <div class="p-grid">
-                    <div class="p-col-12">
-                        <div class="p-grid">
-                            <div class="p-col-12">
-                                <img :src="track.image" alt="track thumbnail" class="rounded-3 card-img">
-                            </div>
-                            <div class="p-col-12 p-text-center">
-                                <h1 class="display-4 p-mb-0">{{ track.name }}</h1>
-                            </div>
-                            <div class="p-col-12 p-text-center">
-                                <Rating v-model="track.rating" :cancel="false" :readonly="true" :stars="10"></Rating>
-                            </div>
-                            <div class="p-col-12 p-p-3">
-                                <div class="p-grid p-card p-p-2">
-                                    <div class="p-col-12 p-sm-6 p-p-sm-3 p-pt-3 p-pb-0">
-                                        <strong>Construction Year</strong>: {{ track.year }}
-                                        <hr>
-                                        <strong>Location</strong>: {{ track.location }}, {{ track.nation.name }}
-                                        <hr>
-                                    </div>
-                                    <div class="p-col-12 p-sm-6 p-p-sm-3 p-pt-0">
-                                        <strong>Author</strong>: <a :href="track.author.link">{{
-                                            track.author.name
-                                        }}</a>
-                                        <hr>
-                                        <strong>Mod Version</strong> {{ track.version }}
-                                        <hr>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-col-12 p-mt-2"><h3>Layouts</h3></div>
-                    <div class="p-col-12">
-                        <div class="p-grid p-p-2">
-                            <div v-for="(layout, id) in track.layouts" :key="id" class="p-col-12  p-p-2">
-                                <div class="p-grid p-card">
-                                    <div class="p-col-12 p-sm-4"><strong>Name</strong>: {{ layout.name }}</div>
-                                    <div class="p-col-12 p-sm-4"><strong>Type</strong>: {{ layout.category }}</div>
-                                    <div class="p-col-12 p-sm-4"><strong>Length</strong>: {{ layout.lengthM }}m</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-col-12">
-                        <Button label="Download" style="width: 100%" @click="openInNewTab(track.downloadLink)"></Button>
-                    </div>
-                    <div class="p-col-12">
-                        <Button v-if="userRole === 'admin'" class="p-button-warning" label="Edit"
-                                style="width: 100%" @click="openEditTab(car)"
-                        ></Button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="p-col-12 p-lg-2 p-xl-4"></div>
-    </div>
+  <v-container fluid>
+    <v-row v-if="track">
+      <v-col cols="0" md="3" lg="4"/>
+      <v-col cols="12" md="6" lg="4">
+        <v-row>
+          <v-col cols="12">
+            <v-img contain :src="track.image"></v-img>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <h1 class="text-h2">{{track.name}}</h1>
+          </v-col>
+        </v-row>
+        <v-row class="mt-0">
+          <v-col>
+            <v-rating v-model="track.rating" readonly dense length="10" background-color="orange lighten-3"
+                      color="orange"/>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-card class="pa-4">
+              <v-row class="pt-3">
+                <v-col cols="12" md="6">
+                  <strong>Location</strong> {{`${track.location}, ${track.nation.name}`}}
+                  <hr>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <strong>Construction Year</strong> {{track.year}}
+                  <hr>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <strong>Author</strong><a :href="track.author.link" rel="noopener" target="_blank"> {{track.author.name}}</a>
+                  <hr>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <strong>Mod Version</strong> {{track.version}}
+                  <hr>
+                </v-col>
+              </v-row>
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-row class="mt-6">
+          <v-col>
+            <h2 class="text-h4">Layouts</h2>
+          </v-col>
+        </v-row>
+        <v-row class="mt-1">
+          <v-col>
+            <v-card class="pa-4 mb-2" v-for="layout in track.layouts" :key="layout.name">
+              <v-row >
+                <v-col><strong>Name</strong> {{layout.name}}</v-col>
+                <v-col><strong>Length</strong> {{layout.lengthM}}m</v-col>
+                <v-col><strong>Type</strong> {{layout.type}}</v-col>
+              </v-row>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col cols="0" md="3" lg="4"/>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-import Skeleton from 'primevue/skeleton'
-import Button from 'primevue/button'
-import Rating from 'primevue/rating'
-
 export default {
-    name: 'TrackDetail',
-    components: {
-        Skeleton,
-        Button,
-        Rating,
+  name: 'TrackDetail',
+  data(){
+    return{
+      id : this.$route.params.id
+    }
+  },
+  computed:{
+    track() {
+      return this.$store.getters['track/getTrackByName'](this.id)
     },
-    data () {
-        return {
-            id: this.$route.params.id
-        }
-    },
-    computed: {
-        track () {
-            return this.$store.getters['track/getTrackByName'](this.id)
-        },
-        trackLoading () {
-            return this.$store.getters['track/loadingTracks']
-        },
-        userRole () {
-            return this.$store.getters['authentication/user'].role
-        },
-    },
-    mounted () {
-        this.init()
-    },
-    methods: {
-        init () {
-            this.$store.dispatch('track/getAllTracks')
-        },
-        openInNewTab (url) {
-            window.open(url, '_blank').focus()
-        },
-        openEditTab (car) {
-            this.$router.push({
-                name: 'CarEdit',
-                params: { id: car.id }
-            })
-        }
-    },
+    loading(){
+      return this.$store.getters['track/loadingTracks']
+    }
+  },
+  mounted () {
+    this.$store.dispatch('track/getAllTracks')
+  }
 }
 </script>
 
