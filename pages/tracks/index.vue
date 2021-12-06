@@ -1,6 +1,6 @@
 <template>
     <v-container fluid>
-        <v-row>
+        <v-row class="mt-5 mb-5">
             <v-col cols="12" class="text-center">
                 <h1 class="text-h2">Tracks Repository</h1>
                 <h2 class="text-h5"><em>A collection of quality tracks</em></h2>

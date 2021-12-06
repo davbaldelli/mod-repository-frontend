@@ -1,6 +1,6 @@
 <template>
     <v-container fluid>
-        <v-row>
+        <v-row class="mt-5 mb-5">
             <v-col cols="12" class="text-center">
                 <h1 class="text-h2">Cars Repository</h1>
                 <h2 class="text-h5"><em>A collection of quality cars</em></h2>
@@ -123,7 +123,6 @@
                         </v-card>
                     </v-col>
                 </v-row>
-            </v-col>
             </v-col>
             <v-col cols="0" md="2" lg="3"/>
         </v-row>
