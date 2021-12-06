@@ -45,7 +45,7 @@
                     </v-col>
                     -->
                 </v-row>
-                <v-row>
+                <v-row class="mt-0 mb-3">
                     <v-col cols="12">
                         <v-chip v-if="activeNameFilter" close @click:close="clearNameFilter" >Name: {{this.activeNameFilter}}</v-chip>
                         <v-chip v-if="selectedBrand" close @click:close="clearBrandFilter">Brand: {{this.selectedBrand}}</v-chip>
@@ -97,11 +97,33 @@
                         </v-card>
                     </v-col>
                 </v-row>
-                <v-row v-if="!this.$store.getters['car/loadingCars'] && filteredCars.length === 0">
+                <v-row v-if="!$store.getters['car/loadingCars'] && filteredCars.length === 0">
                     <v-col class="text-center">
                         <h3 class="display-6">I'm sorry, no car match your request</h3>
                     </v-col>
                 </v-row>
+                <v-row v-if="$store.getters['car/loadingCars']" v-for="i in 20" :key="1" class="mb-2">
+                    <v-col>
+                        <v-card>
+                            <v-row class="pa-3">
+                                <v-col cols="12" md="4">
+                                    <div class="h-100">
+                                        <v-skeleton-loader
+                                            type="image"
+                                        ></v-skeleton-loader>
+                                    </div>
+                                </v-col>
+                                <v-col cols="12" md="7">
+                                    <v-skeleton-loader
+                                        class="mx-auto"
+                                        type="article, actions"
+                                    ></v-skeleton-loader>
+                                </v-col>
+                            </v-row>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-col>
             </v-col>
             <v-col cols="0" md="2" lg="3"/>
         </v-row>

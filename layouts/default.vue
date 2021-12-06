@@ -18,7 +18,9 @@
                 Logs
             </v-btn>
         </v-app-bar>
-        <v-main app><Nuxt keep-alive :keep-alive-props="{include:['CarList','TracksList']}"/></v-main>
+        <v-main app>
+            <Nuxt keep-alive :keep-alive-props="{include:['CarList','TracksList']}"/>
+        </v-main>
         <cookie-law theme="base"></cookie-law>
     </v-app>
 </template>
@@ -28,11 +30,10 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import useVuelidate from '@vuelidate/core'
 import required from 'vuelidate/lib/validators/required'
 
-
 export default {
     name: 'App',
     components: {
-     FontAwesomeIcon
+        FontAwesomeIcon
     },
     emits: ['loggedOut', 'loggedIn'],
     setup () {

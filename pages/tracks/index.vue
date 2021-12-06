@@ -52,10 +52,11 @@
                     -->
                 </v-row>
                 <v-row>
-                    <v-col cols="12">
+                    <v-col cols="12" class="mt-0 mb-3">
                         <v-chip v-if="selectedNameFilter" close @click:close="clearNameFilter" >Name: {{this.selectedNameFilter}}</v-chip>
                         <v-chip v-if="selectedNation" close @click:close="clearNationFilter">Nation: {{this.selectedNation}}</v-chip>
                         <v-chip v-if="selectedTag" close @click:close="clearTagFilter">Tag: {{this.selectedTag}}</v-chip>
+                        <v-chip v-if="selectedLayoutType" close @click:close="clearLayoutFilter">Tag: {{this.selectedLayoutType}}</v-chip>
                         <v-chip v-if="selectedAuthor" close @click:close="clearAuthorFilter">Author: {{this.selectedAuthor}}</v-chip>
                     </v-col>
                 </v-row>
@@ -102,9 +103,30 @@
                         </v-card>
                     </v-col>
                 </v-row>
-                <v-row v-if="!this.$store.getters['track/loadingTracks'] && filteredTracks.length === 0">
+                <v-row v-if="!$store.getters['track/loadingTracks'] && filteredTracks.length === 0">
                     <v-col class="text-center">
                         <h3 class="display-6">I'm sorry, no car match your request</h3>
+                    </v-col>
+                </v-row>
+                <v-row v-if="$store.getters['track/loadingTracks']" v-for="i in 20" :key="1" class="mb-2">
+                    <v-col>
+                        <v-card>
+                            <v-row class="pa-3">
+                                <v-col cols="12" md="4">
+                                    <div class="h-100">
+                                        <v-skeleton-loader
+                                            type="image"
+                                        ></v-skeleton-loader>
+                                    </div>
+                                </v-col>
+                                <v-col cols="12" md="7">
+                                    <v-skeleton-loader
+                                        class="mx-auto"
+                                        type="article, actions"
+                                    ></v-skeleton-loader>
+                                </v-col>
+                            </v-row>
+                        </v-card>
                     </v-col>
                 </v-row>
             </v-col>
