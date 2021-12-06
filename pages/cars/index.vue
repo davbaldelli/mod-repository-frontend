@@ -39,11 +39,11 @@
             ></v-autocomplete>
           </v-col>
           <v-spacer/>
-          <!--
+
           <v-col cols="2">
-              <v-select v-model="selectedSort" item-text="label" item-value="sorter" :items="sortOpts" label="Sort" @change="v => sort(v)" ></v-select>
+              <v-select v-model="selectedSort" item-text="label" return-object  :items="sortOpts" label="Sort" @change="v => sort(v)" ></v-select>
           </v-col>
-          -->
+
         </v-row>
         <v-row class="mt-0 mb-3">
           <v-col cols="12">
@@ -252,7 +252,7 @@ export default {
       this.categoryOpts = this.categories.filter(v => v.name.toLowerCase().includes(e.query.toLowerCase()))
     },
     sort (value) {
-      this.sorter = value
+      this.sorter = value.sorter
     },
     scrollToTop () {
       console.log('change')

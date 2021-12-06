@@ -45,11 +45,9 @@
                         ></v-autocomplete>
                     </v-col>
                     <v-spacer/>
-                    <!--
-                    <v-col cols="2">
-                        <v-select v-model="selectedSort" item-text="label" item-value="sorter" :items="sortOpts" label="Sort" @change="v => sort(v)" ></v-select>
-                    </v-col>
-                    -->
+                  <v-col cols="2">
+                    <v-select v-model="selectedSort" item-text="label" return-object  :items="sortOpts" label="Sort" @change="v => sort(v)" ></v-select>
+                  </v-col>
                 </v-row>
                 <v-row>
                     <v-col cols="12" class="mt-0 mb-3">
@@ -214,15 +212,15 @@ export default {
             sortOpts: [
                 {
                     label: 'Name (A-Z)',
-                    value: trackSort.sortByName(true)
+                    sorter: trackSort.sortByName(true)
                 },
                 {
                     label: 'Name (Z-A)',
-                    value: trackSort.sortByName(false)
+                    sorter: trackSort.sortByName(false)
                 },
                 {
                     label: 'Latest Submitted',
-                    value: trackSort.sortBySubmission()
+                    sorter: trackSort.sortBySubmission()
                 },
             ],
             sorter: trackSort.sortByName(true),
@@ -294,7 +292,7 @@ export default {
             this.$store.dispatch('track/getAllTracks')
         },
         sort (value) {
-            this.sorter = value
+            this.sorter = value.sorter
         },
         onNameSelected () {
             this.selectedNameFilter = this.nameFilter

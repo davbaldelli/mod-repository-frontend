@@ -70,6 +70,10 @@ export default {
 
   sitemap : {
     hostname: 'https://www.acmodrepository.com',
+    exclude: [
+      '/cars/new',
+      '/login'
+    ],
     gzip: true,
   },
 
