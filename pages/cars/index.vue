@@ -22,18 +22,18 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="4" lg="2">
+          <v-col cols="4" xl="2">
             <v-autocomplete v-model="selectedBrand" :items="brands" @change="v => onBrandSelected(v)"
                             item-text="name" item-value="name" label="Brand" outlined dense clearable
             ></v-autocomplete>
           </v-col>
-          <v-col cols="4" lg="2">
+          <v-col cols="4" xl="2">
             <v-select v-model="selectedCategory" @change="v => onSelectedCategory(v)"
                       :items="categories" item-text="name" item-value="name" label="Category" outlined
                       dense clearable
             ></v-select>
           </v-col>
-          <v-col cols="4" lg="2">
+          <v-col cols="4" xl="2">
             <v-autocomplete v-model="selectedAuthor" @change="v => onAuthorSelected(v)" :items="authors"
                             item-text="name" item-value="name" label="Author" outlined dense clearable
             ></v-autocomplete>

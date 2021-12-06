@@ -22,24 +22,24 @@
                     </v-col>
                 </v-row>
                 <v-row>
-                    <v-col cols="4" lg="2">
+                    <v-col cols="4" xl="2">
                         <v-autocomplete v-model="selectedNation" :items="nations" @change="v => onNationSelected(v)"
                                         item-text="name" item-value="name" label="Nation" outlined dense clearable
                         ></v-autocomplete>
                     </v-col>
-                    <v-col cols="4" lg="2">
+                    <v-col cols="4" xl="2">
                         <v-select v-model="selectedTag" @change="v => onTagSelected(v)"
                                   :items="tagsOpts" item-text="text" item-value="value" label="Tags" outlined
                                   dense clearable
                         ></v-select>
                     </v-col>
-                  <v-col cols="4" lg="2">
+                  <v-col cols="4" xl="2">
                     <v-select v-model="selectedLayoutType" @change="v => onLayoutCategorySelected(v)"
                               :items="categoryOpts" item-text="text" item-value="value" label="Layout Type" outlined
                               dense clearable
                     ></v-select>
                   </v-col>
-                    <v-col cols="4" lg="2">
+                    <v-col cols="4" xl="2">
                         <v-autocomplete v-model="selectedAuthor" @change="v => onAuthorSelected(v)" :items="authors"
                                         item-text="name" item-value="name" label="Author" outlined dense clearable
                         ></v-autocomplete>

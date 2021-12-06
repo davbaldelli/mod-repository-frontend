@@ -64,7 +64,14 @@ export default {
     '@nuxtjs/pwa',
 
     'bootstrap-vue/nuxt',
+
+    '@nuxtjs/sitemap'
   ],
+
+  sitemap : {
+    hostname: 'https://www.acmodrepository.com',
+    gzip: true,
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
