@@ -20,7 +20,7 @@
                     </template>
                     <template v-slot:item.name="{item}" >
                         <NuxtLink
-                            :to="item.name ? `/track/${item.id}` : `/car/${item.id}`"
+                            :to="item.name ? `/tracks/${item.id}` : `/cars/${item.id}`"
                         >
                             {{ item.name ? item.name : `${item.brand} ${item.model}` }}
                         </NuxtLink>
