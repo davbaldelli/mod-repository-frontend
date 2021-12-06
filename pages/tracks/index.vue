@@ -66,10 +66,10 @@
                             <v-row>
                                 <v-col cols="12" md="4">
                                     <div class="h-100">
-                                        <v-img class="ma-3" contain :src="track.image" alt="car thumbnail"/>
+                                        <v-img class="ma-3" contain :src="track.image" alt="track thumbnail"/>
                                     </div>
                                 </v-col>
-                                <v-col cols="12" md="8" class="d-flex flex-column">
+                                <v-col cols="12" md="8">
                                     <v-card-title class="text-h5">
                                         <NuxtLink :to="`/tracks/${track.id}`">
                                             <h3 class="text-h7">{{track.name}}</h3>
