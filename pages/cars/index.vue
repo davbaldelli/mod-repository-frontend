@@ -39,9 +39,8 @@
             ></v-autocomplete>
           </v-col>
           <v-spacer/>
-
-          <v-col cols="2">
-              <v-select v-model="selectedSort" item-text="label" return-object  :items="sortOpts" label="Sort" @change="v => sort(v)" ></v-select>
+          <v-col cols="4" xl="2">
+              <v-select v-model="selectedSort" item-text="label" return-object  :items="sortOpts" label="Sort" @change="v => sort(v)" dense></v-select>
           </v-col>
 
         </v-row>
