@@ -3,6 +3,23 @@
     <v-row v-if="track">
       <v-col cols="0" md="3" lg="4"/>
       <v-col cols="12" md="6" lg="4">
+        <v-row v-if="loading">
+          <v-col>
+            <v-row>
+              <v-col>
+                <v-skeleton-loader  style="width: 100%" type="image"></v-skeleton-loader>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-skeleton-loader
+                  class="mx-auto"
+                  type="article, actions"
+                ></v-skeleton-loader>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
         <v-row>
           <v-col cols="12">
             <v-img contain :src="track.image"></v-img>
