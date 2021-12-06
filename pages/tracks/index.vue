@@ -102,7 +102,7 @@
                         </v-card>
                     </v-col>
                 </v-row>
-                <v-row v-if="!this.$store.getters['car/loadingCars'] && filteredTracks.length === 0">
+                <v-row v-if="!this.$store.getters['track/loadingTracks'] && filteredTracks.length === 0">
                     <v-col class="text-center">
                         <h3 class="display-6">I'm sorry, no car match your request</h3>
                     </v-col>
