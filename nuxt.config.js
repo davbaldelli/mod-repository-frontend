@@ -63,7 +63,7 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
 
-    'bootstrap-vue/nuxt',
+    //'bootstrap-vue/nuxt',
 
     '@nuxtjs/sitemap'
   ],

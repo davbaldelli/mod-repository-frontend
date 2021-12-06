@@ -77,10 +77,10 @@
                     ></v-rating>
                   </v-card-title>
                   <v-card-subtitle>
-                    <span v-for="category in car.categories" :key="category.name" class="badge badge-secondary mr-1">
+                    <v-chip v-for="category in car.categories" :key="category.name" class="mr-1" x-small label>
                       {{ category.name }}
-                    </span>
-                    <span v-if="car.premium" class="badge badge-warning">Premium</span>
+                    </v-chip>
+                    <v-chip v-if="car.premium" color="orange" x-small label>Premium</v-chip>
                   </v-card-subtitle>
                   <v-card-text>
                     <strong>Year: </strong>{{ car.year }}

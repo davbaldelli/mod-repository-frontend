@@ -172,48 +172,6 @@ export default {
 }
 </script>
 <style>
-.p-menu-separator {
-    width: 100%;
-}
-
-.p-menubar-root-list {
-    width: 99%;
-}
-
-.p-menubar .p-submenu-list {
-    width: 100% !important;
-}
-
-.responsive-image {
-    max-width: 100%;
-}
-
-.sticky-top {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: 1020;
-}
-
-body {
-    margin: 0 !important;
-}
-
-.badge-warning {
-    color: #212529 !important;
-    background-color: #ffc107;
-}
-
-.badge-secondary {
-    color: #fff;
-    background-color: #6c757d;
-}
-
-.p-tree {
-    border: none !important;
-    padding: 0 !important;
-}
-
 
 </style>
 

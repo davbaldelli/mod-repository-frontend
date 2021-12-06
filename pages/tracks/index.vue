@@ -70,7 +70,7 @@
                                     </div>
                                 </v-col>
                                 <v-col cols="12" md="8">
-                                    <v-card-title class="text-h5">
+                                    <v-card-title>
                                         <NuxtLink :to="`/tracks/${track.id}`">
                                             <h3 class="text-h7">{{track.name}}</h3>
                                         </NuxtLink>
@@ -80,10 +80,10 @@
                                         ></v-rating>
                                     </v-card-title>
                                     <v-card-subtitle>
-                                            <span v-for="tag in track.tags" :key="tag"
-                                                  class="badge badge-secondary mr-1"
-                                            >{{ tag }}</span>
-                                        <span v-if="track.premium" class="badge badge-warning">Premium</span>
+                                            <v-chip v-for="tag in track.tags" :key="tag"
+                                                  class="mr-1" x-small label
+                                            >{{ tag }}</v-chip>
+                                        <v-chip v-if="track.premium" class="mr-1" color="orange" x-small label>Premium</v-chip>
 
                                     </v-card-subtitle>
                                     <v-card-text>
