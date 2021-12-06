@@ -16,7 +16,7 @@
             />
           </v-col>
         </v-row>
-        <v-row v-if="this.totPaginatorPages">
+        <v-row v-if="this.totPaginatorPages" class="px-3" >
           <v-col>
             <v-pagination v-model="offset" :length="totPaginatorPages"/>
           </v-col>

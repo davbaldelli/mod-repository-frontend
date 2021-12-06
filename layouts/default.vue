@@ -1,23 +1,57 @@
 <template class="p-grid p-m-0">
     <v-app>
-        <v-app-bar elevation="4" elevate-on-scroll app>
-            <v-btn plain to="/">
+        <v-app-bar elevation="1" elevate-on-scroll app>
+          <v-app-bar-nav-icon class="d-sm-none" @click.stop="drawer = !drawer"/>
+            <v-btn plain to="/" class="d-none d-sm-flex">
                 <FontAwesomeIcon icon="home" class="mr-1"></FontAwesomeIcon>
                 Home
             </v-btn>
-            <v-btn plain to="/cars/">
+            <v-btn plain to="/cars/" class="d-none d-sm-flex">
                 <FontAwesomeIcon icon="car" class="mr-1"></FontAwesomeIcon>
                 Cars
             </v-btn>
-            <v-btn plain to="/tracks/">
+            <v-btn plain to="/tracks/" class="d-none d-sm-flex">
                 <FontAwesomeIcon icon="road" class="mr-1"></FontAwesomeIcon>
                 Tracks
             </v-btn>
-            <v-btn plain to="/logs/">
+            <v-btn plain to="/logs/" class="d-none d-sm-flex">
                 <FontAwesomeIcon icon="clipboard-list" class="mr-1"></FontAwesomeIcon>
                 Logs
             </v-btn>
+          <v-spacer></v-spacer>
+          <v-btn plain @click="logOut" v-if="adminLogged" class="d-none d-sm-flex">
+            <FontAwesomeIcon icon="sign-out-alt" class="mr-1"></FontAwesomeIcon>
+            Logout
+          </v-btn>
         </v-app-bar>
+      <v-navigation-drawer v-model="drawer" app>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="text-h6">
+              Navigation
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list dense nav>
+          <v-list-item link to="/">
+              <FontAwesomeIcon icon="home" class="mr-4"></FontAwesomeIcon>Home
+          </v-list-item>
+          <v-list-item link to="/cars/">
+              <FontAwesomeIcon icon="car" class="mr-4"></FontAwesomeIcon>Cars
+          </v-list-item>
+          <v-list-item link to="/tracks/">
+              <FontAwesomeIcon icon="road" class="mr-4"></FontAwesomeIcon>Logs
+          </v-list-item>
+          <v-list-item link to="/logs/">
+            <FontAwesomeIcon icon="clipboard-list" class="mr-4"></FontAwesomeIcon>Logs
+          </v-list-item>
+        </v-list>
+        <v-divider></v-divider>
+        <v-list-item @click="logOut" v-if="adminLogged">
+            <FontAwesomeIcon icon="sign-out-alt" class="mr-4"></FontAwesomeIcon>Logout
+        </v-list-item>
+      </v-navigation-drawer>
         <v-main app>
             <Nuxt keep-alive :keep-alive-props="{include:['CarList','TracksList']}"/>
         </v-main>
@@ -41,37 +75,7 @@ export default {
     },
     data () {
         return {
-            routerViewKey: 0,
-            username: '',
-            password: '',
-            menuItems: [
-                {
-                    label: 'Home',
-                    icon: 'fas fa-home',
-                    to: '/',
-                },
-                {
-                    label: 'Cars',
-                    to: '/cars',
-                    icon: 'fas fa-car'
-                },
-                {
-                    label: 'Tracks',
-                    to: '/tracks',
-                    icon: 'fas fa-road'
-                },
-                {
-                    label: 'Logs',
-                    to: '/logs',
-                    icon: 'fas fa-clipboard-list'
-                },
-                {
-                    separator: true,
-                    style: 'width = 100%'
-                },
-            ],
-            display: false,
-            submitted: false,
+            drawer: false,
         }
     },
     validations () {

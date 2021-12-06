@@ -1,8 +1,8 @@
 <template>
 <v-container>
   <v-row>
-    <v-col/>
-    <v-col>
+    <v-col cols="0" md="4"/>
+    <v-col cols="12" md="4">
       <v-form v-model="valid" ref="form" @submit.prevent="onSubmit">
         <v-container>
           <v-row>
@@ -24,7 +24,7 @@
         </v-container>
       </v-form>
     </v-col>
-    <v-col/>
+    <v-col cols="0" md="4"/>
   </v-row>
 </v-container>
 </template>
@@ -48,7 +48,7 @@ export default {
     onLogin(){
       this.$store.dispatch('authentication/login', {username : this.username, password : this.password})
         .then(() => {
-          this.$router.back()
+          this.$router.push('/')
         })
         .catch(() => window.alert("wrongusername or password"))
     },
