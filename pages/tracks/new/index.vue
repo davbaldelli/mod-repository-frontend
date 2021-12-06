@@ -19,7 +19,7 @@
 <script>
 export default {
   name: 'TrackInput',
-  middleware : 'auth',
+  middleware : 'admin',
   data(){
     return {
       showMsg :false,
