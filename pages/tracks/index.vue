@@ -33,6 +33,12 @@
                                   dense clearable
                         ></v-select>
                     </v-col>
+                  <v-col cols="2">
+                    <v-select v-model="selectedLayoutType" @change="v => onLayoutCategorySelected(v)"
+                              :items="categoryOpts" item-text="text" item-value="value" label="Layout Type" outlined
+                              dense clearable
+                    ></v-select>
+                  </v-col>
                     <v-col cols="2">
                         <v-autocomplete v-model="selectedAuthor" @change="v => onAuthorSelected(v)" :items="authors"
                                         item-text="name" item-value="name" label="Author" outlined dense clearable
@@ -64,7 +70,7 @@
                                 </v-col>
                                 <v-col cols="12" md="8" class="d-flex flex-column">
                                     <v-card-title class="text-h5">
-                                        <NuxtLink :to="`/cars/${track.id}`">
+                                        <NuxtLink :to="`/tracks/${track.id}`">
                                             <h3 class="text-h7">{{track.name}}</h3>
                                         </NuxtLink>
                                         <v-spacer/>
@@ -321,15 +327,6 @@ export default {
             this.selectedAuthor = ''
             this.authorSelector = t => t
         },
-        openInNewTab (url) {
-            window.open(url, '_blank').focus()
-        },
-        openEditTab (track) {
-            this.$router.push({
-                name: 'TrackEdit',
-                params: { id: track.id }
-            })
-        }
     }
 }
 </script>
