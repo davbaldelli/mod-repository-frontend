@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app elevate-on-scroll elevation="1">
       <v-container fluid class="d-none d-sm-flex">
-        <v-row>
+        <v-row no-gutters>
           <v-col cols="0" lg="3" md="2"/>
           <v-col class="d-inline-flex" cols="12" lg="6" md="8">
             <v-btn class="d-none d-sm-flex" plain to="/">

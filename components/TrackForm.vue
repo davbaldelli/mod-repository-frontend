@@ -30,7 +30,7 @@
               <v-col v-if="!existingNation" cols="4" md="5">
                 <v-text-field v-model="form.nation.code" :rules="rules.nationCode" label="Nation Code" required/>
               </v-col>
-              <v-col cols="4">
+              <v-col cols="4" md="2">
                 <v-checkbox v-model="existingNation" label="Existing" @change="clearNation"/>
               </v-col>
             </v-row>
