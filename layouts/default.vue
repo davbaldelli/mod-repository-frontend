@@ -1,29 +1,36 @@
 <template class="p-grid p-m-0">
   <v-app>
     <v-app-bar app elevate-on-scroll elevation="1">
-
+      <v-container fluid class="d-none d-sm-flex">
+        <v-row>
+          <v-col cols="0" lg="3" md="2"/>
+          <v-col class="d-inline-flex" cols="12" lg="6" md="8">
+            <v-btn class="d-none d-sm-flex" plain to="/">
+              <FontAwesomeIcon class="mr-1" icon="home"></FontAwesomeIcon>
+              Home
+            </v-btn>
+            <v-btn class="d-none d-sm-flex" plain to="/cars/">
+              <FontAwesomeIcon class="mr-1" icon="car"></FontAwesomeIcon>
+              Cars
+            </v-btn>
+            <v-btn class="d-none d-sm-flex" plain to="/tracks/">
+              <FontAwesomeIcon class="mr-1" icon="road"></FontAwesomeIcon>
+              Tracks
+            </v-btn>
+            <v-btn class="d-none d-sm-flex" plain to="/logs/">
+              <FontAwesomeIcon class="mr-1" icon="clipboard-list"></FontAwesomeIcon>
+              Logs
+            </v-btn>
+            <v-spacer></v-spacer>
+            <v-btn v-if="adminLogged" class="d-none d-sm-flex" plain @click="logOut">
+              <FontAwesomeIcon class="mr-1" icon="sign-out-alt"></FontAwesomeIcon>
+              Logout
+            </v-btn>
+          </v-col>
+          <v-col cols="0" lg="3" md="2"/>
+        </v-row>
+      </v-container>
       <v-app-bar-nav-icon class="d-sm-none" @click.stop="drawer = !drawer" aria-label="navigation drawer button"/>
-      <v-btn class="d-none d-sm-flex" plain to="/">
-        <FontAwesomeIcon class="mr-1" icon="home"></FontAwesomeIcon>
-        Home
-      </v-btn>
-      <v-btn class="d-none d-sm-flex" plain to="/cars/">
-        <FontAwesomeIcon class="mr-1" icon="car"></FontAwesomeIcon>
-        Cars
-      </v-btn>
-      <v-btn class="d-none d-sm-flex" plain to="/tracks/">
-        <FontAwesomeIcon class="mr-1" icon="road"></FontAwesomeIcon>
-        Tracks
-      </v-btn>
-      <v-btn class="d-none d-sm-flex" plain to="/logs/">
-        <FontAwesomeIcon class="mr-1" icon="clipboard-list"></FontAwesomeIcon>
-        Logs
-      </v-btn>
-      <v-spacer></v-spacer>
-      <v-btn v-if="adminLogged" class="d-none d-sm-flex" plain @click="logOut">
-        <FontAwesomeIcon class="mr-1" icon="sign-out-alt"></FontAwesomeIcon>
-        Logout
-      </v-btn>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app>
       <v-list-item>
