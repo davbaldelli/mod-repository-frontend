@@ -1,15 +1,15 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col/>
-      <v-col>
-        <v-form v-model="valid" ref="form" @submit.prevent="onsubmit">
+      <v-col cols="0" md="4"/>
+      <v-col cols="12" md="4">
+        <v-form ref="form" v-model="valid" @submit.prevent="onsubmit">
           <v-container>
             <v-row>
-              <v-col cols="10">
+              <v-col cols="8" md="10">
                 <v-text-field v-model="form.name" :rules="rules.name" label="Name" required/>
               </v-col>
-              <v-col cols="2">
+              <v-col cols="4" md="2">
                 <v-checkbox v-model="form.premium" label="Premium"/>
               </v-col>
             </v-row>
@@ -19,56 +19,62 @@
               </v-col>
             </v-row>
             <v-row>
-              <v-col v-if="existingNation" cols="10">
-                <v-autocomplete v-model="form.nation" :items="nations" return-object item-text="name" :rules="rules.nation" label="Nation" required/>
+              <v-col v-if="existingNation" cols="8" md="10">
+                <v-autocomplete v-model="form.nation" :items="nations" :rules="rules.nation" item-text="name"
+                                label="Nation" required return-object
+                />
               </v-col>
-              <v-col v-if="!existingNation" cols="5">
+              <v-col v-if="!existingNation" cols="4" md="5">
                 <v-text-field v-model="form.nation.name" :rules="rules.nationName" label="Nation Name" required/>
               </v-col>
-              <v-col v-if="!existingNation" cols="5">
+              <v-col v-if="!existingNation" cols="4" md="5">
                 <v-text-field v-model="form.nation.code" :rules="rules.nationCode" label="Nation Code" required/>
               </v-col>
-              <v-col cols="2">
+              <v-col cols="4">
                 <v-checkbox v-model="existingNation" label="Existing" @change="clearNation"/>
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <v-text-field v-model.number="form.year" :rules="rules.year" label="Year" required type="number" />
+                <v-text-field v-model.number="form.year" :rules="rules.year" label="Year" required type="number"/>
               </v-col>
               <v-col>
                 <v-select v-model="form.tags" :items="trackTags" label="Tag" multiple return-object></v-select>
               </v-col>
             </v-row>
             <v-row>
-              <v-col cols="6">
+              <v-col cols="12" md="6">
                 <v-text-field v-model="form.version" :rules="rules.version" label="Version" required/>
               </v-col>
-              <v-col cols="6">
-                <v-rating v-model="form.rating" :rules="rules.rating" :length="10" required/>
+              <v-col cols="12" md="6">
+                <v-rating v-model="form.rating" :length="10" :rules="rules.rating" dense required/>
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <v-text-field v-model="form.downloadLink" :rules="rules.downloadLink" label="Download Link" required type="url" />
+                <v-text-field v-model="form.downloadLink" :rules="rules.downloadLink" label="Download Link" required
+                              type="url"
+                />
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <v-text-field v-model="form.image" :rules="rules.image" label="Image Link" required type="url" />
+                <v-text-field v-model="form.image" :rules="rules.image" label="Image Link" required type="url"/>
               </v-col>
             </v-row>
             <v-row>
-              <v-col cols="10" v-if="existingAuthor">
-                <v-select v-model="form.author" :items="authors" :rules="rules.author" item-text="name" label="Author" return-object required/>
+              <v-col v-if="existingAuthor" cols="8" md="10">
+                <v-select v-model="form.author" :items="authors" :rules="rules.author" item-text="name" label="Author"
+                          required return-object
+                />
               </v-col>
-              <v-col v-if="!existingAuthor" cols="5">
+              <v-col v-if="!existingAuthor" cols="4" md="5">
                 <v-text-field v-model="form.author.name" :rules="rules.authorName" label="Author Name"/>
               </v-col>
-              <v-col v-if="!existingAuthor" cols="5">
+              <v-col v-if="!existingAuthor" cols="4" md="5">
                 <v-text-field v-model="form.author.link" :rules="rules.authorLink" label="Author Link"/>
               </v-col>
-              <v-col cols="2">
+              <v-col cols="4" md="2">
                 <v-checkbox v-model="existingAuthor" label="Existing" @change="clearAuthor"></v-checkbox>
               </v-col>
             </v-row>
@@ -77,13 +83,15 @@
                 <v-text-field v-model="layout.name" :rules="rules.layoutName" label="Layout Name" required/>
               </v-col>
               <v-col>
-                <v-text-field v-model.number="layout.lengthM" :rules="rules.layoutLength" suffix="m" label="Layout Length" type="number" required/>
+                <v-text-field v-model.number="layout.lengthM" :rules="rules.layoutLength" label="Layout Length"
+                              required suffix="m" type="number"
+                />
               </v-col>
               <v-col>
                 <v-select v-model="layout.category" :items="layoutTypeOptions" label="Layout Type"></v-select>
               </v-col>
               <v-col cols="1">
-                <v-btn icon color="red" @click="removeLayout(i)">
+                <v-btn color="red" icon @click="removeLayout(i)">
                   <v-icon>mdi-minus</v-icon>
                 </v-btn>
               </v-col>
@@ -91,7 +99,7 @@
             <v-row>
               <v-spacer/>
               <v-col cols="1">
-                <v-btn icon color="blue" @click="addLayout">
+                <v-btn color="blue" icon @click="addLayout">
                   <v-icon>mdi-plus</v-icon>
                 </v-btn>
               </v-col>
@@ -104,7 +112,7 @@
           </v-container>
         </v-form>
       </v-col>
-      <v-col/>
+      <v-col cols="0" md="4"/>
       <v-dialog v-model="confirm" max-width="290" v-on:keydown.enter="confirmed">
         <v-card>
           <v-card-title class="text-h5">
@@ -126,41 +134,50 @@
 <script>
 export default {
   name: 'TrackForm',
-  props: ["initialValue"],
-  emits : ['submit'],
+  props: ['initialValue'],
+  emits: ['submit'],
   data () {
     return {
       valid: true,
       existingNation: true,
       existingAuthor: true,
       form: this.initialValue,
-      confirm : false,
+      confirm: false,
       trackTags: [
-        "F1",
-        "NASCAR",
-        "Historic",
-        "Rally",
-        "Drift",
-        "Open World",
-        "City Track",
-        "Touge",
-        "Endurance",
-        "Street Track",
-        "Fictional",
-        "Karting",
+        'F1',
+        'NASCAR',
+        'Historic',
+        'Rally',
+        'Drift',
+        'Open World',
+        'City Track',
+        'Touge',
+        'Endurance',
+        'Street Track',
+        'Fictional',
+        'Karting',
       ],
       layoutTypeOptions: [
-        {text: "Oval", value: "Oval"},
-        {text: "Road Course", value: "Road Course"},
-        {text: "A to B", value: "A to B"},
+        {
+          text: 'Oval',
+          value: 'Oval'
+        },
+        {
+          text: 'Road Course',
+          value: 'Road Course'
+        },
+        {
+          text: 'A to B',
+          value: 'A to B'
+        },
       ],
       rules: {
         name: [v => !!v || 'Name is required'],
-        location : [v => !!v || 'Location is required'],
+        location: [v => !!v || 'Location is required'],
         nation: [v => !!v || 'Nation is required'],
         nationName: [v => !!v || 'Nation Name is required'],
         nationCode: [v => !!v || 'Nation Cod is required'],
-        year: [v => !!v || 'Year is required' ],
+        year: [v => !!v || 'Year is required'],
         version: [v => !!v || 'Version is required'],
         rating: [v => !!v || 'Rating is required'],
         image: [v => !!v || 'Image Link is required'],
@@ -169,16 +186,16 @@ export default {
         authorName: [v => !!v || 'Author Name is required'],
         authorLink: [v => !!v || 'Author Link is required'],
         layoutName: [v => !!v || 'Layout Name is required'],
-        layoutLength : [v => !!v || 'Layout Length is required'],
-        layoutType : [v => !!v || 'Layout Type is required'],
+        layoutLength: [v => !!v || 'Layout Length is required'],
+        layoutType: [v => !!v || 'Layout Type is required'],
       }
     }
   },
-  computed:{
-    nations(){
+  computed: {
+    nations () {
       return this.$store.getters['track/nations']
     },
-    authors(){
+    authors () {
       return this.$store.getters['author/authors']
     },
   },
@@ -186,24 +203,24 @@ export default {
     this.initiate()
   },
   methods: {
-    initiate(){
+    initiate () {
       this.$store.dispatch('author/getAll')
       this.$store.dispatch('track/getAllNations')
     },
-    confirmed(){
+    confirmed () {
       this.confirm = false
       this.$emit('submit', this.form)
     },
-    onsubmit(){
+    onsubmit () {
       this.$refs.form.validate()
-      if(this.valid){
+      if (this.valid) {
         this.confirm = true
       }
     },
     clearAuthor () {
       this.form.author = {
-        name : "",
-        link : "",
+        name: '',
+        link: '',
       }
     },
     clearNation () {
@@ -212,14 +229,14 @@ export default {
         code: '',
       }
     },
-    removeLayout(index){
+    removeLayout (index) {
       this.form.layouts.splice(index, 1)
     },
-    addLayout(){
+    addLayout () {
       this.form.layouts.push({
         lengthM: 0,
-        category: "",
-        name: "",
+        category: '',
+        name: '',
       })
     }
   }

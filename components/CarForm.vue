@@ -1,42 +1,42 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col/>
-      <v-col>
-        <v-form v-model="valid" ref="form" @submit.prevent="onsubmit">
+      <v-col cols="0" md="4"/>
+      <v-col cols="12" md="4">
+        <v-form ref="form" v-model="valid" @submit.prevent="onsubmit">
           <v-container>
             <v-row>
-              <v-col cols="10">
+              <v-col cols="8" md="10">
                 <v-text-field v-model="form.modelName" :rules="rules.name" label="Model" required/>
               </v-col>
-              <v-col cols="2">
+              <v-col cols="4" md="2">
                 <v-checkbox v-model="form.premium" label="Premium"/>
               </v-col>
             </v-row>
             <v-row>
-              <v-col cols="10">
-                <v-autocomplete v-if="existingBrand" :items="brands" item-text="name" return-object v-model="form.brand"
-                                :rules="rules.brand" label="Brand" required
+              <v-col cols="8" md="10">
+                <v-autocomplete v-if="existingBrand" v-model="form.brand" :items="brands" :rules="rules.brand" item-text="name"
+                                label="Brand" required return-object
                 />
                 <v-text-field v-else v-model="form.brand.name" :rules="rules.brandName" label="Brand Name"/>
               </v-col>
-              <v-col cols="2">
+              <v-col cols="4" md="2">
                 <v-checkbox v-model="existingBrand" label="Existing" @change="clearBrand"/>
               </v-col>
             </v-row>
             <v-row>
-              <v-col v-if="existingNation && !existingBrand" cols="10">
-                <v-autocomplete v-model="form.brand.nation" :items="nations" return-object item-text="name"
-                                :rules="rules.nation" label="Nation" required
+              <v-col v-if="existingNation && !existingBrand" cols="8" md="10">
+                <v-autocomplete v-model="form.brand.nation" :items="nations" :rules="rules.nation" item-text="name"
+                                label="Nation" required return-object
                 />
               </v-col>
-              <v-col v-if="!existingNation && !existingBrand" cols="5">
+              <v-col v-if="!existingNation && !existingBrand" cols="4" md="5">
                 <v-text-field v-model="form.brand.nation.name" :rules="rules.nationName" label="Nation Name" required/>
               </v-col>
-              <v-col v-if="!existingNation && !existingBrand" cols="5">
+              <v-col v-if="!existingNation && !existingBrand" cols="4" md="5">
                 <v-text-field v-model="form.brand.nation.code" :rules="rules.nationCode" label="Nation Code" required/>
               </v-col>
-              <v-col v-if="!existingBrand" cols="2">
+              <v-col v-if="!existingBrand" cols="4" md="2">
                 <v-checkbox v-model="existingNation" label="Existing" @change="clearNation"/>
               </v-col>
             </v-row>
@@ -51,34 +51,34 @@
               </v-col>
             </v-row>
             <v-row>
-              <v-col cols="6">
+              <v-col cols="12" md="6">
                 <v-text-field v-model="form.version" :rules="rules.version" label="Version" required/>
               </v-col>
-              <v-col cols="6">
-                <v-rating v-model="form.rating" :rules="rules.rating" :length="10" required/>
+              <v-col cols="12" md="6">
+                <v-rating v-model="form.rating" :length="10" :rules="rules.rating" dense required/>
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <v-text-field v-model.number="form.bhp" :rules="rules.power" label="Power" suffix="BHP" required
+                <v-text-field v-model.number="form.bhp" :rules="rules.power" label="Power" required suffix="BHP"
                               type="number"
                 />
               </v-col>
               <v-col>
-                <v-text-field v-model.number="form.torque" :rules="rules.torque" label="Torque" suffix="Nm" required
+                <v-text-field v-model.number="form.torque" :rules="rules.torque" label="Torque" required suffix="Nm"
                               type="number"
                 />
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <v-text-field v-model.number="form.weight" :rules="rules.weight" label="Weight" suffix="Kg" required
+                <v-text-field v-model.number="form.weight" :rules="rules.weight" label="Weight" required suffix="Kg"
                               type="number"
                 />
               </v-col>
               <v-col>
-                <v-text-field v-model.number="form.topSpeed" :rules="rules.topSpeed" label="Top Speed" suffix="Km/h"
-                              required type="number"
+                <v-text-field v-model.number="form.topSpeed" :rules="rules.topSpeed" label="Top Speed" required
+                              suffix="Km/h" type="number"
                 />
               </v-col>
             </v-row>
@@ -107,26 +107,26 @@
               </v-col>
             </v-row>
             <v-row>
-              <v-col cols="10" v-if="existingAuthor">
+              <v-col v-if="existingAuthor" cols="8" md="10">
                 <v-select v-model="form.author" :items="authors" :rules="rules.author" item-text="name" label="Author"
-                          return-object required
+                          required return-object
                 />
               </v-col>
-              <v-col v-if="!existingAuthor" cols="5">
+              <v-col v-if="!existingAuthor" cols="4" md="5">
                 <v-text-field v-model="form.author.name" :rules="rules.authorName" label="Author Name"/>
               </v-col>
-              <v-col v-if="!existingAuthor" cols="5">
+              <v-col v-if="!existingAuthor" cols="4" md="5">
                 <v-text-field v-model="form.author.link" :rules="rules.authorLink" label="Author Link"/>
               </v-col>
-              <v-col cols="2">
+              <v-col cols="4" md="2">
                 <v-checkbox v-model="existingAuthor" label="Existing" @change="clearAuthor"></v-checkbox>
               </v-col>
             </v-row>
           </v-container>
-          <v-btn block type="submit">Insert</v-btn>
+          <v-btn block color="primary" type="submit">Insert</v-btn>
         </v-form>
       </v-col>
-      <v-col/>
+      <v-col cols="0" md="4"/>
       <v-dialog v-model="confirm" max-width="290" v-on:keydown.enter="confirmed">
         <v-card>
           <v-card-title class="text-h5">
@@ -259,15 +259,15 @@ export default {
     },
     clearAuthor () {
       this.form.author = {
-        name : "",
-        link : "",
+        name: '',
+        link: '',
       }
     },
     clearNation () {
       this.form.brand.nation = {
-          name: '',
-          code: '',
-        }
+        name: '',
+        code: '',
+      }
     }
   }
 }

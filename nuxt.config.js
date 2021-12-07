@@ -1,9 +1,7 @@
-import colors from 'vuetify/es5/util/colors'
-
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   ssr: false,
-  target : "static",
+  target: 'static',
   head: {
     title: 'Assetto Corsa Mod Repository',
     meta: [
@@ -22,8 +20,8 @@ export default {
         content: 'telephone=no'
       },
       {
-        name : "google-site-verification",
-        content : "f6gm0ypHvGLB3K5Zm-RSPBrJqQ89LAOQpDJsK9lWnjw"
+        name: 'google-site-verification',
+        content: 'f6gm0ypHvGLB3K5Zm-RSPBrJqQ89LAOQpDJsK9lWnjw'
       }
     ],
     link: [
@@ -36,8 +34,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -68,7 +65,7 @@ export default {
     '@nuxtjs/sitemap'
   ],
 
-  sitemap : {
+  sitemap: {
     hostname: 'https://www.acmodrepository.com',
     exclude: [
       '/cars/new',
@@ -96,6 +93,5 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+  build: {}
 }

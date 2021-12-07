@@ -20,45 +20,45 @@
 
 export default {
   name: 'CarInput',
-  middleware : 'admin',
-  data(){
-    return{
-      showMsg :false,
-      message : "",
+  middleware: 'admin',
+  data () {
+    return {
+      showMsg: false,
+      message: '',
       form: {
         torque: 0,
         bhp: 0,
         weight: 0,
         topSpeed: 0,
-        downloadLink: "",
-        image: "",
-        modelName: "",
+        downloadLink: '',
+        image: '',
+        modelName: '',
         author: {
-          name: "",
-          link: "",
+          name: '',
+          link: '',
         },
         brand: {
-          name: "",
+          name: '',
           nation: {
-            name: "",
-            code: "",
+            name: '',
+            code: '',
           },
         },
         year: 0,
-        drivetrain: "",
-        transmission: "",
+        drivetrain: '',
+        transmission: '',
         categories: [],
         premium: false,
         rating: 0,
-        version : "",
+        version: '',
       }
     }
   },
-  methods:{
-    onSubmit(form){
+  methods: {
+    onSubmit (form) {
       this.$store.dispatch('car/addCar', form)
         .then(() => {
-          this.message="Car added successfully"
+          this.message = 'Car added successfully'
           this.showMsg = true
         })
         .catch(e => {

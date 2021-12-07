@@ -1,46 +1,48 @@
 <template>
   <v-container fluid>
     <v-row class="mt-5 mb-5">
-      <v-col cols="12" class="text-center">
-        <h1 class="text-h2">Cars Repository</h1>
+      <v-col class="text-center" cols="12">
+        <h1 class="text-h2 mb-3">Cars Repository</h1>
         <h2 class="text-h5"><em>A collection of quality cars</em></h2>
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="0" md="2" lg="3"/>
-      <v-col cols="12" md="8" lg="6">
+      <v-col cols="0" lg="3" md="2"/>
+      <v-col cols="12" lg="6" md="8">
         <v-row>
           <v-col>
-            <v-text-field v-model="nameFilter" label="Type car name" outlined append-icon="mdi-magnify"
-                          clearable v-on:keyup.enter="nameFilterClick" @click:append="onNameSelected"
+            <v-text-field v-model="nameFilter" append-icon="mdi-magnify" clearable label="Type car name"
+                          outlined v-on:keyup.enter="nameFilterClick" @click:append="onNameSelected"
             />
           </v-col>
         </v-row>
-        <v-row v-if="this.totPaginatorPages" class="px-3" >
+        <v-row v-if="this.totPaginatorPages" class="px-3">
           <v-col>
             <v-pagination v-model="offset" :length="totPaginatorPages"/>
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="4" xl="2">
-            <v-autocomplete v-model="selectedBrand" :items="brands" @change="v => onBrandSelected(v)"
-                            item-text="name" item-value="name" label="Brand" outlined dense clearable
+          <v-col cols="6" lg="2">
+            <v-autocomplete v-model="selectedBrand" :items="brands" clearable
+                            dense item-text="name" item-value="name" label="Brand" outlined @change="v => onBrandSelected(v)"
             ></v-autocomplete>
           </v-col>
-          <v-col cols="4" xl="2">
-            <v-select v-model="selectedCategory" @change="v => onSelectedCategory(v)"
-                      :items="categories" item-text="name" item-value="name" label="Category" outlined
-                      dense clearable
+          <v-col cols="6" lg="2">
+            <v-select v-model="selectedCategory" :items="categories"
+                      clearable dense item-text="name" item-value="name" label="Category"
+                      outlined @change="v => onSelectedCategory(v)"
             ></v-select>
           </v-col>
-          <v-col cols="4" xl="2">
-            <v-autocomplete v-model="selectedAuthor" @change="v => onAuthorSelected(v)" :items="authors"
-                            item-text="name" item-value="name" label="Author" outlined dense clearable
+          <v-col cols="6" lg="2">
+            <v-autocomplete v-model="selectedAuthor" :items="authors" clearable
+                            dense item-text="name" item-value="name" label="Author" outlined @change="v => onAuthorSelected(v)"
             ></v-autocomplete>
           </v-col>
           <v-spacer/>
-          <v-col cols="4" xl="2">
-              <v-select v-model="selectedSort" item-text="label" return-object  :items="sortOpts" label="Sort" @change="v => sort(v)" dense></v-select>
+          <v-col cols="6" lg="2">
+            <v-select v-model="selectedSort" :items="sortOpts" dense item-text="label" label="Sort"
+                      return-object @change="v => sort(v)"
+            ></v-select>
           </v-col>
 
         </v-row>
@@ -62,7 +64,7 @@
               <v-row>
                 <v-col cols="12" md="4">
                   <div>
-                    <v-img class="ma-3" contain :src="car.image" alt="car thumbnail"/>
+                    <v-img :src="car.image" alt="car thumbnail" class="ma-3" contain/>
                   </div>
                 </v-col>
                 <v-col cols="12" md="8">
@@ -72,14 +74,14 @@
                     </NuxtLink>
                     <v-spacer/>
                     <v-rating v-model="car.rating/2" background-color="orange lighten-3"
-                              color="orange" half-increments readonly dense class="pb-2"
+                              class="pb-2" color="orange" dense half-increments readonly
                     ></v-rating>
                   </v-card-title>
                   <v-card-subtitle>
-                    <v-chip v-for="category in car.categories" :key="category.name" class="mr-1" x-small label>
+                    <v-chip v-for="category in car.categories" :key="category.name" class="mr-1" label x-small>
                       {{ category.name }}
                     </v-chip>
-                    <v-chip v-if="car.premium" color="orange" x-small label>Premium</v-chip>
+                    <v-chip v-if="car.premium" color="orange" label x-small>Premium</v-chip>
                   </v-card-subtitle>
                   <v-card-text>
                     <strong>Year: </strong>{{ car.year }}
@@ -105,7 +107,7 @@
             <h3 class="display-6">I'm sorry, no car match your request</h3>
           </v-col>
         </v-row>
-        <v-row v-if="$store.getters['car/loadingCars']" v-for="i in 20" :key="i" class="mb-2">
+        <v-row v-for="i in 20" v-if="$store.getters['car/loadingCars']" :key="i" class="mb-2">
           <v-col>
             <v-card>
               <v-row class="pa-3">
@@ -127,7 +129,7 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="0" md="2" lg="3"/>
+      <v-col cols="0" lg="3" md="2"/>
     </v-row>
   </v-container>
 </template>

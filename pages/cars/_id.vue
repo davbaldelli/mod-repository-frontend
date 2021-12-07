@@ -1,13 +1,13 @@
 <template>
   <v-container fluid>
     <v-row v-if="car">
-      <v-col cols="0" md="3" lg="4"/>
-      <v-col cols="12" md="6" lg="4">
+      <v-col cols="0" lg="4" md="3"/>
+      <v-col cols="12" lg="4" md="6">
         <v-row v-if="loading">
           <v-col>
             <v-row>
               <v-col>
-                <v-skeleton-loader  style="width: 100%" type="image"></v-skeleton-loader>
+                <v-skeleton-loader style="width: 100%" type="image"></v-skeleton-loader>
               </v-col>
             </v-row>
             <v-row>
@@ -24,7 +24,7 @@
           <v-col>
             <v-row>
               <v-col cols="12">
-                <v-img contain :src="car.image"></v-img>
+                <v-img :src="car.image" contain></v-img>
               </v-col>
             </v-row>
             <v-row>
@@ -34,9 +34,9 @@
             </v-row>
             <v-row class="mt-0">
               <v-col>
-                <v-rating v-model="car.rating" readonly dense length="10"
-                          background-color="orange lighten-3"
-                          color="orange"
+                <v-rating v-model="car.rating" background-color="orange lighten-3" color="orange" dense
+                          length="10"
+                          readonly
                 />
               </v-col>
             </v-row>
@@ -94,7 +94,7 @@
         </v-row>
       </v-col>
     </v-row>
-    <v-col cols="0" md="3" lg="4"/>
+    <v-col cols="0" lg="4" md="3"/>
   </v-container>
 </template>
 

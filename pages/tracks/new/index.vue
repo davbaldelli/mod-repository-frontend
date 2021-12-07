@@ -19,47 +19,47 @@
 <script>
 export default {
   name: 'TrackInput',
-  middleware : 'admin',
-  data(){
+  middleware: 'admin',
+  data () {
     return {
-      showMsg :false,
-      message : "",
-      form : {
-        downloadLink: "",
-        image: "",
-        name: "",
-        location: "",
+      showMsg: false,
+      message: '',
+      form: {
+        downloadLink: '',
+        image: '',
+        name: '',
+        location: '',
         tags: [],
         year: 0,
         nation: {
-          name: "",
+          name: '',
         },
         premium: false,
         layouts: [
           {
             lengthM: 0,
-            category: "",
-            name: "",
+            category: '',
+            name: '',
           },
         ],
         author: {
-          name: "",
-          link: "",
+          name: '',
+          link: '',
         },
-        rating : 0,
-        version : "",
+        rating: 0,
+        version: '',
       },
-      success : false,
-      successMessage : "",
-      fail : false,
-      failMessage : "",
+      success: false,
+      successMessage: '',
+      fail: false,
+      failMessage: '',
     }
   },
-  methods:{
-    onSubmit(form){
+  methods: {
+    onSubmit (form) {
       this.$store.dispatch('track/addTrack', form)
         .then(() => {
-          this.message="Track added successfully"
+          this.message = 'Track added successfully'
           this.showMsg = true
         })
         .catch(e => {

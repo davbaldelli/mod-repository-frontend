@@ -1,13 +1,13 @@
 <template>
   <v-container fluid>
     <v-row v-if="track">
-      <v-col cols="0" md="3" lg="4"/>
-      <v-col cols="12" md="6" lg="4">
+      <v-col cols="0" lg="4" md="3"/>
+      <v-col cols="12" lg="4" md="6">
         <v-row v-if="loading">
           <v-col>
             <v-row>
               <v-col>
-                <v-skeleton-loader  style="width: 100%" type="image"></v-skeleton-loader>
+                <v-skeleton-loader style="width: 100%" type="image"></v-skeleton-loader>
               </v-col>
             </v-row>
             <v-row>
@@ -22,18 +22,19 @@
         </v-row>
         <v-row>
           <v-col cols="12">
-            <v-img contain :src="track.image"></v-img>
+            <v-img :src="track.image" contain></v-img>
           </v-col>
         </v-row>
         <v-row>
           <v-col>
-            <h1 class="text-h2">{{track.name}}</h1>
+            <h1 class="text-h2">{{ track.name }}</h1>
           </v-col>
         </v-row>
         <v-row class="mt-0">
           <v-col>
-            <v-rating v-model="track.rating" readonly dense length="10" background-color="orange lighten-3"
-                      color="orange"/>
+            <v-rating v-model="track.rating" background-color="orange lighten-3" color="orange" dense length="10"
+                      readonly
+            />
           </v-col>
         </v-row>
         <v-row>
@@ -41,19 +42,20 @@
             <v-card class="pa-4">
               <v-row class="pt-3">
                 <v-col cols="12" md="6">
-                  <strong>Location</strong> {{`${track.location}, ${track.nation.name}`}}
+                  <strong>Location</strong> {{ `${track.location}, ${track.nation.name}` }}
                   <hr>
                 </v-col>
                 <v-col cols="12" md="6">
-                  <strong>Construction Year</strong> {{track.year}}
+                  <strong>Construction Year</strong> {{ track.year }}
                   <hr>
                 </v-col>
                 <v-col cols="12" md="6">
-                  <strong>Author</strong><a :href="track.author.link" rel="noopener" target="_blank"> {{track.author.name}}</a>
+                  <strong>Author</strong><a :href="track.author.link" rel="noopener" target="_blank">
+                  {{ track.author.name }}</a>
                   <hr>
                 </v-col>
                 <v-col cols="12" md="6">
-                  <strong>Mod Version</strong> {{track.version}}
+                  <strong>Mod Version</strong> {{ track.version }}
                   <hr>
                 </v-col>
               </v-row>
@@ -67,17 +69,17 @@
         </v-row>
         <v-row class="mt-1">
           <v-col>
-            <v-card class="pa-4 mb-2" v-for="layout in track.layouts" :key="layout.name">
-              <v-row >
-                <v-col><strong>Name</strong> {{layout.name}}</v-col>
-                <v-col><strong>Length</strong> {{layout.lengthM}}m</v-col>
-                <v-col><strong>Type</strong> {{layout.type}}</v-col>
+            <v-card v-for="layout in track.layouts" :key="layout.name" class="pa-4 mb-2">
+              <v-row>
+                <v-col><strong>Name</strong> {{ layout.name }}</v-col>
+                <v-col><strong>Length</strong> {{ layout.lengthM }}m</v-col>
+                <v-col><strong>Type</strong> {{ layout.type }}</v-col>
               </v-row>
             </v-card>
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="0" md="3" lg="4"/>
+      <v-col cols="0" lg="4" md="3"/>
     </v-row>
   </v-container>
 </template>
@@ -85,16 +87,16 @@
 <script>
 export default {
   name: 'TrackDetail',
-  data(){
-    return{
-      id : this.$route.params.id
+  data () {
+    return {
+      id: this.$route.params.id
     }
   },
-  computed:{
-    track() {
+  computed: {
+    track () {
       return this.$store.getters['track/getTrackByName'](this.id)
     },
-    loading(){
+    loading () {
       return this.$store.getters['track/loadingTracks']
     }
   },

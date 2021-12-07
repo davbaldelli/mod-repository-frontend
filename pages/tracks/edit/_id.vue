@@ -7,27 +7,27 @@
 export default {
   name: 'TrackEdit',
   middleware: 'admin',
-  data(){
-    return{
-      id : this.$route.params.id
+  data () {
+    return {
+      id: this.$route.params.id
     }
   },
-  computed:{
-    initialValue(){
+  computed: {
+    initialValue () {
       return this.track ? JSON.parse(JSON.stringify(this.track)) : null
     },
-    track(){
+    track () {
       return this.$store.getters['track/getTrackByName'](this.id)
     },
-    loading(){
+    loading () {
       return this.$store.getters['track/loadingTracks']
     }
   },
   mounted () {
     this.$store.dispatch('track/getAllTracks')
   },
-  methods:{
-    onSubmit(track){
+  methods: {
+    onSubmit (track) {
       this.$store.dispatch('track/updateTrack', track).then(() =>
         this.$router.back()
       ).catch(e => {

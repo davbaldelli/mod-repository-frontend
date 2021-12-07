@@ -1,32 +1,32 @@
 <template>
-  <LazyCarForm v-if="!loading" :initial-value="car" @submit="onSubmit"/>
+  <LazyCarForm v-if="initialValue" :initial-value="initialValue" @submit="onSubmit"/>
 </template>
 
 <script>
 export default {
   name: 'CarEdit',
   middleware: 'admin',
-  data(){
-    return{
-      id : this.$route.params.id
+  data () {
+    return {
+      id: this.$route.params.id
     }
   },
-  computed:{
-    initialValue(){
-      return this.track ? JSON.parse(JSON.stringify(this.car)) : null
+  computed: {
+    initialValue () {
+      return this.car ? JSON.parse(JSON.stringify(this.car)) : null
     },
-    car(){
-      return  this.$store.getters['car/getCarById'](this.id)
+    car () {
+      return this.$store.getters['car/getCarById'](this.id)
     },
-    loading(){
+    loading () {
       return this.$store.getters['car/loadingCars']
     }
   },
   mounted () {
     this.$store.dispatch('car/getAll')
   },
-  methods:{
-    onSubmit(track){
+  methods: {
+    onSubmit (track) {
       this.$store.dispatch('car/updateCar', track).then(() =>
         this.$router.back()
       ).catch(e => {
