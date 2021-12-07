@@ -43,51 +43,63 @@
             <v-row>
               <v-col>
                 <v-card class="pa-4">
-                  <v-row class="pt-3">
+                  <v-row>
                     <v-col cols="12" md="6">
-                      <strong>Brand</strong> {{ car.brand.name }}
-                      <hr>
+                      <v-list>
+                        <v-list-item>
+                          <strong>Brand</strong><v-spacer/>{{ car.brand.name }}
+                        </v-list-item>
+                        <v-divider></v-divider>
+                        <v-list-item>
+                          <strong>Nation</strong><v-spacer/>{{ car.brand.nation.name }}
+                        </v-list-item>
+                        <v-divider></v-divider>
+                        <v-list-item>
+                          <strong>Year</strong><v-spacer/>{{ car.year }}
+                        </v-list-item>
+                        <v-divider />
+                        <v-list-item>
+                          <strong>Author</strong><v-spacer/>
+                          <a :href="car.author.link" rel="noopener" target="_blank">{{ car.author.name }}</a>
+                        </v-list-item>
+                        <v-divider/>
+                        <v-list-item>
+                          <strong>Mod Version</strong><v-spacer/>{{ car.version }}
+                        </v-list-item>
+                        <v-divider/>
+                      </v-list>
                     </v-col>
                     <v-col cols="12" md="6">
-                      <strong>Nation</strong> {{ car.brand.nation.name }}
-                      <hr>
-                    </v-col>
-                    <v-col cols="12" md="6">
-                      <strong>Year</strong> {{ car.year }}
-                      <hr>
-                    </v-col>
-                    <v-col cols="12" md="6">
-                      <strong>Author</strong><a :href="car.author.link" rel="noopener"
-                                                target="_blank"
-                    > {{ car.author.name }}</a>
-                      <hr>
-                    </v-col>
-                    <v-col cols="12" md="6">
-                      <strong>Mod Version</strong> {{ car.version }}
-                      <hr>
-                    </v-col>
-                    <v-col cols="12" md="6">
-                      <strong>Power</strong> {{ car.bhp }}
-                      <hr>
-                    </v-col>
-                    <v-col cols="12" md="6">
-                      <strong>Torque</strong> {{ car.torque }}
-                      <hr>
-                    </v-col>
-                    <v-col cols="12" md="6">
-                      <strong>Top Speed</strong> {{ car.topSpeed }}
-                      <hr>
-                    </v-col>
-                    <v-col cols="12" md="6">
-                      <strong>Transmission</strong> {{ car.transmission }}
-                      <hr>
-                    </v-col>
-                    <v-col cols="12" md="6">
-                      <strong>Drivetrain</strong>
-                      <hr>
+                      <v-list>
+                        <v-list-item>
+                          <strong>Power</strong><v-spacer/>{{ car.bhp }}
+                        </v-list-item>
+                        <v-divider/>
+                        <v-list-item>
+                          <strong>Torque</strong><v-spacer/>{{ car.torque }}
+                        </v-list-item>
+                        <v-divider/>
+                        <v-list-item>
+                          <strong>Top Speed</strong><v-spacer/>{{ car.topSpeed }}
+                        </v-list-item>
+                        <v-divider/>
+                        <v-list-item>
+                          <strong>Transmission</strong><v-spacer/>{{ car.transmission }}
+                        </v-list-item>
+                        <v-divider/>
+                        <v-list-item>
+                          <strong>Drivetrain</strong><v-spacer/>{{car.drivetrain}}
+                        </v-list-item>
+                        <v-divider/>
+                      </v-list>
                     </v-col>
                   </v-row>
                 </v-card>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-btn color="primary" block :href="car.downloadLink" rel="noopener" target="_blank">Download</v-btn>
               </v-col>
             </v-row>
           </v-col>

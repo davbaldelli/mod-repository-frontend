@@ -1,7 +1,8 @@
 <template class="p-grid p-m-0">
   <v-app>
     <v-app-bar app elevate-on-scroll elevation="1">
-      <v-app-bar-nav-icon class="d-sm-none" @click.stop="drawer = !drawer"/>
+
+      <v-app-bar-nav-icon class="d-sm-none" @click.stop="drawer = !drawer" aria-label="navigation drawer button"/>
       <v-btn class="d-none d-sm-flex" plain to="/">
         <FontAwesomeIcon class="mr-1" icon="home"></FontAwesomeIcon>
         Home

@@ -40,23 +40,31 @@
         <v-row>
           <v-col>
             <v-card class="pa-4">
-              <v-row class="pt-3">
+              <v-row>
                 <v-col cols="12" md="6">
-                  <strong>Location</strong> {{ `${track.location}, ${track.nation.name}` }}
-                  <hr>
+                  <v-list>
+                    <v-list-item>
+                      <strong>Location</strong><v-spacer/>{{ `${track.location}, ${track.nation.name}` }}
+                    </v-list-item>
+                    <v-divider/>
+                    <v-list-item>
+                      <strong>Construction Year</strong><v-spacer/>{{ track.year }}
+                    </v-list-item>
+                    <v-divider/>
+                  </v-list>
                 </v-col>
                 <v-col cols="12" md="6">
-                  <strong>Construction Year</strong> {{ track.year }}
-                  <hr>
-                </v-col>
-                <v-col cols="12" md="6">
-                  <strong>Author</strong><a :href="track.author.link" rel="noopener" target="_blank">
-                  {{ track.author.name }}</a>
-                  <hr>
-                </v-col>
-                <v-col cols="12" md="6">
-                  <strong>Mod Version</strong> {{ track.version }}
-                  <hr>
+                  <v-list>
+                    <v-list-item>
+                      <strong>Author</strong><v-spacer/>
+                      <a :href="track.author.link" rel="noopener" target="_blank">{{ track.author.name }}</a>
+                    </v-list-item>
+                    <v-divider/>
+                    <v-list-item>
+                      <strong>Mod Version</strong><v-spacer/>{{ track.version }}
+                    </v-list-item>
+                    <v-divider/>
+                  </v-list>
                 </v-col>
               </v-row>
             </v-card>
@@ -71,11 +79,16 @@
           <v-col>
             <v-card v-for="layout in track.layouts" :key="layout.name" class="pa-4 mb-2">
               <v-row>
-                <v-col><strong>Name</strong> {{ layout.name }}</v-col>
-                <v-col><strong>Length</strong> {{ layout.lengthM }}m</v-col>
-                <v-col><strong>Type</strong> {{ layout.type }}</v-col>
+                <v-col cols="12" md="4"><strong>Name</strong> {{ layout.name }}</v-col>
+                <v-col cols="12" md="4"><strong>Length</strong> {{ layout.lengthM }}m</v-col>
+                <v-col cols="12" md="4"><strong>Type</strong> {{ layout.category }}</v-col>
               </v-row>
             </v-card>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-btn color="primary" block :href="track.downloadLink" rel="noopener" target="_blank">Download</v-btn>
           </v-col>
         </v-row>
       </v-col>
