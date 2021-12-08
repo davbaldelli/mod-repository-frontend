@@ -4,6 +4,11 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   ssr: false,
   target: 'static',
+
+  generate: {
+    fallback: true
+  },
+
   head: {
     title: 'Assetto Corsa Mod Repository',
     meta: [

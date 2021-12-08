@@ -11,7 +11,7 @@
       <v-col cols="12" lg="6" md="8">
         <v-row>
           <v-col>
-            <v-text-field v-model="nameFilter" append-icon="mdi-magnify" clearable label="Type car name"
+            <v-text-field v-model="nameFilter" append-icon="mdi-magnify" clearable label="Type track name"
                           outlined v-on:keyup.enter="nameFilterClick" @click:append="onNameSelected"
             />
           </v-col>
