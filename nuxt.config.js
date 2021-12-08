@@ -126,7 +126,11 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
+      lang: 'en',
+      name: 'AC Mod Repository',
+      short_name: 'AC Mod Repo',
+      description: "The best collection of quality cars and tracks mods for Assetto Cosa. Every mod is free and tested and up-to-date",
+      useWebmanifestExtension: false
     },
     meta : {
       title: "AC Mod Repository",
