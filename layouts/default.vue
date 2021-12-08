@@ -76,6 +76,7 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import useVuelidate from '@vuelidate/core'
 import required from 'vuelidate/lib/validators/required'
+import { firebaseService } from '@/_services/firebase.service'
 
 export default {
   name: 'App',
@@ -91,22 +92,8 @@ export default {
       drawer: false,
     }
   },
-  async mounted () {
-    const token = await this.$fire.messaging.getToken()
-    console.log(token)
-    this.$fire.messaging.onMessage((payload) => {
-      console.log('Message received. ', payload);
-    });
-  },
-  validations () {
-    return {
-      username: {
-        required
-      },
-      password: {
-        required
-      },
-    }
+  mounted () {
+    this.$fire.messaging.getToken().then(token => firebaseService.registerTokenToTopic(token, "modsUpdates"))
   },
   computed: {
     logged () {

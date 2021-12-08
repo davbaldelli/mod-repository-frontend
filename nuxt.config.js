@@ -1,3 +1,5 @@
+import * as fs from 'fs'
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   ssr: false,
@@ -76,6 +78,7 @@ export default {
     '~/plugins/vuelidate.js',
     '~/plugins/login-check.js',
     '~/plugins/cookieconsent.js',
+    '~/plugins/firebase.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -143,13 +146,18 @@ export default {
     services: {
       messaging: {
         createServiceWorker: true,
-        actions: [
+        actions : [
           {
-            action: 'car_added',
-            title: 'Car Added To Repository'
-          }
+            action: 'car_updated',
+            url: "/logs"
+          },
+          {
+            action: "car_added",
+            url: "/logs",
+          },
         ],
-        fcmPublicVapidKey: 'BOzJS2NjeABtuVTrY-wUC9nRy_3E1soPnVVIHIdeDGMCExi9c0Nu6jfjU-0VFLoVnS0XUwOet72-ayDIGYFFAgs' // OPTIONAL : Sets vapid key for FCM after initialization
+        fcmPublicVapidKey: 'BOzJS2NjeABtuVTrY-wUC9nRy_3E1soPnVVIHIdeDGMCExi9c0Nu6jfjU-0VFLoVnS0XUwOet72-ayDIGYFFAgs', // OPTIONAL : Sets vapid key for FCM after initialization
+        inject : fs.readFileSync('./serviceWorker.js') ,
       }
     }
   },

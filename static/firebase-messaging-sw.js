@@ -13,7 +13,7 @@ const messaging = firebase.messaging()
 
 // Setup event listeners for actions provided in the config:
 self.addEventListener('notificationclick', function(e) {
-  const actions = [{"action":"car_added","title":"Car Added To Repository"}]
+  const actions = [{"action":"car_updated","url":"\u002Flogs"},{"action":"car_added","url":"\u002Flogs"}]
   const action = actions.find(x => x.action === e.action)
   const notification = e.notification
 
@@ -25,3 +25,17 @@ self.addEventListener('notificationclick', function(e) {
   }
 })
 
+self.addEventListener('push', function (e) {
+  let data = e.data.json()
+  console.log(data)
+  const options = {
+    title: data.notification.title,
+    body: data.notification.body,
+    icon: data.notification.icon,
+    vibrate: [100, 50, 100],
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: '2'
+    },
+  }
+})
