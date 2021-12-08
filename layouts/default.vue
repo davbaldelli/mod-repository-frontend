@@ -91,6 +91,13 @@ export default {
       drawer: false,
     }
   },
+  async mounted () {
+    const token = await this.$fire.messaging.getToken()
+    console.log(token)
+    this.$fire.messaging.onMessage((payload) => {
+      console.log('Message received. ', payload);
+    });
+  },
   validations () {
     return {
       username: {

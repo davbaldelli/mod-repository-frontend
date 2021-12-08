@@ -22,7 +22,41 @@ export default {
       {
         name: 'google-site-verification',
         content: 'f6gm0ypHvGLB3K5Zm-RSPBrJqQ89LAOQpDJsK9lWnjw'
-      }
+      },
+      {
+        name : "og:title",
+        content :"AC Mod Repository, download here the best mods in the web",
+      },
+      {
+        name : "og:site_name",
+        content :"Assetto Corsa Mod Repository",
+      },
+      {
+        name : "og:type",
+        content :"website",
+      },
+      {
+        name:"og:locale",content :"en_EN"
+      },
+      {
+        name:"og:url",content :"www.acmodrepository.com"
+      },
+      {
+        name:"og:description",content :"A user friendly website where you can download a large selection of quality cars and tracks Assetto Corsa. Finding mods has never been so easy"
+      },
+      {
+        name:"og:image",content :"https://i.imgur.com/tUa6yJt.png"
+      },
+      {
+        name:"og:image:width",content :"1200"
+      },
+      {
+        name:"og:image:height",content :"630"
+      },
+      {
+        name:"image:alt",content :"cars in a race"
+      },
+
     ],
     link: [
       {
@@ -61,8 +95,9 @@ export default {
     '@nuxtjs/pwa',
 
     //'bootstrap-vue/nuxt',
+    '@nuxtjs/sitemap',
 
-    '@nuxtjs/sitemap'
+    '@nuxtjs/firebase'
   ],
 
   sitemap: {
@@ -84,6 +119,38 @@ export default {
   pwa: {
     manifest: {
       lang: 'en'
+    },
+    meta : {
+      title: "AC Mod Repository",
+      description: "The best collection of quality cars and tracks mods for Assetto Cosa. Every mod is free and tested and up-to-date",
+      author: "davbaldelli",
+      ogUrl: "www.acmodrepository.com",
+      ogImage: "https://i.imgur.com/tUa6yJt.png"
+    }
+  },
+
+  firebase : {
+    config: {
+      // REQUIRED: Official config for firebase.initializeApp(config):
+      apiKey: "AIzaSyDIYM65D5DNLNsOSUToov_JcJEh6AupUlg",
+      authDomain: "ac-mod-repo.firebaseapp.com",
+      projectId: "ac-mod-repo",
+      storageBucket: "ac-mod-repo.appspot.com",
+      messagingSenderId: "315180351715",
+      appId: "1:315180351715:web:d5bef233ddee49100b05d6",
+      measurementId: "${config.measurementId}"
+    },
+    services: {
+      messaging: {
+        createServiceWorker: true,
+        actions: [
+          {
+            action: 'car_added',
+            title: 'Car Added To Repository'
+          }
+        ],
+        fcmPublicVapidKey: 'BOzJS2NjeABtuVTrY-wUC9nRy_3E1soPnVVIHIdeDGMCExi9c0Nu6jfjU-0VFLoVnS0XUwOet72-ayDIGYFFAgs' // OPTIONAL : Sets vapid key for FCM after initialization
+      }
     }
   },
 
