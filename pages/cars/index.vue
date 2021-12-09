@@ -58,32 +58,30 @@
             </v-chip>
           </v-col>
         </v-row>
-        <v-row v-for="(car, index) in pageCars" :key="index" class="mb-2">
+        <v-row v-for="(car, index) in pageCars" :key="index">
           <v-col cols="12">
             <v-card>
-              <v-row>
-                <v-col cols="12" md="4">
-                  <div>
-                    <v-img :src="car.image" alt="car thumbnail" class="ma-3" contain/>
-                  </div>
+              <v-row class="no-gutters">
+                <v-col cols="12" md="5" xl="4">
+                    <v-img :src="car.image" alt="car thumbnail" class="ma-2 rounded" contain/>
                 </v-col>
-                <v-col cols="12" md="8">
+                <v-col cols="12" md="7" xl="8" class="d-flex flex-column">
                   <v-card-title>
                     <NuxtLink :to="`/cars/${car.id}`">
-                      <h3 class="text-h7">{{ `${car.brand.name} ${car.modelName}` }}</h3>
+                      <h3 class="text-h5">{{ `${car.brand.name} ${car.modelName}` }}</h3>
                     </NuxtLink>
                     <v-spacer/>
                     <v-rating v-model="car.rating/2" background-color="orange lighten-3"
                               class="pb-2" color="orange" dense half-increments readonly
                     ></v-rating>
                   </v-card-title>
-                  <v-card-subtitle>
+                  <v-card-subtitle class="pb-2">
                     <v-chip v-for="category in car.categories" :key="category.name" class="mr-1" label x-small>
                       {{ category.name }}
                     </v-chip>
                     <v-chip v-if="car.premium" color="orange" label x-small>Premium</v-chip>
                   </v-card-subtitle>
-                  <v-card-text>
+                  <v-card-text class="pb-2">
                     <strong>Year: </strong>{{ car.year }}
                     <br>
                     <strong>Author: </strong>
@@ -92,7 +90,7 @@
                     </a> v{{ car.version }}
                     <br>
                   </v-card-text>
-                  <v-card-actions class="mt-auto px-4">
+                  <v-card-actions class="mt-auto px-4 pb-4 pt-0">
                     <v-spacer></v-spacer>
                     <v-btn v-if="userRole === 'admin'" :to="`/cars/edit/${car.id}`" color="orange">Edit</v-btn>
                     <v-btn :href="car.downloadLink" color="primary" rel="noopener" target="_blank">Download</v-btn>
@@ -126,6 +124,11 @@
                 </v-col>
               </v-row>
             </v-card>
+          </v-col>
+        </v-row>
+        <v-row v-if="this.totPaginatorPages" class="px-3">
+          <v-col>
+            <v-pagination v-model="offset" :length="totPaginatorPages"/>
           </v-col>
         </v-row>
       </v-col>

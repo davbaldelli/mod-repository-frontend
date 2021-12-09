@@ -30,9 +30,9 @@
           <v-col cols="0" lg="3" md="2"/>
         </v-row>
       </v-container>
-      <v-app-bar-nav-icon class="d-sm-none" @click.stop="drawer = !drawer" aria-label="navigation drawer button"/>
+      <v-app-bar-nav-icon class="d-sm-none"  @click.stop="drawer = !drawer" aria-label="navigation drawer button"/>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" app>
+    <v-navigation-drawer v-model="drawer" disable-resize-watcher app>
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="text-h6">

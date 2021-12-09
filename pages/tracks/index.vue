@@ -66,15 +66,15 @@
           </v-col>
         </v-row>
         <v-row v-for="(track, index) in pageTracks" :key="index" class="mb-2">
-          <v-col cols="12">
+          <v-col cols="12" >
             <v-card>
-              <v-row>
-                <v-col cols="12" md="4">
+              <v-row no-gutters>
+                <v-col cols="12" md="5" xl="4">
                   <div class="h-100">
-                    <v-img :src="track.image" alt="track thumbnail" class="ma-3" contain/>
+                    <v-img :src="track.image" alt="track thumbnail" class="ma-3 rounded" contain/>
                   </div>
                 </v-col>
-                <v-col cols="12" md="8">
+                <v-col cols="12" md="7" xl="8" class="d-flex flex-column">
                   <v-card-title>
                     <NuxtLink :to="`/tracks/${track.id}`">
                       <h3 class="text-h7">{{ track.name }}</h3>
@@ -100,7 +100,7 @@
                     </a> v{{ track.version }}
 
                   </v-card-text>
-                  <v-card-actions class="mt-auto px-4">
+                  <v-card-actions class="mt-auto pa-4">
                     <v-spacer></v-spacer>
                     <v-btn v-if="userRole === 'admin'" :to="`/tracks/edit/${track.id}`" color="orange">Edit</v-btn>
                     <v-btn :href="track.downloadLink" color="primary" rel="noopener" target="_blank">Download</v-btn>
@@ -134,6 +134,11 @@
                 </v-col>
               </v-row>
             </v-card>
+          </v-col>
+        </v-row>
+        <v-row v-if="this.totPaginatorPages">
+          <v-col>
+            <v-pagination v-model="offset" :length="totPaginatorPages"/>
           </v-col>
         </v-row>
       </v-col>
