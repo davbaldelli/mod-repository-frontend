@@ -12,7 +12,7 @@
         <v-row>
           <v-col>
             <v-text-field v-model="nameFilter" append-icon="mdi-magnify" clearable label="Type track name"
-                          outlined v-on:keyup.enter="nameFilterClick" @click:append="onNameSelected"
+                          outlined v-on:keyup.enter="nameFilterClick" @click:append="onNameSelected" @click:clear="clearNameFilter"
             />
           </v-col>
         </v-row>
@@ -23,24 +23,24 @@
         </v-row>
         <v-row>
           <v-col cols="6" lg="2">
-            <v-autocomplete v-model="selectedNation" :items="nations" clearable
+            <v-autocomplete v-model="selectedNation" :items="nations"
                             dense item-text="name" item-value="name" label="Nation" outlined @change="v => onNationSelected(v)"
             ></v-autocomplete>
           </v-col>
           <v-col cols="6" lg="2">
             <v-select v-model="selectedTag" :items="tagsOpts"
-                      clearable dense item-text="text" item-value="value" label="Tags"
+                      dense item-text="text" item-value="value" label="Tags"
                       outlined @change="v => onTagSelected(v)"
             ></v-select>
           </v-col>
           <v-col cols="6" lg="2">
             <v-select v-model="selectedLayoutType" :items="categoryOpts"
-                      clearable dense item-text="text" item-value="value" label="Layout Type"
+                      dense item-text="text" item-value="value" label="Layout Type"
                       outlined @change="v => onLayoutCategorySelected(v)"
             ></v-select>
           </v-col>
           <v-col cols="6" lg="2">
-            <v-autocomplete v-model="selectedAuthor" :items="authors" clearable
+            <v-autocomplete v-model="selectedAuthor" :items="authors"
                             dense item-text="name" item-value="name" label="Author" outlined @change="v => onAuthorSelected(v)"
             ></v-autocomplete>
           </v-col>
@@ -65,7 +65,7 @@
             </v-chip>
           </v-col>
         </v-row>
-        <v-row v-for="(track, index) in pageTracks" :key="index" class="mb-2">
+        <v-row v-for="(track, index) in pageTracks" :key="index">
           <v-col cols="12" >
             <v-card>
               <v-row no-gutters>
@@ -366,5 +366,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

@@ -12,7 +12,7 @@
         <v-row>
           <v-col>
             <v-text-field v-model="nameFilter" append-icon="mdi-magnify" clearable label="Type car name"
-                          outlined v-on:keyup.enter="nameFilterClick" @click:append="onNameSelected"
+                          outlined v-on:keyup.enter="nameFilterClick" @click:append="onNameSelected" @click:clear="clearNameFilter"
             />
           </v-col>
         </v-row>
@@ -23,18 +23,18 @@
         </v-row>
         <v-row>
           <v-col cols="6" lg="2">
-            <v-autocomplete v-model="selectedBrand" :items="brands" clearable
+            <v-autocomplete v-model="selectedBrand" :items="brands"
                             dense item-text="name" item-value="name" label="Brand" outlined @change="v => onBrandSelected(v)"
             ></v-autocomplete>
           </v-col>
           <v-col cols="6" lg="2">
             <v-select v-model="selectedCategory" :items="categories"
-                      clearable dense item-text="name" item-value="name" label="Category"
+                      dense item-text="name" item-value="name" label="Category"
                       outlined @change="v => onSelectedCategory(v)"
             ></v-select>
           </v-col>
           <v-col cols="6" lg="2">
-            <v-autocomplete v-model="selectedAuthor" :items="authors" clearable
+            <v-autocomplete v-model="selectedAuthor" :items="authors"
                             dense item-text="name" item-value="name" label="Author" outlined @change="v => onAuthorSelected(v)"
             ></v-autocomplete>
           </v-col>
