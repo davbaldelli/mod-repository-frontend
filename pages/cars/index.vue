@@ -1,13 +1,13 @@
 <template>
   <v-container fluid>
-    <v-row class="mt-5 mb-5">
+    <v-row class="my-3">
       <v-col class="text-center" cols="12">
         <h1 class="text-h2 mb-3">Cars Repository</h1>
         <h2 class="text-h5"><em>A collection of quality cars</em></h2>
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="0" lg="3" md="2"/>
+      <v-col cols="0" lg="3" md="2" class="d-none d-md-block"/>
       <v-col cols="12" lg="6" md="8">
         <v-row>
           <v-col>
@@ -16,7 +16,7 @@
             />
           </v-col>
         </v-row>
-        <v-row v-if="this.totPaginatorPages" class="px-3">
+        <v-row v-if="this.totPaginatorPages" class="px-3 my-3">
           <v-col>
             <v-pagination v-model="offset" :length="totPaginatorPages"/>
           </v-col>

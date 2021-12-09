@@ -22,6 +22,22 @@
               Logs
             </v-btn>
             <v-spacer></v-spacer>
+            <v-menu offset-y v-if="adminLogged">
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn v-if="adminLogged" class="d-none d-sm-flex" plain v-on="on" v-bind="attrs">
+                  <FontAwesomeIcon class="mr-1" icon="user-cog"></FontAwesomeIcon>
+                  Admin
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item v-for="(item, i) in adminOptions" :key="i" link :to="item.to">
+                  <FontAwesomeIcon class="mr-3" :icon="item.icon"></FontAwesomeIcon>
+                  <v-list-item-content>
+                    <v-list-item-title v-text="item.text"></v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-menu>
             <v-btn v-if="adminLogged" class="d-none d-sm-flex" plain @click="logOut">
               <FontAwesomeIcon class="mr-1" icon="sign-out-alt"></FontAwesomeIcon>
               Logout
@@ -30,7 +46,7 @@
           <v-col cols="0" lg="3" md="2"/>
         </v-row>
       </v-container>
-      <v-app-bar-nav-icon class="d-sm-none"  @click.stop="drawer = !drawer" aria-label="navigation drawer button"/>
+      <v-app-bar-nav-icon class="d-sm-none"  @click.stop="drawer = !drawer" aria-label="navigation drawer button" />
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" disable-resize-watcher app>
       <v-list-item>
@@ -41,23 +57,15 @@
         </v-list-item-content>
       </v-list-item>
       <v-divider></v-divider>
-      <v-list dense nav>
-        <v-list-item link to="/">
-          <FontAwesomeIcon class="mr-4" icon="home"></FontAwesomeIcon>
-          Home
-        </v-list-item>
-        <v-list-item link to="/cars/">
-          <FontAwesomeIcon class="mr-4" icon="car"></FontAwesomeIcon>
-          Cars
-        </v-list-item>
-        <v-list-item link to="/tracks/">
-          <FontAwesomeIcon class="mr-4" icon="road"></FontAwesomeIcon>
-          Tracks
-        </v-list-item>
-        <v-list-item link to="/logs/">
-          <FontAwesomeIcon class="mr-4" icon="clipboard-list"></FontAwesomeIcon>
-          Logs
-        </v-list-item>
+      <v-list nav dense>
+        <v-list-item-group color="primary">
+          <v-list-item v-for="(item, i) in menuItems" :key="i" link :to="item.to">
+            <FontAwesomeIcon class="mr-3" :icon="item.icon"></FontAwesomeIcon>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.text"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
       </v-list>
       <v-divider></v-divider>
       <v-list-item v-if="adminLogged" @click="logOut">
@@ -90,6 +98,16 @@ export default {
   data () {
     return {
       drawer: false,
+      menuItems : [
+        {text : "Home", to : "/", icon : "home"},
+        {text : "Cars", to : "/cars/", icon : "car"},
+        {text : "Tracks", to : "/tracks/", icon : "road"},
+        {text : "Logs", to : "/logs/", icon : "clipboard-list"},
+      ],
+      adminOptions : [
+        {text: "Add Car", to :"/cars/new/", icon : "plus"},
+        {text: "Add Track", to :"/tracks/new/", icon : "plus"}
+      ],
     }
   },
   mounted () {
