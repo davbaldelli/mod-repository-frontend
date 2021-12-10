@@ -1,13 +1,13 @@
 <template>
   <v-container class="text-center" fluid>
     <v-row>
-      <v-col class="mt-5 mb-5">
+      <v-col class="mt-5">
         <h1 class="text-h2 mb-3">Assetto Corsa Mod Repository</h1>
         <h2 class="text-h5"><em>Finding mod has never been so easy</em></h2>
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="0" lg="3"></v-col>
+      <v-col cols="0" lg="3" class="d-none d-lg-block"></v-col>
       <v-col cols="12" lg="6">
         <v-row>
           <v-col>

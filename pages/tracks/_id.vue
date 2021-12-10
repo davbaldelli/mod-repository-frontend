@@ -27,7 +27,7 @@
         </v-row>
         <v-row>
           <v-col>
-            <h1 class="text-h2">{{ track.name }}</h1>
+            <h1 class="text-h3">{{ track.name }}</h1>
           </v-col>
         </v-row>
         <v-row class="mt-0">

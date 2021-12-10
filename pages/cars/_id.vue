@@ -29,7 +29,7 @@
             </v-row>
             <v-row>
               <v-col>
-                <h1 class="text-h2">{{ `${car.brand.name} ${car.modelName}` }}</h1>
+                <h1 class="text-h3">{{ `${car.brand.name} ${car.modelName}` }}</h1>
               </v-col>
             </v-row>
             <v-row class="mt-0">
