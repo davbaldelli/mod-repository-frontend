@@ -31,7 +31,6 @@
               </template>
               <v-list>
                 <v-list-item v-for="(item, i) in adminOptions" :key="i" link :to="item.to">
-                  <FontAwesomeIcon class="mr-3" :icon="item.icon"></FontAwesomeIcon>
                   <v-list-item-content>
                     <v-list-item-title v-text="item.text"></v-list-item-title>
                   </v-list-item-content>

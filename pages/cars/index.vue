@@ -168,8 +168,6 @@ export default {
           sorter: carSort.sortByYear(false)
         }
       ],
-      categoryOpts: [],
-      brandOpts: [],
       nameFilter: '',
       activeNameFilter: '',
       categorySelector: c => c,
@@ -232,8 +230,8 @@ export default {
     },
   },
   watch: {
-    brand () {
-      this.brandOpts = this.brands
+    filteredCars() {
+      this.offset = 1;
     },
     loggedIn () {
       if (this.loggedIn) {
@@ -258,12 +256,6 @@ export default {
     },
     sort (value) {
       this.sorter = value.sorter
-    },
-    scrollToTop () {
-      console.log('change')
-      const element = this.$refs['paginatorTop']
-      const top = element.offsetTop
-      window.scrollTo(0, top)
     },
     nameFilterClick () {
       this.onNameSelected(this.nameFilter)

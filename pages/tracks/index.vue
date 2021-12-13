@@ -291,7 +291,10 @@ export default {
       if (this.loggedIn) {
         this.initiate()
       }
-    }
+    },
+    filteredTracks() {
+      this.offset = 1;
+    },
   },
   methods: {
     nameFilterClick () {

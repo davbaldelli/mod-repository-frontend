@@ -72,15 +72,15 @@
                     <v-col cols="12" md="6">
                       <v-list>
                         <v-list-item>
-                          <strong>Power</strong><v-spacer/>{{ car.bhp }}
+                          <strong>Power</strong><v-spacer/>{{ car.bhp }} bhp
                         </v-list-item>
                         <v-divider/>
                         <v-list-item>
-                          <strong>Torque</strong><v-spacer/>{{ car.torque }}
+                          <strong>Torque</strong><v-spacer/>{{ car.torque }} Nm
                         </v-list-item>
                         <v-divider/>
                         <v-list-item>
-                          <strong>Top Speed</strong><v-spacer/>{{ car.topSpeed }}
+                          <strong>Top Speed</strong><v-spacer/>{{ car.topSpeed }} Km/h
                         </v-list-item>
                         <v-divider/>
                         <v-list-item>
