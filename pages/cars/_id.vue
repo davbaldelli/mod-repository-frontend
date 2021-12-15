@@ -1,8 +1,13 @@
 <template>
   <v-container fluid>
-    <v-row v-if="car">
+    <v-row>
       <v-col cols="0" lg="4" md="3"/>
       <v-col cols="12" lg="4" md="6">
+        <v-row v-if="!loading && !car">
+          <v-col class="text-center">
+            <h3 class="display-6">I'm sorry, but I can't find the car that you are looking for. You can turn back to the <NuxtLink to="/cars/">cars list</NuxtLink> and see if that exits.</h3>
+          </v-col>
+        </v-row>
         <v-row v-if="loading">
           <v-col>
             <v-row>
@@ -20,7 +25,7 @@
             </v-row>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row v-if="car">
           <v-col>
             <v-row>
               <v-col cols="12">

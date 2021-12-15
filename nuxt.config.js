@@ -20,7 +20,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Here you can download a large selection of quality cars and tracks mods for the famous Assetto Corsa simulator developed by kunos simulations'
+        content: 'Download here a large selection of quality cars and tracks mods for the famous Assetto Corsa simulator developed by kunos simulations'
       },
       {
         name: 'format-detection',
@@ -32,7 +32,7 @@ export default {
       },
       {
         name : "og:title",
-        content :"AC Mod Repository, download here the best mods in the web",
+        content :"AC Mod Repository",
       },
       {
         name : "og:site_name",
@@ -49,7 +49,7 @@ export default {
         name:"og:url",content :"www.acmodrepository.com"
       },
       {
-        name:"og:description",content :"A user friendly website where you can download a large selection of quality cars and tracks Assetto Corsa. Finding mods has never been so easy"
+        name:"og:description",content :"A user friendly website where you can download a large selection of quality cars and tracks for Assetto Corsa."
       },
       {
         name:"og:image",content :"https://i.imgur.com/tUa6yJt.png"
@@ -145,12 +145,12 @@ export default {
       lang: 'en',
       name: 'AC Mod Repository',
       short_name: 'AC Mod Repo',
-      description: "The best collection of quality cars and tracks mods for Assetto Cosa. Every mod is free and tested and up-to-date",
+      description: "The best collection of quality cars and tracks mods for Assetto Corsa. Every mod is free, tested and up-to-date",
       useWebmanifestExtension: false,
     },
     meta : {
       title: "AC Mod Repository",
-      description: "The best collection of quality cars and tracks mods for Assetto Cosa. Every mod is free and tested and up-to-date",
+      description: "The best collection of quality cars and tracks mods for Assetto Corsa. Every mod is free, tested and up-to-date",
       author: "davbaldelli",
       ogUrl: "www.acmodrepository.com",
       ogImage: "https://i.imgur.com/tUa6yJt.png"
