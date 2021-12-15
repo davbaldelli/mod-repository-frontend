@@ -31,6 +31,7 @@ export default {
         content: 'f6gm0ypHvGLB3K5Zm-RSPBrJqQ89LAOQpDJsK9lWnjw'
       },
       {
+        hid : "og:title",
         name : "og:title",
         content :"AC Mod Repository",
       },
@@ -46,13 +47,13 @@ export default {
         name:"og:locale",content :"en_EN"
       },
       {
-        name:"og:url",content :"www.acmodrepository.com"
+        hid:"og:url",name:"og:url",content :"www.acmodrepository.com"
       },
       {
         name:"og:description",content :"A user friendly website where you can download a large selection of quality cars and tracks for Assetto Corsa."
       },
       {
-        name:"og:image",content :"https://i.imgur.com/tUa6yJt.png"
+        hid:"og:image",name:"og:image",content :"https://i.imgur.com/tUa6yJt.png"
       },
       {
         name:"og:image:width",content :"1200"
@@ -61,7 +62,7 @@ export default {
         name:"og:image:height",content :"630"
       },
       {
-        name:"image:alt",content :"cars in a race"
+        hid:"og:image:alt",name:"og:image:alt",content :"cars in a race"
       },
 
     ],
