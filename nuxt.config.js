@@ -105,7 +105,9 @@ export default {
     //'bootstrap-vue/nuxt',
     '@nuxtjs/sitemap',
 
-    '@nuxtjs/firebase'
+    '@nuxtjs/firebase',
+
+    '@nuxtjs/robots',
   ],
 
   sitemap: {
@@ -118,6 +120,17 @@ export default {
       'cars/edit',
     ],
     gzip: true,
+  },
+
+  robots: {
+    UserAgent: '*',
+    Disallow: [
+      '/cars/new',
+      '/tracks/new',
+      '/login',
+      '/tracks/edit',
+      'cars/edit',
+    ]
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
