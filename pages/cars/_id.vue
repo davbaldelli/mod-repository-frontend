@@ -122,30 +122,11 @@ export default {
     return {
       id: this.$route.params.id,
       title : "Assetto Corsa Mod Repository",
-      ogTitle : "AC Mod Repository",
-      ogDescription : "A user friendly website where you can download a large selection of quality cars and tracks for Assetto Corsa.",
-      ogImage : "https://i.imgur.com/tUa6yJt.png",
     }
   },
   head() {
     return {
       title: this.title,
-      meta: [
-        {
-          hid : "og:title",
-          name : "og:title",
-          content : this.ogTitle,
-        },
-        {
-          hid:"og:url",name:"og:url",content :`https://www.acmodrepository.com/tracks/${this.id}`
-        },
-        {
-          hid:"og:image",name:"og:image",content : this.ogImage
-        },
-        {
-          hid:"og:image:alt",name:"og:image:alt",content :"car"
-        },
-      ]
     }
   },
   computed: {
@@ -160,8 +141,6 @@ export default {
     car(){
       if (this.car){
         this.title = `${this.car.brand.name} ${this.car.modelName}`
-        this.ogTitle = `${this.car.brand.name} ${this.car.modelName}`
-        this.ogImage = this.car.image
       }
     }
   },

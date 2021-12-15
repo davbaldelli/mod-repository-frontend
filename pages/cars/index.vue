@@ -196,6 +196,11 @@ export default {
       selectedSort: '',
     }
   },
+  head(){
+    return{
+      title : "Assetto Corsa Cars Repository"
+    }
+  },
   computed: {
     totPaginatorPages () {
       if (this.filteredCars) {

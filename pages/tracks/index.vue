@@ -250,6 +250,11 @@ export default {
       selectedSort: '',
     }
   },
+  head(){
+    return{
+      title : "Assetto Corsa Tracks Repository"
+    }
+  },
   mounted () {
     this.initiate()
   },
