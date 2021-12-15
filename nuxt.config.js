@@ -117,7 +117,7 @@ export default {
       '/tracks/new',
       '/login',
       '/tracks/edit',
-      'cars/edit',
+      '/cars/edit',
     ],
     gzip: true,
   },
@@ -129,7 +129,7 @@ export default {
       '/tracks/new',
       '/login',
       '/tracks/edit',
-      'cars/edit',
+      '/cars/edit',
     ]
   },
 
