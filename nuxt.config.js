@@ -167,7 +167,7 @@ export default {
       storageBucket: "ac-mod-repo.appspot.com",
       messagingSenderId: "315180351715",
       appId: "1:315180351715:web:d5bef233ddee49100b05d6",
-      measurementId: "${config.measurementId}"
+      measurementId: "G-KFQQFD5MJW"
     },
     services: {
       analytics: {
