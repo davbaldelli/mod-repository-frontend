@@ -170,6 +170,9 @@ export default {
       measurementId: "${config.measurementId}"
     },
     services: {
+      analytics: {
+        collectionEnabled: true
+      },
       messaging: {
         createServiceWorker: true,
         actions : [
