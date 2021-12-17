@@ -109,35 +109,22 @@
 <script>
 export default {
   name: 'TrackDetail',
-  data () {
-    return {
-      id: this.$route.params.id,
-      title : "Assetto Corsa Mod Repository",
+  async asyncData ({ params,store }) {
+    await store.dispatch('track/getAllTracks')
+    return{
+      track : store.getters['track/getTrackByName'](params.id)
     }
   },
   head() {
     return {
-      title: this.title,
+      title: this.track.name,
     }
   },
   computed: {
-    track () {
-      return this.$store.getters['track/getTrackByName'](this.id)
-    },
     loading () {
       return this.$store.getters['track/loadingTracks']
     }
   },
-  watch:{
-    track(){
-      if(this.track){
-        this.title = this.track.name
-      }
-    }
-  },
-  mounted () {
-    this.$store.dispatch('track/getAllTracks')
-  }
 }
 </script>
 

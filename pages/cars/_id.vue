@@ -118,35 +118,22 @@
 <script>
 export default {
   name: 'CarDetail',
-  data () {
+  async asyncData ({ params, store }) {
+    await store.dispatch('car/getAll')
     return {
-      id: this.$route.params.id,
-      title : "Assetto Corsa Mod Repository",
+      car : store.getters['car/getCarById'](params.id)
     }
   },
   head() {
     return {
-      title: this.title,
+      title: this.car.modelName,
     }
   },
   computed: {
-    car () {
-      return this.$store.getters['car/getCarById'](this.id)
-    },
     loading () {
       return this.$store.getters['car/loadingCars']
     }
   },
-  watch:{
-    car(){
-      if (this.car){
-        this.title = `${this.car.brand.name} ${this.car.modelName}`
-      }
-    }
-  },
-  mounted () {
-    this.$store.dispatch('car/getAll')
-  }
 }
 </script>
 
