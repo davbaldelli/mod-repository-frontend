@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+import axios from 'axios'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -6,7 +7,7 @@ export default {
   target: 'static',
 
   generate: {
-    fallback: true
+    fallback: true,
   },
 
   head: {
@@ -205,5 +206,6 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {
+  }
 }
