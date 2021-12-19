@@ -93,7 +93,8 @@
 
                   </v-card-subtitle>
                   <v-card-text>
-                    <strong>Location: </strong>{{ track.location }}, {{ track.nation.name }}<br/>
+                    <strong>Location: </strong>{{ track.location }}, {{ track.nation.name }},
+                    <strong>Year: </strong>{{track.year}}<br/>
                     <strong>Author: </strong>
                     <a :href="track.author.link" rel="noopener" target="_blank">
                       {{ track.author.name }}
