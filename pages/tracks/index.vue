@@ -116,7 +116,7 @@
             <h3 class="display-6">I'm sorry, no car match your request</h3>
           </v-col>
         </v-row>
-        <v-row v-for="i in 20" v-if="$store.getters['track/loadingTracks']" :key="i" class="mb-2">
+        <v-row v-for="i in 20" v-if="loading" :key="i" class="mb-2">
           <v-col>
             <v-card>
               <v-row class="pa-3">
@@ -266,6 +266,9 @@ export default {
       } else {
         return 0
       }
+    },
+    loading(){
+      return this.$store.getters['track/loadingTracks'] && !this.tracks
     },
     filter () {
       return t => this.authorSelector(this.nameSelector(this.layoutTypeSelector(this.trackTagsSelector(this.nationSelector(t)))))

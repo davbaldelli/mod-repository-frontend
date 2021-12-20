@@ -105,7 +105,7 @@ export const actions = {
 export const mutations = {
   tracksFetching (state) {
     state.tracks = {
-      items: [],
+      items: state.tracks.items,
       fetching: true
     }
   },
