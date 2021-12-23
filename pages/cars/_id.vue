@@ -126,7 +126,7 @@ export default {
   },
   head() {
     return {
-      title: this.car.modelName,
+      title: `${this.car.brand.name} ${this.car.modelName}`,
     }
   },
   computed: {

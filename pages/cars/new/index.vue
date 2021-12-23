@@ -39,6 +39,7 @@ export default {
         },
         brand: {
           name: '',
+          logo : '',
           nation: {
             name: '',
             code: '',

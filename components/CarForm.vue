@@ -14,11 +14,16 @@
               </v-col>
             </v-row>
             <v-row>
-              <v-col cols="8" md="10">
-                <v-autocomplete v-if="existingBrand" v-model="form.brand" :items="brands" :rules="rules.brand" item-text="name"
+              <v-col v-if="existingBrand" cols="8" md="10">
+                <v-autocomplete  v-model="form.brand" :items="brands" :rules="rules.brand" item-text="name"
                                 label="Brand" required return-object
                 />
-                <v-text-field v-else v-model="form.brand.name" :rules="rules.brandName" label="Brand Name"/>
+              </v-col>
+              <v-col v-if="!existingBrand" cols="4" md="5">
+                <v-text-field v-model="form.brand.name" :rules="rules.brandName" label="Brand Name"/>
+              </v-col>
+              <v-col v-if="!existingBrand" cols="4" md="5">
+                <v-text-field v-model="form.brand.logo" :rules="rules.brandLogo" label="Brand Logo"/>
               </v-col>
               <v-col cols="4" md="2">
                 <v-checkbox v-model="existingBrand" label="Existing" @change="clearBrand"/>
@@ -198,6 +203,7 @@ export default {
         name: [v => !!v || 'Name is required'],
         brand: [v => !!v || 'Brand is required'],
         brandName: [v => !!v || 'Brand Name is required'],
+        brandLogo : [v => !!v || 'Brand Logo is required'],
         nation: [v => !!v || 'Nation is required'],
         nationName: [v => !!v || 'Nation Name is required'],
         nationCode: [v => !!v || 'Nation Cod is required'],
