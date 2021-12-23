@@ -129,7 +129,7 @@ export default {
       car : store.getters['car/car'](params.brand, params.model, params.year),
       breadCrumbs : [
         {
-          text: 'cars',
+          text: 'Cars',
           disabled : false,
           href: '/cars/',
         },

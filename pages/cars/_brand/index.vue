@@ -33,11 +33,6 @@
                       outlined @change="v => onSelectedCategory(v)"
             ></v-select>
           </v-col>
-          <v-col cols="6" lg="2">
-            <v-autocomplete v-model="selectedAuthor" :items="authors"
-                            dense item-text="name" item-value="name" label="Author" outlined @change="v => onAuthorSelected(v)"
-            ></v-autocomplete>
-          </v-col>
           <v-spacer/>
           <v-col cols="6" lg="2">
             <v-select v-model="selectedSort" :items="sortOpts" dense item-text="label" label="Sort"
@@ -142,7 +137,7 @@ export default {
       brand : params.brand,
       breadCrumbs : [
         {
-          text: 'cars',
+          text: 'Cars',
           disabled : false,
           href: '/cars/',
         },

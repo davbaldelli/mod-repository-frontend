@@ -3,8 +3,14 @@
   <v-row>
     <v-col cols="0" lg="3" md="2" class="d-none d-md-block"/>
     <v-col cols="12" lg="6" md="8">
+      <v-row class="my-3">
+        <v-col class="text-center" cols="12">
+          <h1 class="text-h2 mb-3">Cars Repository</h1>
+          <h2 class="text-h5"><em>A collection of quality cars</em></h2>
+        </v-col>
+      </v-row>
       <v-row>
-        <v-col v-for="(brand, id) in brands" :key="id" col="12" md="4">
+        <v-col v-for="(brand, id) in brands" :key="id" col="12" sm="6" xl="4">
           <v-card class="pa-5" :to="`/cars/${brand.name}/`">
             <v-img contain :src="brand.logo" height="200px" ></v-img>
             <v-card-title v-text="brand.name" class="text-center"></v-card-title>
