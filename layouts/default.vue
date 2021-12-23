@@ -73,7 +73,7 @@
       </v-list-item>
     </v-navigation-drawer>
     <v-main app>
-      <Nuxt :keep-alive-props="{include:['CarList','TracksList']}" keep-alive/>
+      <Nuxt :keep-alive-props="{include:['CarList','TracksList','BrandList','BrandCarList']}" keep-alive/>
     </v-main>
     <cookie-law theme="base"></cookie-law>
   </v-app>
