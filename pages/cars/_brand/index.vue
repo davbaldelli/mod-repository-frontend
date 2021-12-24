@@ -8,8 +8,8 @@
     </v-row>
     <v-row class="my-3">
       <v-col class="text-center" cols="12">
-        <v-img height="100px" :src="brand.logo" contain></v-img>
-        <h1 class="text-h2 mb-3">{{brand.name}}</h1>
+        <v-img v-if="brand" height="100px" :src="brand.logo" contain></v-img>
+        <h1 class="text-h2 mb-3">{{brandName}}</h1>
       </v-col>
     </v-row>
     <v-row>
@@ -132,10 +132,9 @@ import { carsFilters, carSort } from '@/_helpers'
 
 export default {
   name: 'BrandCarList',
-  async asyncData ({ params , store}) {
-    await store.dispatch('car/getCarBrands')
+  asyncData ({ params }) {
     return{
-      brand : store.getters['car/brands'].find(b => b.name === params.brand),
+      brandName : params.brand,
       breadCrumbs : [
         {
           text: 'Cars',
@@ -203,10 +202,13 @@ export default {
   },
   head(){
     return{
-      title : this.brand.name
+      title : this.brandName
     }
   },
   computed: {
+    brand() {
+      return this.$store.getters['car/brands'].find(b => b.name === this.brandName)
+    },
     loading(){
       return this.$store.getters['car/loadingCars'] && this.cars.length === 0
     },
@@ -233,7 +235,7 @@ export default {
       return this.filteredCars.slice((this.offset - 1) * this.pageRows, ((this.offset - 1) * this.pageRows) + this.pageRows)
     },
     cars () {
-      return carsFilters.filterByBrand(this.brand.name)(this.$store.getters['car/cars'])
+      return carsFilters.filterByBrand(this.brandName)(this.$store.getters['car/cars'])
     },
   },
   watch: {
@@ -252,6 +254,7 @@ export default {
   methods: {
     initiate () {
       this.getAllCars()
+      this.$store.dispatch('car/getCarBrands')
     },
     getAllCars () {
       this.$store.dispatch('car/getAll')
