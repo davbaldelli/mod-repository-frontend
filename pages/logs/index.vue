@@ -53,6 +53,11 @@ export default {
   components: {
     FontAwesomeIcon,
   },
+  head() {
+    return {
+      title : "Repository Logs"
+    }
+  },
   data () {
     return {
       headers: [

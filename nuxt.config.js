@@ -8,6 +8,9 @@ export default {
 
   generate: {
     fallback: true,
+    routes() {
+      return axios.get(`https://api.acmodrepository.com/brand/all/`).then(brands => brands.data.map(b => `/cars/${b.name}/`))
+    }
   },
 
   head: {
