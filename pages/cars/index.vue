@@ -57,11 +57,26 @@ export default {
     },
     selector () {
       return brand => this.nameFilter ? brand.name.toLowerCase().includes(this.nameFilter.toLowerCase()) : true
+    },
+    loggedIn () {
+      return this.$store.getters['authentication/loggedIn']
+    },
+  },
+  watch : {
+    loggedIn () {
+      if (this.loggedIn) {
+        this.initiate()
+      }
     }
   },
   mounted () {
-    this.$store.dispatch('car/getCarBrands')
+    this.initiate()
   },
+  methods : {
+    initiate(){
+      this.$store.dispatch('car/getCarBrands')
+    }
+  }
 }
 </script>
 
