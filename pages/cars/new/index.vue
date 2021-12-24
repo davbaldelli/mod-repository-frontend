@@ -8,7 +8,7 @@
     <v-snackbar v-model="showMsg">
       {{ message }}
       <template v-slot:action="{ attrs }">
-        <v-btn color="pink" text v-bind="attrs" @click="showMsg = false">
+        <v-btn color="pink" text v-bind="attrs" @click="close">
           Close
         </v-btn>
       </template>
@@ -66,6 +66,10 @@ export default {
           this.message = e
           this.showMsg = true
         })
+    },
+    close(){
+      this.showMsg = false
+      this.$router.back()
     }
   }
 }
