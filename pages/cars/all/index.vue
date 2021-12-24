@@ -67,7 +67,7 @@
                 </v-col>
                 <v-col cols="12" md="7" xl="8" class="d-flex flex-column">
                   <v-card-title>
-                    <NuxtLink :to="`/cars/${car.id}`">
+                    <NuxtLink :to="`/cars/${car.brand.name}/${car.modelName}/${car.year}/`">
                       <h3 class="text-h5">{{ `${car.brand.name} ${car.modelName}` }}</h3>
                     </NuxtLink>
                     <v-spacer/>

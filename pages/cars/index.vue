@@ -16,6 +16,11 @@
           />
         </v-col>
       </v-row>
+      <v-row>
+        <v-col>
+          <NuxtLink to="/cars/all/">See all cars</NuxtLink>
+        </v-col>
+      </v-row>
       <v-row v-if="loading">
         <v-col v-for="i in 12" :key="i" cols="12" sm="6" xl="4">
           <v-skeleton-loader height="250px" type="card"></v-skeleton-loader>
