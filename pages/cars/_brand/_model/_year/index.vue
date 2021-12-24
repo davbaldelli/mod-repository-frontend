@@ -131,22 +131,26 @@ export default {
         {
           text: 'Cars',
           disabled : false,
-          href: '/cars/',
+          exact : true,
+          to: '/cars/',
         },
         {
           text: params.brand,
           disabled : false,
-          href: `/cars/${params.brand}/`,
+          exact : true,
+          to: `/cars/${params.brand}/`,
         },
         {
           text: params.model,
           disabled : true,
-          href: `/cars/${params.brand}/${params.model}/`,
+          exact : true,
+          to: `/cars/${params.brand}/${params.model}/`,
         },
         {
           text: params.year,
           disabled : true,
-          href: `/cars/${params.brand}/${params.model}/${params.year}/`,
+          exact : true,
+          to: `/cars/${params.brand}/${params.model}/${params.year}/`,
         },
       ],
     }

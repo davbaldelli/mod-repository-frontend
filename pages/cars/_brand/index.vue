@@ -140,12 +140,14 @@ export default {
         {
           text: 'Cars',
           disabled : false,
-          href: '/cars/',
+          exact : true,
+          to: '/cars/',
         },
         {
           text: params.brand,
           disabled : true,
-          href: `/cars/${params.brand}`,
+          exact : true,
+          to: `/cars/${params.brand}`,
         }
       ],
     }
