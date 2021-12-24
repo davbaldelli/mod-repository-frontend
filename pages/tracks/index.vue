@@ -253,7 +253,7 @@ export default {
   },
   head(){
     return{
-      title : "Assetto Corsa Tracks Repository"
+      title : "Tracks Repository"
     }
   },
   mounted () {
@@ -268,7 +268,7 @@ export default {
       }
     },
     loading(){
-      return this.$store.getters['track/loadingTracks'] && !this.tracks
+      return this.$store.getters['track/loadingTracks'] && this.tracks.length === 0
     },
     filter () {
       return t => this.authorSelector(this.nameSelector(this.layoutTypeSelector(this.trackTagsSelector(this.nationSelector(t)))))

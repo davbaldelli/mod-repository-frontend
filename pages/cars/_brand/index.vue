@@ -8,7 +8,8 @@
     </v-row>
     <v-row class="my-3">
       <v-col class="text-center" cols="12">
-        <h1 class="text-h2 mb-3">{{brand}}</h1>
+        <v-img height="100px" :src="brand.logo" contain></v-img>
+        <h1 class="text-h2 mb-3">{{brand.name}}</h1>
       </v-col>
     </v-row>
     <v-row>
@@ -45,7 +46,6 @@
           <v-col cols="12">
             <v-chip v-if="activeNameFilter" close @click:close="clearNameFilter">Name: {{ this.activeNameFilter }}</v-chip>
             <v-chip v-if="selectedCategory" close @click:close="clearCategoryFilter">Category: {{ this.selectedCategory }}</v-chip>
-            <v-chip v-if="selectedAuthor" close @click:close="clearAuthorFilter">Author: {{ this.selectedAuthor }}</v-chip>
           </v-col>
         </v-row>
         <v-row v-for="(car, index) in pageCars" :key="index">
@@ -132,9 +132,10 @@ import { carsFilters, carSort } from '@/_helpers'
 
 export default {
   name: 'BrandCarList',
-  asyncData ({ params }) {
+  async asyncData ({ params , store}) {
+    await store.dispatch('car/getCarBrands')
     return{
-      brand : params.brand,
+      brand : store.getters['car/brands'].find(b => b.name === params.brand),
       breadCrumbs : [
         {
           text: 'Cars',
@@ -151,7 +152,6 @@ export default {
   },
   data () {
     return {
-
       sortOpts: [
         {
           label: 'Name (A-Z)',
@@ -203,12 +203,12 @@ export default {
   },
   head(){
     return{
-      title : "Assetto Corsa Cars Repository"
+      title : this.brand.name
     }
   },
   computed: {
     loading(){
-      return this.$store.getters['car/loadingCars'] && !this.cars
+      return this.$store.getters['car/loadingCars'] && this.cars.length === 0
     },
     totPaginatorPages () {
       if (this.filteredCars) {
@@ -233,13 +233,7 @@ export default {
       return this.filteredCars.slice((this.offset - 1) * this.pageRows, ((this.offset - 1) * this.pageRows) + this.pageRows)
     },
     cars () {
-      return carsFilters.filterByBrand(this.brand)(this.$store.getters['car/cars'])
-    },
-    brands () {
-      return this.$store.getters['car/brands']
-    },
-    authors () {
-      return this.$store.getters['car/authors']
+      return carsFilters.filterByBrand(this.brand.name)(this.$store.getters['car/cars'])
     },
   },
   watch: {
@@ -258,8 +252,6 @@ export default {
   methods: {
     initiate () {
       this.getAllCars()
-      this.$store.dispatch('car/getCarAuthors')
-      this.$store.dispatch('car/getCarBrands')
     },
     getAllCars () {
       this.$store.dispatch('car/getAll')
@@ -277,14 +269,6 @@ export default {
       this.activeNameFilter = this.nameFilter
       this.nameSelector = carsFilters.filterByName(this.nameFilter)
     },
-    onAuthorSelected (name) {
-      if (name) {
-        this.authorSelector = carsFilters.filterByAuthor(name)
-      } else {
-        this.clearAuthorFilter()
-      }
-
-    },
     onSelectedCategory (name) {
       if (name) {
         this.categorySelector = carsFilters.filterByCategory(name)
@@ -300,25 +284,10 @@ export default {
       this.selectedCategory = ''
       this.categorySelector = c => c
     },
-    clearAuthorFilter () {
-      this.selectedAuthor = ''
-      this.authorSelector = c => c
-    },
     resetFilters () {
       this.clearNameFilter()
       this.clearCategoryFilter()
-      this.clearBrandFilter()
-      this.clearAuthorFilter()
     },
-    openInNewTab (url) {
-      window.open(url, '_blank').focus()
-    },
-    openEditTab (car) {
-      this.$router.push({
-        name: 'CarEdit',
-        params: { id: car.id }
-      })
-    }
   }
 }
 </script>

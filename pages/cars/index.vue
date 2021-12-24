@@ -31,6 +31,11 @@ export default {
       return this.$store.getters['car/brands']
     }
   },
+  head(){
+    return{
+      title : "Cars Repository"
+    }
+  },
   mounted () {
     this.$store.dispatch('car/getCarBrands')
   }
