@@ -61,6 +61,11 @@ export default {
   name: 'main',
   components: {
     FontAwesomeIcon,
+  },
+  head() {
+    return {
+      title : "Assetto Corsa Mod Repository"
+    }
   }
 }
 </script>

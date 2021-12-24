@@ -3,6 +3,11 @@
     <v-row>
       <v-col cols="0" lg="4" md="3"/>
       <v-col cols="12" lg="4" md="6">
+        <v-row>
+          <v-col>
+            <v-breadcrumbs :items="breadCrumbs"></v-breadcrumbs>
+          </v-col>
+        </v-row>
         <v-row v-if="!loading && !car">
           <v-col class="text-center">
             <h3 class="display-6">I'm sorry, but I can't find the car that you are looking for. You can turn back to the <NuxtLink to="/cars/">cars list</NuxtLink> and see if that exits.</h3>
@@ -121,7 +126,29 @@ export default {
   async asyncData ({ params, store }) {
     await store.dispatch('car/getAll')
     return {
-      car : store.getters['car/getCarById'](params.id)
+      car : store.getters['car/car'](params.brand, params.model, params.year),
+      breadCrumbs : [
+        {
+          text: 'Cars',
+          disabled : false,
+          href: '/cars/',
+        },
+        {
+          text: params.brand,
+          disabled : false,
+          href: `/cars/${params.brand}/`,
+        },
+        {
+          text: params.model,
+          disabled : true,
+          href: `/cars/${params.brand}/${params.model}/`,
+        },
+        {
+          text: params.year,
+          disabled : true,
+          href: `/cars/${params.brand}/${params.model}/${params.year}/`,
+        },
+      ],
     }
   },
   head() {

@@ -13,6 +13,7 @@ export const state = () => initialState
 export const getters = {
   loadingCars: state => state.cars.fetching,
   cars: state => state.cars.items,
+  car: state => (brand, name, year) => state.cars.items.find(c => c.brand.name === brand && c.modelName === name && c.year === parseInt(year)),
   sortedCars: state => sorter => state.cars.items.sort(sorter),
   getCarById: state => (id) => state.cars.items.find(c => c.id === parseInt(id)),
   loadingBrands: state => state.brands.fetching,
@@ -167,7 +168,7 @@ export const mutations = {
   },
   brandsFetching (state) {
     state.brands = {
-      items: [],
+      items: state.brands.items,
       fetching: true
     }
   },
