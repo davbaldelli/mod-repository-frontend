@@ -9,7 +9,8 @@
     <v-row class="my-3">
       <v-col class="text-center" cols="12">
         <v-img v-if="brand" height="100px" :src="brand.logo" contain></v-img>
-        <h1 class="text-h2 mb-3">{{brandName}}</h1>
+        <h1 v-if="brand" class="text-h2 mb-3">{{brand.name}}</h1>
+        <h1 v-else class="text-h2 mb-3">{{brandName}}</h1>
       </v-col>
     </v-row>
     <v-row>
@@ -207,7 +208,7 @@ export default {
   },
   computed: {
     brand() {
-      return this.$store.getters['car/brands'].find(b => b.name === this.brandName)
+      return this.$store.getters['car/brands'].find(b => b.name.toLowerCase() === this.brandName.toLowerCase())
     },
     loading(){
       return this.$store.getters['car/loadingCars'] && this.cars.length === 0

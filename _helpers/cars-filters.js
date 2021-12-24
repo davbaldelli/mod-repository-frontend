@@ -42,7 +42,7 @@ function filterByNation (nation) {
 }
 
 function filterByBrand (brand) {
-  return cars => cars.filter(car => car.brand.name === brand)
+  return cars => cars.filter(car => car.brand.name.toLowerCase() === brand.toLowerCase())
 }
 
 function filterByBrands (brands) {
