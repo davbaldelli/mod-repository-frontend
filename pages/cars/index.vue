@@ -17,15 +17,12 @@
         </v-col>
       </v-row>
       <v-row v-if="loading">
-        <v-col v-for="i in 12" :key="i" col="12" sm="6" xl="4">
-        <v-skeleton-loader
-          height="250px"
-          type="card"
-        ></v-skeleton-loader>
+        <v-col v-for="i in 12" :key="i" cols="12" sm="6" xl="4">
+          <v-skeleton-loader height="250px" type="card"></v-skeleton-loader>
         </v-col>
       </v-row>
       <v-row v-else>
-        <v-col v-for="(brand, id) in brands" :key="id" col="12" sm="6" xl="4">
+        <v-col v-for="(brand, id) in brands" :key="id" cols="12" sm="6" xl="4">
           <v-card class="pa-5" :to="`/cars/${brand.name}/`">
             <v-img contain :src="brand.logo" height="200px" ></v-img>
             <v-card-title v-text="brand.name" class="text-center"></v-card-title>
