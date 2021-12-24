@@ -10,6 +10,21 @@
         </v-col>
       </v-row>
       <v-row>
+        <v-col>
+          <v-text-field v-model="nameFilter" append-icon="mdi-magnify" clearable label="Type Brand Name"
+                        outlined
+          />
+        </v-col>
+      </v-row>
+      <v-row v-if="loading">
+        <v-col v-for="i in 12" :key="i" col="12" sm="6" xl="4">
+        <v-skeleton-loader
+          height="250px"
+          type="card"
+        ></v-skeleton-loader>
+        </v-col>
+      </v-row>
+      <v-row v-else>
         <v-col v-for="(brand, id) in brands" :key="id" col="12" sm="6" xl="4">
           <v-card class="pa-5" :to="`/cars/${brand.name}/`">
             <v-img contain :src="brand.logo" height="200px" ></v-img>
@@ -26,19 +41,30 @@
 <script>
 export default {
   name: 'BrandList',
-  computed : {
-    brands(){
-      return this.$store.getters['car/brands']
-    }
-  },
   head(){
     return{
       title : "Cars Repository"
     }
   },
+  data(){
+    return {
+      nameFilter : "",
+    }
+  },
+  computed : {
+    brands(){
+      return this.$store.getters['car/brands'].filter(this.selector)
+    },
+    loading(){
+      return this.$store.getters['car/loadingBrands'] && this.$store.getters['car/brands'].length === 0
+    },
+    selector () {
+      return brand => this.nameFilter ? brand.name.toLowerCase().includes(this.nameFilter.toLowerCase()) : true
+    }
+  },
   mounted () {
     this.$store.dispatch('car/getCarBrands')
-  }
+  },
 }
 </script>
 

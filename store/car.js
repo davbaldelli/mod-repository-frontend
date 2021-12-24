@@ -168,7 +168,7 @@ export const mutations = {
   },
   brandsFetching (state) {
     state.brands = {
-      items: [],
+      items: state.brands.items,
       fetching: true
     }
   },
