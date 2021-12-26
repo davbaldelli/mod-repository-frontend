@@ -11,27 +11,19 @@
       <v-col cols="12" lg="6">
         <v-row>
           <v-col>
+            <p>
+              <strong>Welcome!</strong><br>
+            </p>
             <p class="text-body mt-4">
-              <strong>Benvenuto!</strong><br>
-              Questo sito è una raccolta di mod di qualità, un tentativo di riunire nello stesso punto le
-              migliori
-              macchine e
-              piste sparse sul web.<br/>
-              Le mod qui presenti sono rimaste inalterate, e, ove possibile, sono presenti i riferimenti
-              ai
-              rispettivi autori.<br/>
+              This is a collection of quality mods, an attempt to gather in one place the best car and tracks scattered in the web.<br/>
+              Every mod has remained untouched, and, where it was possible, i linked the original author.<br/>
             </p>
             <p class="text-body">
-              Se ti piace il nostro lavoro e vorresti premiarci ti invito a fare una piccola donazione
-              <a href="https://paypal.me/teamItaliaracing?locale.x=it_IT" rel="noopener" target="_blank">qui</a>
+              If you like my work, you can reward me with a small donation
+              <a href="https://paypal.me/teamItaliaracing?locale.x=it_IT" rel="noopener" target="_blank">here.</a>
             </p>
-            <p class="text-body">
-              Se invece siete in ricerca di una comunità dove poter girare in compagnia vi invitiamo sul
-              nostro
-              gruppo <a
-              href="https://discord.gg/5HTA8xZgTA"
-              rel="noopener" target="_blank"
-            >discord</a>
+            <p>
+              Now let's get some some mods!
             </p>
           </v-col>
         </v-row>

@@ -225,7 +225,7 @@ export default {
   },
   computed: {
     loading(){
-      return this.$store.getters['car/loadingCars'] && !this.cars
+      return this.$store.getters['car/loadingCars'] && this.cars.length === 0
     },
     totPaginatorPages () {
       if (this.filteredCars) {
