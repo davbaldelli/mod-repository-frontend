@@ -6,6 +6,11 @@
 export default {
   name: 'CarEdit',
   middleware: 'admin',
+  head() {
+    return {
+      title : "Edit Car"
+    }
+  },
   data () {
     return {
       id: this.$route.params.id

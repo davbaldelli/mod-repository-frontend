@@ -12,6 +12,11 @@ export default {
       id: this.$route.params.id
     }
   },
+  head() {
+    return {
+      title : "Edit Track"
+    }
+  },
   computed: {
     initialValue () {
       return this.track ? JSON.parse(JSON.stringify(this.track)) : null

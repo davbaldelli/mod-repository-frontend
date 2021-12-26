@@ -21,6 +21,11 @@
 export default {
   name: 'CarInput',
   middleware: 'admin',
+  head() {
+    return {
+      title : "Add Car"
+    }
+  },
   data () {
     return {
       showMsg: false,

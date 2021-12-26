@@ -20,6 +20,11 @@
 export default {
   name: 'TrackInput',
   middleware: 'admin',
+  head() {
+    return {
+      title : "Add Track"
+    }
+  },
   data () {
     return {
       showMsg: false,
