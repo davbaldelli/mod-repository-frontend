@@ -220,7 +220,7 @@ export default {
   },
   head(){
     return{
-      title : "Assetto Corsa Cars Repository"
+      title : "All Cars"
     }
   },
   computed: {
