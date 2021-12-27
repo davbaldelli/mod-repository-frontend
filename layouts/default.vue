@@ -75,6 +75,15 @@
     <v-main app>
       <Nuxt :keep-alive-props="{include:['CarList','TracksList','BrandList','BrandCarList']}" keep-alive/>
     </v-main>
+    <v-footer padless>
+      <v-container>
+        <v-row class="text-center">
+          <v-col cols="12" >
+            {{ new Date().getFullYear() }} — <strong>BWS</strong>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-footer>
     <cookie-law theme="base"></cookie-law>
   </v-app>
 </template>
