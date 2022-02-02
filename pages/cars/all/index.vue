@@ -94,7 +94,7 @@
                     <v-chip v-for="category in car.categories" :key="category.name" class="mr-1" label x-small>
                       {{ category.name }}
                     </v-chip>
-                    <v-chip v-if="car.premium" color="orange" label x-small>Premium</v-chip>
+                    <v-chip v-if="car.premium" color="orange" label x-small>Payware</v-chip>
                   </v-card-subtitle>
                   <v-card-text class="pb-2">
                     <strong>Year: </strong>{{ car.year }}
@@ -108,7 +108,7 @@
                   <v-card-actions class="mt-auto px-4 pb-4 pt-0">
                     <v-spacer></v-spacer>
                     <v-btn v-if="userRole === 'admin'" :to="`/cars/edit/${car.id}`" color="orange">Edit</v-btn>
-                    <v-btn :href="car.downloadLink" color="primary" rel="noopener" target="_blank">Download</v-btn>
+                    <v-btn :href="car.downloadLink" :color="!car.premium || isPremium ? 'primary' : 'orange'" rel="noopener" target="_blank">{{!car.premium || isPremium ? "Download" : "Buy it here!"}}</v-btn>
                   </v-card-actions>
                 </v-col>
               </v-row>
@@ -233,6 +233,9 @@ export default {
     }
   },
   computed: {
+    isPremium(){
+      return this.$store.getters['authentication/isPremium']
+    },
     loading(){
       return this.$store.getters['car/loadingCars'] && this.cars.length === 0
     },

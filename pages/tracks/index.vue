@@ -98,7 +98,7 @@
                             class="mr-1" label x-small
                     >{{ tag }}
                     </v-chip>
-                    <v-chip v-if="track.premium" class="mr-1" color="orange" label x-small>Premium</v-chip>
+                    <v-chip v-if="track.premium" class="mr-1" color="orange" label x-small>Payware</v-chip>
 
                   </v-card-subtitle>
                   <v-card-text>
@@ -113,7 +113,7 @@
                   <v-card-actions class="mt-auto pa-4">
                     <v-spacer></v-spacer>
                     <v-btn v-if="userRole === 'admin'" :to="`/tracks/edit/${track.id}`" color="orange">Edit</v-btn>
-                    <v-btn :href="track.downloadLink" color="primary" rel="noopener" target="_blank">Download</v-btn>
+                    <v-btn :href="track.downloadLink" :color="!track.premium || isPremium ? 'primary' : 'orange'" rel="noopener" target="_blank">{{!track.premium || isPremium ? "Download" : "Buy it here!"}}</v-btn>
                   </v-card-actions>
                 </v-col>
               </v-row>
@@ -269,6 +269,9 @@ export default {
     this.initiate()
   },
   computed: {
+    isPremium(){
+      return this.$store.getters['authentication/isPremium']
+    },
     totPaginatorPages () {
       if (this.filteredTracks) {
         return parseInt(this.filteredTracks.length / this.pageRows) + 1

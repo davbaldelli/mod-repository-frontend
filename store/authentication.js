@@ -23,6 +23,9 @@ export const getters = {
   isAdmin: (state, getters) => {
     return getters.isLogged && state.user.role === 'admin'
   },
+  isPremium : (state, getters) => {
+    return getters.isLogged && (state.user.role === 'admin' || state.user.role === 'premium')
+  },
   token: state => {
     return state.user.token
   },
