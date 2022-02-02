@@ -241,7 +241,7 @@ export default {
     },
     totPaginatorPages () {
       if (this.filteredCars) {
-        return parseInt(this.filteredCars.length / this.pageRows) + 1
+        return Math.ceil(this.filteredCars.length / this.pageRows)
       } else {
         return 0
       }

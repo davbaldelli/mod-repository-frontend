@@ -274,7 +274,7 @@ export default {
     },
     totPaginatorPages () {
       if (this.filteredTracks) {
-        return parseInt(this.filteredTracks.length / this.pageRows) + 1
+        return Math.ceil(this.filteredTracks.length / this.pageRows)
       } else {
         return 0
       }
