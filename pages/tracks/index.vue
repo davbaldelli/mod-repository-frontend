@@ -45,6 +45,15 @@
             ></v-autocomplete>
           </v-col>
           <v-spacer/>
+          <v-col cols="6" lg="2">
+            <v-select
+              v-model.number="pageRows"
+              :items="[20,30,40,50,100]"
+              outlined
+              dense
+              label="Rows Per Page"
+            ></v-select>
+          </v-col>
           <v-col cols="4" lg="2">
             <v-select v-model="selectedSort" :items="sortOpts" dense item-text="label" label="Sort"
                       return-object @change="v => sort(v)"
