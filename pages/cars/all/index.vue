@@ -94,7 +94,7 @@
                     <v-chip v-for="category in car.categories" :key="category.name" class="mr-1" label x-small>
                       {{ category.name }}
                     </v-chip>
-                    <v-chip v-if="car.premium" color="orange" label x-small>Payware</v-chip>
+                    <v-chip v-if="car.premium" color="orange" label x-small>Paid</v-chip>
                   </v-card-subtitle>
                   <v-card-text class="pb-2">
                     <strong>Year: </strong>{{ car.year }}

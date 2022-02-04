@@ -98,7 +98,7 @@
                             class="mr-1" label x-small
                     >{{ tag }}
                     </v-chip>
-                    <v-chip v-if="track.premium" class="mr-1" color="orange" label x-small>Payware</v-chip>
+                    <v-chip v-if="track.premium" class="mr-1" color="orange" label x-small>Paid</v-chip>
 
                   </v-card-subtitle>
                   <v-card-text>
