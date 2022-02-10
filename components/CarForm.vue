@@ -106,6 +106,13 @@
                 />
               </v-col>
             </v-row>
+            <v-row v-if="form.premium">
+              <v-col>
+                <v-text-field v-model="form.source" label="Source Link"
+                              type="url"
+                />
+              </v-col>
+            </v-row>
             <v-row>
               <v-col>
                 <v-text-field v-model="form.image" :rules="rules.image" label="Image Link" required type="url"/>
