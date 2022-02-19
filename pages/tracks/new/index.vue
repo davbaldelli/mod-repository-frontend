@@ -40,6 +40,7 @@ export default {
           name: '',
         },
         premium: false,
+        personal: false,
         layouts: [
           {
             lengthM: 0,

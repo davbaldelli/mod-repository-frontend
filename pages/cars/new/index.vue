@@ -55,6 +55,7 @@ export default {
         transmission: '',
         categories: [],
         premium: false,
+        personal : false,
         rating: 0,
         version: '',
       }

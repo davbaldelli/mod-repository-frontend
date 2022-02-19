@@ -6,11 +6,14 @@
         <v-form ref="form" v-model="valid" @submit.prevent="onsubmit">
           <v-container>
             <v-row>
-              <v-col cols="8" md="10">
+              <v-col cols="6" md="8">
                 <v-text-field v-model="form.name" :rules="rules.name" label="Name" required/>
               </v-col>
-              <v-col cols="4" md="2">
-                <v-checkbox v-model="form.premium" label="Premium"/>
+              <v-col cols="3" md="2">
+                <v-checkbox v-model="form.premium" label="Paid"/>
+              </v-col>
+              <v-col cols="3" md="2">
+                <v-checkbox v-model="form.personal" label="Personal"/>
               </v-col>
             </v-row>
             <v-row>
