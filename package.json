@@ -29,7 +29,7 @@
     "vue-cookie-law": "^1.13.3",
     "vuelidate": "^0.7.6",
     "vuetify": "^2.5.5",
-    "webpack": "^5.73.0"
+    "webpack": "^4.46.0"
   },
   "devDependencies": {
     "@nuxt/types": "~2.15.0",
