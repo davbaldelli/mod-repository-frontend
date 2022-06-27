@@ -109,7 +109,7 @@
             </v-row>
             <v-row>
               <v-col>
-                <v-btn block :href="car.downloadLink" :color="!car.premium || isPremium ? 'primary' : 'orange'" rel="noopener" target="_blank">{{!car.premium || isPremium ? "Download" : "Buy it here!"}}</v-btn>
+                <v-btn block :href="!car.premium || isPremium ? car.downloadLink: car.source " :color="!car.premium || isPremium ? 'primary' : 'orange'" rel="noopener" target="_blank">{{!car.premium || isPremium ? "Download" : "Buy it here!"}}</v-btn>
               </v-col>
             </v-row>
           </v-col>
