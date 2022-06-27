@@ -1,9 +1,9 @@
 
 importScripts(
-  'https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js'
+  'https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js'
 )
 importScripts(
-  'https://www.gstatic.com/firebasejs/9.8.4/firebase-messaging.js'
+  'https://www.gstatic.com/firebasejs/7.20.0/firebase-messaging.js'
 )
 firebase.initializeApp({"apiKey":"AIzaSyDIYM65D5DNLNsOSUToov_JcJEh6AupUlg","authDomain":"ac-mod-repo.firebaseapp.com","projectId":"ac-mod-repo","storageBucket":"ac-mod-repo.appspot.com","messagingSenderId":"315180351715","appId":"1:315180351715:web:d5bef233ddee49100b05d6","measurementId":"G-KFQQFD5MJW"})
 

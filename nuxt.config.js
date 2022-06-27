@@ -110,8 +110,6 @@ export default {
     //'bootstrap-vue/nuxt',
     '@nuxtjs/sitemap',
 
-    '@nuxtjs/firebase',
-
     '@nuxtjs/robots',
   ],
 
