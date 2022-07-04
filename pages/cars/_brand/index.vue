@@ -135,7 +135,7 @@ export default {
   name: 'BrandCarList',
   asyncData ({ params }) {
     return{
-      brandName : params.brand,
+      brandName : params.brand.charAt(0).toUpperCase() + params.brand.slice(1),
       breadCrumbs : [
         {
           text: 'Cars',
