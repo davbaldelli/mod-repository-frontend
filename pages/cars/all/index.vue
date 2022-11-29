@@ -187,7 +187,7 @@ export default {
           sorter: carSort.sortByName(false)
         },
         {
-          label: 'Latest Added',
+          label: 'Last Added',
           sorter: carSort.sortByDate()
         },
         {

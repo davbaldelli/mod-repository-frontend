@@ -118,9 +118,6 @@ export default {
       ],
     }
   },
-  mounted () {
-    this.$fire.messaging.getToken().then(token => firebaseService.registerTokenToTopic(token, "modsUpdates"))
-  },
   computed: {
     logged () {
       return this.$store.getters['authentication/isLogged']
