@@ -20,7 +20,7 @@
             </p>
             <p class="text-body">
               If you like my work, you can reward me with a small donation
-              <a href="https://paypal.me/teamItaliaracing?locale.x=it_IT" rel="noopener" target="_blank">here.</a>
+              <a href="https://paypal.me/teamItaliaracing?locale.x=it_IT" rel="noopener" target="_blank">here</a>.
             </p>
             <p>
               Now let's get some some mods!
