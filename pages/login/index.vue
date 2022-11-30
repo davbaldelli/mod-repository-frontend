@@ -34,7 +34,10 @@
 
 <script>
 export default {
-  name: 'index',
+  name: 'Login',
+  asyncData(context) {
+    return { from: context.from }
+  },
   data () {
     return {
       valid: false,
@@ -54,15 +57,22 @@ export default {
         password: this.password
       })
         .then(() => {
-          this.$router.back()
+          if(this.hasHistory()) {
+            this.$router.back()
+          } else {
+            this.$router.push("/")
+          }
         })
-        .catch(() => window.alert('wrongusername or password'))
+        .catch((error) => window.alert('wrong username or password'+error))
     },
     onSubmit () {
       this.$refs.form.validate()
       if (this.valid) {
         this.onLogin()
       }
+    },
+    hasHistory() {
+      return this.from && this.from.name !== 'login'
     }
   }
 }

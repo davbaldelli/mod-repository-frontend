@@ -59,7 +59,6 @@
                       return-object @change="v => sort(v)"
             ></v-select>
           </v-col>
-
         </v-row>
         <v-row class="mt-0 mb-3">
           <v-col cols="12">
