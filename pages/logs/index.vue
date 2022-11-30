@@ -13,6 +13,7 @@
           :headers="headers"
           :items="logs"
           class="elevation-1"
+          item-key="logId"
         >
           <template v-slot:item.type="{ item }">
             <FontAwesomeIcon :icon="item.name ? 'road' : 'car'" class="p-mr-2"></FontAwesomeIcon>
@@ -20,7 +21,7 @@
           </template>
           <template v-slot:item.name="{item}">
             <NuxtLink
-              :to="item.name ? `/tracks/${item.id}` : `/cars/${item.brand}/${item.model}/${item.year}/`"
+              :to="item.name ? `/tracks/${item.trackId}` : `/cars/${item.brand}/${item.model}/${item.year}/`"
             >
               {{ item.name ? item.name : `${item.brand} ${item.model}` }}
             </NuxtLink>
