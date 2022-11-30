@@ -48,7 +48,7 @@
           <v-col cols="6" lg="2">
             <v-select
               v-model.number="pageRows"
-              :items="[30,60,120]"
+              :items="[20,50,100]"
               outlined
               dense
               label="Rows Per Page"
@@ -59,7 +59,6 @@
                       return-object @change="v => sort(v)"
             ></v-select>
           </v-col>
-
         </v-row>
         <v-row class="mt-0 mb-3">
           <v-col cols="12">
@@ -74,8 +73,8 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="4" v-for="(car, index) in pageCars" :key="index">
-            <CarCardVertical :car="car" :user-role="userRole"/>
+          <v-col cols="12" v-for="(car, index) in pageCars" :key="index">
+            <CarCardHorizontal :car="car" :user-role="userRole"/>
           </v-col>
         </v-row>
         <v-row v-if="!$store.getters['car/loadingCars'] && filteredCars.length === 0">
@@ -181,7 +180,7 @@ export default {
         { name: 'Vintage' },
       ],
       sorter: carSort.sortByName(true),
-      pageRows: 30,
+      pageRows: 20,
       offset: 1,
       categorySearch: '',
       selectedCategory: '',
