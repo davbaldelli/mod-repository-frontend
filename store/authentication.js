@@ -86,12 +86,12 @@ export const mutations = {
     state.user = user
   },
   loginFailure (state) {
-    state.status = {}
-    state.user = { username: 'base' }
+    state.status = { loggedIn : false}
+    state.user = {}
   },
   logout (state) {
-    state.status = {}
-    state.user = null
+    state.status = { loggedIn : false}
+    state.user = {}
   }
 }
 

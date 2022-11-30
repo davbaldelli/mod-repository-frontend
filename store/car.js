@@ -5,7 +5,19 @@ const initialState = {
   brands: { items: [] },
   types: { items: [] },
   authors: { items: [] },
-  nations: { items: [] }
+  nations: { items: [] },
+  carCategories : { items : [
+    { name: 'Endurance' },
+    { name: 'Formula' },
+    { name: 'GT' },
+    { name: 'Prototype' },
+    { name: 'Rally' },
+    { name: 'Stock Car' },
+    { name: 'Street' },
+    { name: 'Tuned' },
+    { name: 'Touring' },
+    { name: 'Vintage' },
+    ]},
 }
 
 export const state = () => initialState
@@ -23,7 +35,8 @@ export const getters = {
   authors: state => state.authors.items,
   loadingAuthors: state => state.authors.fetching,
   nations: state => state.nations.items,
-  nationsLoading: state => state.nations.fetching
+  nationsLoading: state => state.nations.fetching,
+  carCategories: state => state.carCategories.items,
 }
 export const actions = {
   async getAll ({

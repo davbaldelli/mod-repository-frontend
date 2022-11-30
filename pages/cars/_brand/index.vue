@@ -128,18 +128,6 @@ export default {
       categorySelector: c => c,
       authorSelector: c => c,
       nameSelector: c => c,
-      categories: [
-        { name: 'Endurance' },
-        { name: 'Formula' },
-        { name: 'GT' },
-        { name: 'Prototype' },
-        { name: 'Rally' },
-        { name: 'Stock Car' },
-        { name: 'Street' },
-        { name: 'Tuned' },
-        { name: 'Touring' },
-        { name: 'Vintage' },
-      ],
       sorter: carSort.sortByName(true),
       pageRows: 20,
       offset: 1,
@@ -156,11 +144,11 @@ export default {
     }
   },
   computed: {
-    isPremium(){
-      return this.$store.getters['authentication/isPremium']
-    },
     brand() {
       return this.$store.getters['car/brands'].find(b => b.name.toLowerCase() === this.brandName.toLowerCase())
+    },
+    categories () {
+      return this.$store.getters['car/carCategories']
     },
     loading(){
       return this.$store.getters['car/loadingCars'] && this.cars.length === 0
@@ -177,9 +165,6 @@ export default {
     },
     selector () {
       return c => this.categorySelector(this.authorSelector(this.nameSelector(c)))
-    },
-    userRole () {
-      return this.$store.getters['authentication/user'].role
     },
     filteredCars () {
       return [...this.selector(this.cars)].sort(this.sorter)

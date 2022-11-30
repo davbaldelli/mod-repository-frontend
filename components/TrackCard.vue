@@ -51,15 +51,12 @@ export default {
   name: 'TrackCard',
   props : ['track'],
   computed : {
-    userRole () {
-      return this.$store.getters['authentication/user'].role
-    },
     isPremium() {
-      return rolesRules.isPremium(this.userRole)
+      return this.$store.getters['authentication/isPremium']
     },
     isAdmin() {
-      return rolesRules.isAdmin(this.userRole)
-    },
+      return this.$store.getters['authentication/isAdmin']
+    }
   }
 }
 </script>

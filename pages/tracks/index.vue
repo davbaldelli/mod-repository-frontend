@@ -124,7 +124,7 @@ export default {
           sorter: trackSort.sortByName(false)
         },
         {
-          label: 'Latest Submitted',
+          label: 'Last Added',
           sorter: trackSort.sortBySubmission()
         },
       ],
@@ -150,9 +150,6 @@ export default {
     this.initiate()
   },
   computed: {
-    isPremium(){
-      return this.$store.getters['authentication/isPremium']
-    },
     totPaginatorPages () {
       if (this.filteredTracks) {
         return Math.ceil(this.filteredTracks.length / this.pageRows)
@@ -174,9 +171,6 @@ export default {
     },
     loggedIn () {
       return this.$store.getters['authentication/loggedIn']
-    },
-    userRole () {
-      return this.$store.getters['authentication/user'].role
     },
     tracks () {
       return this.$store.getters['track/tracks']

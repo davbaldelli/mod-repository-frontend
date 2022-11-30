@@ -135,16 +135,7 @@ export default {
     alert: {
       async handler (value) {
         if (value.message && value.message.status === 401) {
-          if (this.$store.getters['authentication/user'].username === 'base') {
-            await this.$store.dispatch('authentication/login', {
-              'username': 'base',
-              'password': 'dumbass'
-            })
-              .then(() => this.$store.dispatch('alert/clear'))
-            this.$emit('loggedOut')
-          } else {
-            await this.$router.push('/login')
-          }
+          await this.$router.push('/login')
         }
       },
       deep: true
@@ -187,10 +178,7 @@ export default {
     },
     async logOut () {
       this.closeDialog()
-      await this.$store.dispatch('authentication/login', {
-        'username': 'base',
-        'password': 'dumbass'
-      }).then(() =>
+      await this.$store.dispatch('authentication/logout').then(() =>
         this.$store.dispatch('alert/clear')
       )
       this.$emit('loggedOut')
