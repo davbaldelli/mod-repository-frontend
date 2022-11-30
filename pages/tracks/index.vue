@@ -28,7 +28,7 @@
             ></v-autocomplete>
           </v-col>
           <v-col cols="6" lg="2">
-            <v-select v-model="selectedTag" :items="tagsOpts"
+            <v-select v-model="selectedTag" :items="tagOpts"
                       dense item-text="text" item-value="value" label="Tags"
                       outlined @change="v => onTagSelected(v)"
             ></v-select>
@@ -76,33 +76,17 @@
         </v-row>
         <v-row v-for="(track, index) in pageTracks" :key="index">
           <v-col cols="12">
-            <TrackCard :track="track" :user-role="userRole"/>
+            <TrackCard :track="track"/>
           </v-col>
         </v-row>
         <v-row v-if="!$store.getters['track/loadingTracks'] && filteredTracks.length === 0">
           <v-col class="text-center">
-            <h3 class="display-6">I'm sorry, no car match your request</h3>
+            <h3 class="display-6">I'm sorry, no track matches your request</h3>
           </v-col>
         </v-row>
         <v-row v-for="i in 20" v-if="loading" :key="i" class="mb-2">
           <v-col>
-            <v-card>
-              <v-row class="pa-3">
-                <v-col cols="12" md="4">
-                  <div class="h-100">
-                    <v-skeleton-loader
-                      type="image"
-                    ></v-skeleton-loader>
-                  </div>
-                </v-col>
-                <v-col cols="12" md="7">
-                  <v-skeleton-loader
-                    class="mx-auto"
-                    type="article, actions"
-                  ></v-skeleton-loader>
-                </v-col>
-              </v-row>
-            </v-card>
+            <track-card-skeleton/>
           </v-col>
         </v-row>
         <v-row v-if="this.totPaginatorPages">
@@ -130,68 +114,6 @@ export default {
       selectedNameFilter: '',
       pageRows: 25,
       offset: 1,
-      tagsOpts: [{
-        text: 'F1',
-        value: 'F1'
-      },
-        {
-          text: 'NASCAR',
-          value: 'NASCAR'
-        },
-        {
-          text: 'Historic',
-          value: 'Historic'
-        },
-        {
-          text: 'Rally',
-          value: 'Rally'
-        },
-        {
-          text: 'Drift',
-          value: 'Drift'
-        },
-        {
-          text: 'Open World',
-          value: 'Open World'
-        },
-        {
-          text: 'City Track',
-          value: 'City Track'
-        },
-        {
-          text: 'Touge',
-          value: 'Touge'
-        },
-        {
-          text: 'Endurance',
-          value: 'Endurance'
-        },
-        {
-          text: 'Street Circuit',
-          value: 'Street Track'
-        },
-        {
-          text: 'Fictional',
-          value: 'Fictional'
-        },
-        {
-          text: 'Karting',
-          value: 'Karting'
-        },],
-      categoryOpts: [
-        {
-          text: 'Oval',
-          value: 'Oval'
-        },
-        {
-          text: 'Road Course',
-          value: 'Road Course'
-        },
-        {
-          text: 'A to B',
-          value: 'A to B'
-        },
-      ],
       sortOpts: [
         {
           label: 'Name (A-Z)',
@@ -237,6 +159,12 @@ export default {
       } else {
         return 0
       }
+    },
+    tagOpts(){
+      return this.$store.getters['track/trackTags']
+    },
+    categoryOpts(){
+      return this.$store.getters['track/layoutCategories']
     },
     loading(){
       return this.$store.getters['track/loadingTracks'] && this.tracks.length === 0

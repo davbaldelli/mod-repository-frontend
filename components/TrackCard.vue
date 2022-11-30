@@ -49,8 +49,11 @@ import {rolesRules} from '@/_helpers/roles-rules'
 
 export default {
   name: 'TrackCard',
-  props : ['track', 'userRole'],
+  props : ['track'],
   computed : {
+    userRole () {
+      return this.$store.getters['authentication/user'].role
+    },
     isPremium() {
       return rolesRules.isPremium(this.userRole)
     },

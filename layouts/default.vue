@@ -117,9 +117,6 @@ export default {
     }
   },
   computed: {
-    logged () {
-      return this.$store.getters['authentication/isLogged']
-    },
     adminLogged () {
       return this.$store.getters['authentication/isAdmin']
     },
