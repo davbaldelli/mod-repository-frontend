@@ -47,6 +47,10 @@ export default {
       }
     }
   },
+  mounted () {
+    console.log(this.$router.currentRoute)
+    console.log(this.$router.getRoutes())
+  },
   methods: {
     onLogin () {
       this.$store.dispatch('authentication/login', {
@@ -56,7 +60,7 @@ export default {
         .then(() => {
           this.$router.back()
         })
-        .catch(() => window.alert('wrongusername or password'))
+        .catch(() => window.alert('wrong username or password'))
     },
     onSubmit () {
       this.$refs.form.validate()

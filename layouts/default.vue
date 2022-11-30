@@ -90,9 +90,7 @@
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import useVuelidate from '@vuelidate/core'
-import required from 'vuelidate/lib/validators/required'
-import { firebaseService } from '@/_services/firebase.service'
+import { useVuelidate } from '@vuelidate/core'
 
 export default {
   name: 'App',
