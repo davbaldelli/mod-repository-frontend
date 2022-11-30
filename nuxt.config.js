@@ -87,7 +87,7 @@ export default {
     '~/plugins/fontawesome.js',
     '~/plugins/login-check.js',
     '~/plugins/cookieconsent.js',
-    '~/plugins/firebase.js'
+    '~/plugins/firebase.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

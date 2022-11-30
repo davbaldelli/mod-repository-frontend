@@ -175,7 +175,6 @@ export default {
 
     },
     toggleDialog () {
-      console.log('dio can')
       this.display = true
     },
     closeDialog () {
