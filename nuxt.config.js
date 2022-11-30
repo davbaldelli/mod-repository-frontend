@@ -176,29 +176,6 @@ export default {
     services: {
       analytics: {
         collectionEnabled: true
-      },
-      messaging: {
-        createServiceWorker: true,
-        actions : [
-          {
-            action: 'car_updated',
-            url: "/logs"
-          },
-          {
-            action: "car_added",
-            url: "/logs",
-          },
-          {
-            action: 'track_updated',
-            url: "/logs"
-          },
-          {
-            action: "track_added",
-            url: "/logs",
-          },
-        ],
-        fcmPublicVapidKey: 'BOzJS2NjeABtuVTrY-wUC9nRy_3E1soPnVVIHIdeDGMCExi9c0Nu6jfjU-0VFLoVnS0XUwOet72-ayDIGYFFAgs', // OPTIONAL : Sets vapid key for FCM after initialization
-        inject : fs.readFileSync('./serviceWorker.js') ,
       }
     }
   },

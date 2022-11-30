@@ -39,7 +39,6 @@
             </v-btn>
           </v-col>
         </v-row>
-
       </v-col>
       <v-col cols="0" lg="3"></v-col>
     </v-row>
