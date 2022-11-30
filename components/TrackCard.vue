@@ -45,8 +45,6 @@
 
 <script>
 
-import {rolesRules} from '@/_helpers/roles-rules'
-
 export default {
   name: 'TrackCard',
   props : ['track'],

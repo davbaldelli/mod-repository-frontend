@@ -85,9 +85,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/fontawesome.js',
-    '~/plugins/login-check.js',
     '~/plugins/cookieconsent.js',
-    '~/plugins/firebase.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
