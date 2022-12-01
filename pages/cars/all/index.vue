@@ -191,7 +191,7 @@ export default {
       return [...this.selector(this.cars)].sort(this.sorter)
     },
     pageCars () {
-      return this.filteredCars.slice((this.offset - 1) * this.pageRows, ((this.offset - 1) * this.pageRows) + this.pageRows)
+      return [...this.filteredCars].slice((this.offset - 1) * this.pageRows, ((this.offset - 1) * this.pageRows) + this.pageRows)
     },
     cars () {
       return this.$store.getters['car/cars']
@@ -204,19 +204,22 @@ export default {
     },
   },
   watch: {
-    filteredCars() {
-      this.offset = 1;
-    },
     loggedIn () {
       if (this.loggedIn) {
         this.initiate()
       }
+    },
+    pageRows() {
+      this.resetOffset()
     }
   },
   mounted () {
     this.initiate()
   },
   methods: {
+    resetOffset(){
+      this.offset = 1;
+    },
     initiate () {
       this.getAllCars()
       this.$store.dispatch('car/getCarAuthors')
@@ -230,6 +233,7 @@ export default {
     },
     sort (value) {
       this.sorter = value.sorter
+      this.resetOffset()
     },
     nameFilterClick () {
       this.onNameSelected(this.nameFilter)
@@ -237,6 +241,7 @@ export default {
     onNameSelected () {
       this.activeNameFilter = this.nameFilter
       this.nameSelector = carsFilters.filterByName(this.nameFilter)
+      this.resetOffset()
     },
     onBrandSelected (name) {
       if (name) {
@@ -244,7 +249,7 @@ export default {
       } else {
         this.clearBrandFilter()
       }
-
+      this.resetOffset()
     },
     onAuthorSelected (name) {
       if (name) {
@@ -252,7 +257,7 @@ export default {
       } else {
         this.clearAuthorFilter()
       }
-
+      this.resetOffset()
     },
     onSelectedCategory (name) {
       if (name) {
@@ -260,38 +265,35 @@ export default {
       } else {
         this.clearCategoryFilter()
       }
+      this.resetOffset()
     },
     clearNameFilter () {
       this.activeNameFilter = ''
       this.nameSelector = c => c
+      this.resetOffset()
     },
     clearCategoryFilter () {
       this.selectedCategory = ''
       this.categorySelector = c => c
+      this.resetOffset()
     },
     clearBrandFilter () {
       this.selectedBrand = ''
       this.brandSelector = c => c
+      this.resetOffset()
     },
     clearAuthorFilter () {
       this.selectedAuthor = ''
       this.authorSelector = c => c
+      this.resetOffset()
     },
     resetFilters () {
       this.clearNameFilter()
       this.clearCategoryFilter()
       this.clearBrandFilter()
       this.clearAuthorFilter()
+      this.resetOffset()
     },
-    openInNewTab (url) {
-      window.open(url, '_blank').focus()
-    },
-    openEditTab (car) {
-      this.$router.push({
-        name: 'CarEdit',
-        params: { id: car.id }
-      })
-    }
   }
 }
 </script>
