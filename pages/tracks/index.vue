@@ -194,11 +194,14 @@ export default {
         this.initiate()
       }
     },
-    filteredTracks() {
-      this.offset = 1;
+    pageRows(){
+      this.resetOffset()
     },
   },
   methods: {
+    resetOffset(){
+      this.offset = 1;
+    },
     nameFilterClick () {
       this.onNameSelected(this.nameFilter)
     },
@@ -212,14 +215,17 @@ export default {
     },
     sort (value) {
       this.sorter = value.sorter
+      this.resetOffset()
     },
     onNameSelected () {
       this.selectedNameFilter = this.nameFilter
       this.nameSelector = tracksFilters.filterByName(this.nameFilter)
+      this.resetOffset()
     },
     clearNameFilter () {
       this.selectedNameFilter = ''
       this.nameSelector = t => t
+      this.resetOffset()
     },
     onLayoutCategorySelected (name) {
       if (name) {
@@ -227,10 +233,12 @@ export default {
       } else {
         this.clearLayoutFilter()
       }
+      this.resetOffset()
     },
     clearLayoutFilter () {
       this.selectedLayoutType = ''
       this.layoutTypeSelector = t => t
+      this.resetOffset()
     },
     onTagSelected (name) {
       if (name) {
@@ -238,10 +246,12 @@ export default {
       } else {
         this.clearTagFilter()
       }
+      this.resetOffset()
     },
     clearTagFilter () {
       this.selectedTag = ''
       this.trackTagsSelector = t => t
+      this.resetOffset()
     },
     onNationSelected (name) {
       if (name) {
@@ -249,11 +259,12 @@ export default {
       } else {
         this.clearNationFilter()
       }
-
+      this.resetOffset()
     },
     clearNationFilter () {
       this.selectedNation = ''
       this.nationSelector = t => t
+      this.resetOffset()
     },
     onAuthorSelected (name) {
       if (name) {
@@ -261,10 +272,12 @@ export default {
       } else {
         this.clearAuthorFilter()
       }
+      this.resetOffset()
     },
     clearAuthorFilter () {
       this.selectedAuthor = ''
       this.authorSelector = t => t
+      this.resetOffset()
     },
   }
 }
