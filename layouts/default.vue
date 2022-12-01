@@ -22,9 +22,9 @@
               Logs
             </v-btn>
             <v-spacer></v-spacer>
-            <v-menu offset-y v-if="adminLogged">
+            <v-menu offset-y v-if="admin">
               <template v-slot:activator="{ on, attrs }">
-                <v-btn v-if="adminLogged" class="d-none d-sm-flex" plain v-on="on" v-bind="attrs">
+                <v-btn v-if="admin" class="d-none d-sm-flex" plain v-on="on" v-bind="attrs">
                   <FontAwesomeIcon class="mr-1" icon="user-cog"></FontAwesomeIcon>
                   Admin
                 </v-btn>
@@ -37,7 +37,7 @@
                 </v-list-item>
               </v-list>
             </v-menu>
-            <v-btn v-if="adminLogged" class="d-none d-sm-flex" plain @click="logOut">
+            <v-btn v-if="admin" class="d-none d-sm-flex" plain @click="logOut">
               <FontAwesomeIcon class="mr-1" icon="sign-out-alt"></FontAwesomeIcon>
               Logout
             </v-btn>
@@ -67,7 +67,7 @@
         </v-list-item-group>
       </v-list>
       <v-divider></v-divider>
-      <v-list-item v-if="adminLogged" @click="logOut">
+      <v-list-item v-if="admin" @click="logOut">
         <FontAwesomeIcon class="mr-4" icon="sign-out-alt"></FontAwesomeIcon>
         Logout
       </v-list-item>
@@ -117,15 +117,12 @@ export default {
     }
   },
   computed: {
-    adminLogged () {
+    admin () {
       return this.$store.getters['authentication/isAdmin']
     },
     alert () {
       return this.$store.getters['alert/alert']
     },
-    loggedUsername () {
-      return this.$store.getters['authentication/user'].username
-    }
   },
   watch: {
     $route () {
