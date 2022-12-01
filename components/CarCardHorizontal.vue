@@ -24,9 +24,9 @@
           <strong>Year: </strong>{{ car.year }}
           <br>
           <strong>Author: </strong>
-          <a :href="car.author.link" rel="noopener" target="_blank">
+          <a v-if="car.author.link && car.author.link !== '#'" :href="car.author.link" rel="noopener" target="_blank">{{ car.author.name }}</a><span v-else>
             {{ car.author.name }}
-          </a> v{{ car.version }}
+          </span> v{{ car.version }}
           <br>
         </v-card-text>
         <v-card-actions class="mt-auto px-4 pb-4 pt-0">
