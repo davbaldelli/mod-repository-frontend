@@ -5,7 +5,7 @@
       <v-col cols="12" lg="4" md="6">
         <v-row>
           <v-col>
-            <v-breadcrumbs :items="breadCrumbs"></v-breadcrumbs>
+            <v-breadcrumbs :items="breadCrumbs" class="px-0"></v-breadcrumbs>
           </v-col>
         </v-row>
         <v-row v-if="!loading && !car">

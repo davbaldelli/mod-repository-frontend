@@ -211,7 +211,7 @@ export default {
     },
     pageRows() {
       this.resetOffset()
-    }
+    },
   },
   mounted () {
     this.initiate()

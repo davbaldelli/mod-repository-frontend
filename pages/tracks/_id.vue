@@ -3,6 +3,11 @@
     <v-row>
       <v-col cols="0" lg="4" md="3"/>
       <v-col cols="12" lg="4" md="6">
+        <v-row>
+          <v-col>
+            <v-breadcrumbs :items="breadCrumbs" class="px-0"></v-breadcrumbs>
+          </v-col>
+        </v-row>
         <v-row v-if="!loading && !track">
           <v-col class="text-center">
             <h3 class="display-6">I'm sorry, but I can't find the track that you are looking for. You can turn back to the <NuxtLink to="/tracks/">tracks list</NuxtLink> and see if that exits.</h3>
@@ -111,8 +116,8 @@ export default {
   name: 'TrackDetail',
   async asyncData ({ params,store }) {
     await store.dispatch('track/getAllTracks')
-    return{
-      track : store.getters['track/getTrackByName'](params.id)
+    return {
+      track : store.getters['track/getTrackByName'](params.id),
     }
   },
   head() {
@@ -121,6 +126,27 @@ export default {
     }
   },
   computed: {
+    breadCrumbs () {
+      return [
+        {
+          text: 'Tracks',
+          disabled: false,
+          exact: true,
+          to: '/tracks/',
+        },
+        {
+          text: this.track.name,
+          disabled: true,
+          exact: true,
+        },
+        {
+          text: this.track.year,
+          disabled: true,
+          exact: true,
+          to: `/tracks/${this.track.id}/`,
+        },
+      ]
+    },
     isPremium(){
       return this.$store.getters['authentication/isPremium']
     },
