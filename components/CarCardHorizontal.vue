@@ -31,7 +31,9 @@
         </v-card-text>
         <v-card-actions class="mt-auto px-4 pb-4 pt-0">
           <v-spacer></v-spacer>
-          <v-btn v-if="isAdmin" :to="`/cars/edit/${car.id}`" color="orange">Edit</v-btn>
+          <NuxtLink v-if="isAdmin" :to="`/cars/edit/${car.id}`" class="mx-2">
+            <v-btn color="orange">Edit</v-btn>
+          </NuxtLink>
           <v-btn :href="car.downloadLink" :color="!car.premium || isPremium ? 'primary' : 'orange'" rel="noopener" target="_blank">{{!car.premium || isPremium ? "Download" : "Buy it here!"}}</v-btn>
         </v-card-actions>
       </v-col>
@@ -45,13 +47,13 @@ import {rolesRules} from '@/_helpers/roles-rules'
 
 export default {
   name: 'CarCardHorizontal',
-  props : ['car', 'userRole'],
+  props : ['car'],
   computed : {
     isPremium() {
-      return rolesRules.isPremium(this.userRole)
+      return this.$store.getters['authentication/isPremium']
     },
     isAdmin() {
-      return rolesRules.isAdmin(this.userRole)
+      return this.$store.getters['authentication/isAdmin']
     }
   }
 }

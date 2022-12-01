@@ -51,33 +51,17 @@
         </v-row>
         <v-row v-for="(car, index) in pageCars" :key="index">
           <v-col cols="12">
-            <CarCardHorizontal :car="car" :user-role="userRole"/>
+            <car-card-horizontal :car="car"/>
           </v-col>
         </v-row>
         <v-row v-if="!$store.getters['car/loadingCars'] && filteredCars.length === 0">
           <v-col class="text-center">
-            <h3 class="display-6">I'm sorry, no car match your request</h3>
+            <h3 class="display-6">I'm sorry, no car matches your request</h3>
           </v-col>
         </v-row>
         <v-row v-for="i in 20" v-if="loading" :key="i" class="mb-2">
           <v-col>
-            <v-card>
-              <v-row class="pa-3">
-                <v-col cols="12" md="4">
-                  <div class="h-100">
-                    <v-skeleton-loader
-                      type="image"
-                    ></v-skeleton-loader>
-                  </div>
-                </v-col>
-                <v-col cols="12" md="7">
-                  <v-skeleton-loader
-                    class="mx-auto"
-                    type="article, actions"
-                  ></v-skeleton-loader>
-                </v-col>
-              </v-row>
-            </v-card>
+            <car-card-horizontal-skeleton/>
           </v-col>
         </v-row>
         <v-row v-if="this.totPaginatorPages" class="px-3">
@@ -144,18 +128,6 @@ export default {
       categorySelector: c => c,
       authorSelector: c => c,
       nameSelector: c => c,
-      categories: [
-        { name: 'Endurance' },
-        { name: 'Formula' },
-        { name: 'GT' },
-        { name: 'Prototype' },
-        { name: 'Rally' },
-        { name: 'Stock Car' },
-        { name: 'Street' },
-        { name: 'Tuned' },
-        { name: 'Touring' },
-        { name: 'Vintage' },
-      ],
       sorter: carSort.sortByName(true),
       pageRows: 20,
       offset: 1,
@@ -172,11 +144,11 @@ export default {
     }
   },
   computed: {
-    isPremium(){
-      return this.$store.getters['authentication/isPremium']
-    },
     brand() {
       return this.$store.getters['car/brands'].find(b => b.name.toLowerCase() === this.brandName.toLowerCase())
+    },
+    categories () {
+      return this.$store.getters['car/carCategories']
     },
     loading(){
       return this.$store.getters['car/loadingCars'] && this.cars.length === 0
@@ -193,9 +165,6 @@ export default {
     },
     selector () {
       return c => this.categorySelector(this.authorSelector(this.nameSelector(c)))
-    },
-    userRole () {
-      return this.$store.getters['authentication/user'].role
     },
     filteredCars () {
       return [...this.selector(this.cars)].sort(this.sorter)

@@ -4,6 +4,70 @@ const initialState = {
   tracks: { items: [] },
   nations: { items: [] },
   authors: { items: [] },
+  layoutCategories: {items : [
+      {
+        text: 'Oval',
+        value: 'Oval'
+      },
+      {
+        text: 'Road Course',
+        value: 'Road Course'
+      },
+      {
+        text: 'A to B',
+        value: 'A to B'
+      },
+    ]},
+  trackTags: {items : [
+    {
+      text: 'F1',
+      value: 'F1'
+    },
+    {
+      text: 'NASCAR',
+      value: 'NASCAR'
+    },
+    {
+      text: 'Historic',
+      value: 'Historic'
+    },
+    {
+      text: 'Rally',
+      value: 'Rally'
+    },
+    {
+      text: 'Drift',
+      value: 'Drift'
+    },
+    {
+      text: 'Open World',
+      value: 'Open World'
+    },
+    {
+      text: 'City Track',
+      value: 'City Track'
+    },
+    {
+      text: 'Touge',
+      value: 'Touge'
+    },
+    {
+      text: 'Endurance',
+      value: 'Endurance'
+    },
+    {
+      text: 'Street Circuit',
+      value: 'Street Track'
+    },
+    {
+      text: 'Fictional',
+      value: 'Fictional'
+    },
+    {
+      text: 'Karting',
+      value: 'Karting'
+    }]
+  }
 }
 
 export const state = () => initialState
@@ -15,6 +79,8 @@ export const getters = {
   loadingNations: state => state.nations.fetching,
   authors: state => state.authors.items,
   loadingAuthors: state => state.authors.fetching,
+  layoutCategories : state => state.layoutCategories.items,
+  trackTags : state => state.trackTags.items,
 }
 
 export const actions = {

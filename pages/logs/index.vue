@@ -42,12 +42,7 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import moment from 'moment-timezone'
-
-const sortByDate = (a, b) => {
-  let timeA = moment(a.happenedAt)
-  let timeB = moment(b.happenedAt)
-  return timeA.isBefore(timeB) ? 1 : -1
-}
+import { logSort } from '@/_helpers'
 
 export default {
   name: 'LogList',
@@ -87,7 +82,7 @@ export default {
   },
   computed: {
     logs () {
-      return this.$store.getters['logs/carLogs'].concat(this.$store.getters['logs/trackLogs']).sort(sortByDate)
+      return this.$store.getters['logs/carLogs'].concat(this.$store.getters['logs/trackLogs']).sort(logSort.sortByDate)
     },
     loggedIn () {
       return this.$store.getters['authentication/loggedIn']

@@ -28,10 +28,7 @@
       </v-row>
       <v-row v-else>
         <v-col v-for="(brand, id) in brands" :key="id" cols="12" sm="6" xl="4">
-          <v-card class="pa-5" :to="`/cars/${brand.name}/`">
-            <v-img contain :src="brand.logo" height="200px" ></v-img>
-            <v-card-title v-text="brand.name" class="text-center"></v-card-title>
-          </v-card>
+          <brand-card :brand="brand"/>
         </v-col>
       </v-row>
     </v-col>

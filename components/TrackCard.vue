@@ -45,18 +45,16 @@
 
 <script>
 
-import {rolesRules} from '@/_helpers/roles-rules'
-
 export default {
   name: 'TrackCard',
-  props : ['track', 'userRole'],
+  props : ['track'],
   computed : {
     isPremium() {
-      return rolesRules.isPremium(this.userRole)
+      return this.$store.getters['authentication/isPremium']
     },
     isAdmin() {
-      return rolesRules.isAdmin(this.userRole)
-    },
+      return this.$store.getters['authentication/isAdmin']
+    }
   }
 }
 </script>

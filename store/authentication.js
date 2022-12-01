@@ -1,4 +1,5 @@
 import { userService } from '@/_services'
+import {rolesRules} from '@/_helpers/roles-rules'
 
 const user = JSON.parse(localStorage.getItem('user'))
 const initialState = user
@@ -7,7 +8,7 @@ const initialState = user
     user
   }
   : {
-    status: {},
+    status: { loggedIn: false},
     user: { username: 'base' }
   }
 
@@ -17,14 +18,11 @@ export const getters = {
   loggedIn: state => {
     return state.status.loggedIn
   },
-  isLogged: state => {
-    return state.user.role !== 'base'
+  isAdmin: (state) => {
+    return rolesRules.isAdmin(state.user.role)
   },
-  isAdmin: (state, getters) => {
-    return getters.isLogged && state.user.role === 'admin'
-  },
-  isPremium : (state, getters) => {
-    return getters.isLogged && (state.user.role === 'admin' || state.user.role === 'premium')
+  isPremium : (state) => {
+    return rolesRules.isPremium(state.user.role)
   },
   token: state => {
     return state.user.token
@@ -34,19 +32,6 @@ export const getters = {
   }
 }
 export const actions = {
-  setup ({
-    dispatch,
-    commit
-  }, user) {
-    if (user) {
-      commit('loginSuccess', user)
-    } else {
-      dispatch('login', {
-        'username': 'base',
-        'password': 'dumbass'
-      })
-    }
-  },
   login ({
     dispatch,
     commit
@@ -88,12 +73,12 @@ export const mutations = {
     state.user = user
   },
   loginFailure (state) {
-    state.status = {}
-    state.user = { username: 'base' }
+    state.status = { loggedIn : false}
+    state.user = {}
   },
   logout (state) {
-    state.status = {}
-    state.user = null
+    state.status = { loggedIn : false}
+    state.user = {}
   }
 }
 
