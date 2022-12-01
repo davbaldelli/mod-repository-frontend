@@ -32,19 +32,6 @@ export const getters = {
   }
 }
 export const actions = {
-  setup ({
-    dispatch,
-    commit
-  }, user) {
-    if (user) {
-      commit('loginSuccess', user)
-    } else {
-      dispatch('login', {
-        'username': 'base',
-        'password': 'dumbass'
-      })
-    }
-  },
   login ({
     dispatch,
     commit
