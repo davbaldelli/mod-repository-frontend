@@ -24,7 +24,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Download here a large selection of quality cars and tracks mods for the famous Assetto Corsa simulator developed by kunos simulations'
+        content: 'Download a large selection of quality cars and tracks mods for Assetto Corsa. Only good stuff, tested for you.'
       },
       {
         name: 'format-detection',
