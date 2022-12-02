@@ -1,4 +1,4 @@
-# ac-mod-repo-frontend-copy
+# ac-mod-repository-frontend
 
 ## Build Setup
 
