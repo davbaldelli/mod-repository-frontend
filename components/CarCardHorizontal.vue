@@ -15,10 +15,11 @@
           ></v-rating>
         </v-card-title>
         <v-card-subtitle class="pb-2">
-          <v-chip v-for="category in car.categories" :key="category.name" class="mr-1" label x-small>
+          <v-chip v-for="category in car.categories" :key="category.name" class="mr-1" @click="$emit('chip-clicked',category.name)" label x-small>
             {{ category.name }}
           </v-chip>
           <v-chip v-if="car.premium" color="orange" label x-small>Paid</v-chip>
+          <v-chip v-else color="green" label x-small>Free</v-chip>
         </v-card-subtitle>
         <v-card-text class="pb-2">
           <strong>Year: </strong>{{ car.year }}
@@ -43,11 +44,10 @@
 
 <script>
 
-import {rolesRules} from '@/_helpers/roles-rules'
-
 export default {
   name: 'CarCardHorizontal',
   props : ['car'],
+  emits : ['chip-clicked'],
   computed : {
     isPremium() {
       return this.$store.getters['authentication/isPremium']

@@ -74,7 +74,7 @@
         </v-row>
         <v-row>
           <v-col cols="12" v-for="(car, index) in pageCars" :key="index">
-            <car-card-horizontal :car="car"/>
+            <car-card-horizontal :car="car" @chip-clicked="onCategoryChipSelected"/>
           </v-col>
         </v-row>
         <v-row v-if="!$store.getters['car/loadingCars'] && filteredCars.length === 0">
@@ -89,7 +89,7 @@
         </v-row>
         <v-row v-if="this.totPaginatorPages" class="px-3">
           <v-col>
-            <v-pagination v-model="offset" :length="totPaginatorPages"/>
+            <v-pagination v-model="offset" :length="totPaginatorPages" @input="scrollToTop"/>
           </v-col>
         </v-row>
       </v-col>
@@ -104,8 +104,16 @@ import { carsFilters, carSort } from '@/_helpers'
 export default {
   name: 'CarList',
   scrollToTop : true,
-  asyncData () {
+  asyncData ($route) {
+
+    let initialCategory = $route.query.category
+    let initialBrand = $route.query.brand
+    let initialAuthor = $route.query.author
+
     return {
+      initialCategory,
+      initialBrand,
+      initialAuthor,
       breadCrumbs : [
         {
           text: 'Cars',
@@ -155,10 +163,9 @@ export default {
       sorter: carSort.sortByName(true),
       pageRows: 20,
       offset: 1,
-      categorySearch: '',
-      selectedCategory: '',
-      selectedAuthor: '',
-      selectedBrand: '',
+      selectedCategory: undefined,
+      selectedAuthor: undefined,
+      selectedBrand: undefined,
       selectedSort: '',
     }
   },
@@ -217,13 +224,36 @@ export default {
     this.initiate()
   },
   methods: {
+    scrollToTop(){
+      window.scrollTo(0,0)
+    },
     resetOffset(){
       this.offset = 1;
+    },
+    updateQuery(){
+      this.$router.replace({
+        query : {
+          category : this.selectedCategory,
+          author : this.selectedAuthor,
+          brand : this.selectedBrand
+      }})
     },
     initiate () {
       this.getAllCars()
       this.$store.dispatch('car/getCarAuthors')
       this.$store.dispatch('car/getCarBrands')
+      if (this.initialCategory) {
+        this.selectedCategory = this.initialCategory,
+        this.onSelectedCategory(this.initialCategory)
+      }
+      if (this.initialAuthor) {
+        this.selectedAuthor = this.initialAuthor,
+          this.onAuthorSelected(this.initialAuthor)
+      }
+      if (this.initialBrand) {
+        this.selectedBrand = this.initialBrand,
+          this.onBrandSelected(this.initialBrand)
+      }
     },
     getAllCars () {
       this.$store.dispatch('car/getAll')
@@ -246,6 +276,7 @@ export default {
     onBrandSelected (name) {
       if (name) {
         this.brandSelector = carsFilters.filterByBrand(name)
+        this.updateQuery()
       } else {
         this.clearBrandFilter()
       }
@@ -254,14 +285,21 @@ export default {
     onAuthorSelected (name) {
       if (name) {
         this.authorSelector = carsFilters.filterByAuthor(name)
+        this.updateQuery()
       } else {
         this.clearAuthorFilter()
       }
       this.resetOffset()
     },
+    onCategoryChipSelected(name){
+      this.scrollToTop()
+      this.selectedCategory = name
+      this.onSelectedCategory(name)
+    },
     onSelectedCategory (name) {
       if (name) {
         this.categorySelector = carsFilters.filterByCategory(name)
+        this.updateQuery()
       } else {
         this.clearCategoryFilter()
       }
@@ -273,18 +311,21 @@ export default {
       this.resetOffset()
     },
     clearCategoryFilter () {
-      this.selectedCategory = ''
+      this.selectedCategory = undefined
       this.categorySelector = c => c
+      this.updateQuery()
       this.resetOffset()
     },
     clearBrandFilter () {
-      this.selectedBrand = ''
+      this.selectedBrand = undefined
       this.brandSelector = c => c
+      this.updateQuery()
       this.resetOffset()
     },
     clearAuthorFilter () {
-      this.selectedAuthor = ''
+      this.selectedAuthor = undefined
       this.authorSelector = c => c
+      this.updateQuery()
       this.resetOffset()
     },
     resetFilters () {
