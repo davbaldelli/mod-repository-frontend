@@ -91,7 +91,7 @@
         </v-row>
         <v-row v-if="this.totPaginatorPages">
           <v-col>
-            <v-pagination v-model="offset" :length="totPaginatorPages"/>
+            <v-pagination v-model="offset" :length="totPaginatorPages" @input="scrollToTop"/>
           </v-col>
         </v-row>
       </v-col>
@@ -199,6 +199,9 @@ export default {
     },
   },
   methods: {
+    scrollToTop(){
+      window.scrollTo(0,0)
+    },
     resetOffset(){
       this.offset = 1;
     },
