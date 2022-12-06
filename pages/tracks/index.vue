@@ -36,7 +36,7 @@
           <v-col cols="6" lg="2">
             <v-select v-model="selectedLayoutType" :items="categoryOpts"
                       dense item-text="text" item-value="value" label="Layout Type"
-                      outlined @change="v => onLayoutCategorySelected(v)"
+                      outlined @change="v => onLayoutTypeSelected(v)"
             ></v-select>
           </v-col>
           <v-col cols="6" lg="2">
@@ -105,8 +105,13 @@ import { tracksFilters, trackSort } from '@/_helpers'
 
 export default {
   name: 'TracksList',
-
-  setup () {
+  asyncData ($route) {
+    return {
+      initialTag : $route.query.tag,
+      initialAuthor : $route.query.author,
+      initialNation : $route.query.nation,
+      initialLayoutType : $route.query.layoutType,
+    }
   },
   data () {
     return {
@@ -131,14 +136,14 @@ export default {
       sorter: trackSort.sortByName(true),
       nameSelector: t => t,
       layoutTypeSelector: t => t,
-      selectedLayoutType: '',
+      selectedLayoutType: undefined,
       nationSelector: t => t,
-      selectedNation: '',
+      selectedNation: undefined,
       trackTagsSelector: t => t,
-      selectedTag: '',
+      selectedTag: undefined,
       authorSelector: t => t,
-      selectedAuthor: '',
-      selectedSort: '',
+      selectedAuthor: undefined,
+      selectedSort: undefined,
     }
   },
   head(){
@@ -199,6 +204,15 @@ export default {
     },
   },
   methods: {
+    updateQuery(){
+      this.$router.replace({
+        query : {
+          tag : this.selectedTag,
+          author : this.selectedAuthor,
+          nation : this.selectedNation,
+          layoutType : this.selectedLayoutType
+        }})
+    },
     scrollToTop(){
       window.scrollTo(0,0)
     },
@@ -212,6 +226,22 @@ export default {
       this.getAllTracks()
       this.$store.dispatch('track/getTracksAuthors')
       this.$store.dispatch('track/getAllNations')
+      if(this.initialTag){
+        this.selectedTag = this.initialTag
+        this.onTagSelected(this.initialTag)
+      }
+      if(this.initialNation){
+        this.selectedNation = this.initialNation
+        this.onNationSelected(this.initialNation)
+      }
+      if(this.initialAuthor){
+        this.selectedAuthor = this.initialAuthor
+        this.onAuthorSelected(this.initialAuthor)
+      }
+      if(this.initialLayoutType){
+        this.selectedLayoutType = this.initialLayoutType
+        this.onLayoutTypeSelected(this.initialLayoutType)
+      }
     },
     getAllTracks () {
       this.$store.dispatch('track/getAllTracks')
@@ -230,17 +260,19 @@ export default {
       this.nameSelector = t => t
       this.resetOffset()
     },
-    onLayoutCategorySelected (name) {
+    onLayoutTypeSelected (name) {
       if (name) {
         this.layoutTypeSelector = tracksFilters.filterByLayoutCategory(name)
       } else {
         this.clearLayoutFilter()
       }
+      this.updateQuery()
       this.resetOffset()
     },
     clearLayoutFilter () {
-      this.selectedLayoutType = ''
+      this.selectedLayoutType = undefined
       this.layoutTypeSelector = t => t
+      this.updateQuery()
       this.resetOffset()
     },
     onTagSelected (name) {
@@ -249,11 +281,13 @@ export default {
       } else {
         this.clearTagFilter()
       }
+      this.updateQuery()
       this.resetOffset()
     },
     clearTagFilter () {
-      this.selectedTag = ''
+      this.selectedTag = undefined
       this.trackTagsSelector = t => t
+      this.updateQuery()
       this.resetOffset()
     },
     onNationSelected (name) {
@@ -262,11 +296,13 @@ export default {
       } else {
         this.clearNationFilter()
       }
+      this.updateQuery()
       this.resetOffset()
     },
     clearNationFilter () {
-      this.selectedNation = ''
+      this.selectedNation = undefined
       this.nationSelector = t => t
+      this.updateQuery()
       this.resetOffset()
     },
     onAuthorSelected (name) {
@@ -275,11 +311,13 @@ export default {
       } else {
         this.clearAuthorFilter()
       }
+      this.updateQuery()
       this.resetOffset()
     },
     clearAuthorFilter () {
-      this.selectedAuthor = ''
+      this.selectedAuthor = undefined
       this.authorSelector = t => t
+      this.updateQuery()
       this.resetOffset()
     },
   }

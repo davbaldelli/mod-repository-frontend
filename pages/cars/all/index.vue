@@ -243,16 +243,16 @@ export default {
       this.$store.dispatch('car/getCarAuthors')
       this.$store.dispatch('car/getCarBrands')
       if (this.initialCategory) {
-        this.selectedCategory = this.initialCategory,
+        this.selectedCategory = this.initialCategory
         this.onSelectedCategory(this.initialCategory)
       }
       if (this.initialAuthor) {
-        this.selectedAuthor = this.initialAuthor,
-          this.onAuthorSelected(this.initialAuthor)
+        this.selectedAuthor = this.initialAuthor
+        this.onAuthorSelected(this.initialAuthor)
       }
       if (this.initialBrand) {
-        this.selectedBrand = this.initialBrand,
-          this.onBrandSelected(this.initialBrand)
+        this.selectedBrand = this.initialBrand
+        this.onBrandSelected(this.initialBrand)
       }
     },
     getAllCars () {
@@ -276,19 +276,19 @@ export default {
     onBrandSelected (name) {
       if (name) {
         this.brandSelector = carsFilters.filterByBrand(name)
-        this.updateQuery()
       } else {
         this.clearBrandFilter()
       }
+      this.updateQuery()
       this.resetOffset()
     },
     onAuthorSelected (name) {
       if (name) {
         this.authorSelector = carsFilters.filterByAuthor(name)
-        this.updateQuery()
       } else {
         this.clearAuthorFilter()
       }
+      this.updateQuery()
       this.resetOffset()
     },
     onCategoryChipSelected(name){
@@ -299,10 +299,10 @@ export default {
     onSelectedCategory (name) {
       if (name) {
         this.categorySelector = carsFilters.filterByCategory(name)
-        this.updateQuery()
       } else {
         this.clearCategoryFilter()
       }
+      this.updateQuery()
       this.resetOffset()
     },
     clearNameFilter () {
