@@ -76,7 +76,7 @@
         </v-row>
         <v-row v-for="(track, index) in pageTracks" :key="index">
           <v-col cols="12">
-            <TrackCard :track="track"/>
+            <TrackCard :track="track" @tag-click="onCardTagSelected"/>
           </v-col>
         </v-row>
         <v-row v-if="!$store.getters['track/loadingTracks'] && filteredTracks.length === 0">
@@ -274,6 +274,11 @@ export default {
       this.layoutTypeSelector = t => t
       this.updateQuery()
       this.resetOffset()
+    },
+    onCardTagSelected(name){
+      this.selectedTag=name
+      this.scrollToTop()
+      this.onTagSelected(name)
     },
     onTagSelected (name) {
       if (name) {

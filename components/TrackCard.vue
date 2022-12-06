@@ -17,21 +17,19 @@
           ></v-rating>
         </v-card-title>
         <v-card-subtitle>
-          <v-chip v-for="tag in track.tags" :key="tag"
+          <v-chip v-for="tag in track.tags" :key="tag" @click="$emit('tag-click', tag)"
                   class="mr-1" label x-small
           >{{ tag }}
           </v-chip>
           <v-chip v-if="track.premium" class="mr-1" color="orange" label x-small>Paid</v-chip>
-
+          <v-chip v-else color="green" label x-small>Free</v-chip>
         </v-card-subtitle>
         <v-card-text>
           <strong>Location: </strong>{{ track.location }}, {{ track.nation.name }},
           <strong>Year: </strong>{{track.year}}<br/>
           <strong>Author: </strong>
-          <a :href="track.author.link" rel="noopener" target="_blank">
-            {{ track.author.name }}
-          </a> v{{ track.version }}
-
+          <a v-if="track.author.link && track.author.link !== '#'"  :href="track.author.link" rel="noopener" target="_blank">{{ track.author.name }}</a>
+          <span v-else>{{ track.author.name }}</span> v{{ track.version }}
         </v-card-text>
         <v-card-actions class="mt-auto pa-4">
           <v-spacer></v-spacer>
@@ -48,6 +46,7 @@
 export default {
   name: 'TrackCard',
   props : ['track'],
+  emits : ['tag-click'],
   computed : {
     isPremium() {
       return this.$store.getters['authentication/isPremium']
