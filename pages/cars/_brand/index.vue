@@ -66,7 +66,7 @@
         </v-row>
         <v-row v-if="this.totPaginatorPages" class="px-3">
           <v-col>
-            <v-pagination v-model="offset" :length="totPaginatorPages"/>
+            <v-pagination v-model="offset" :length="totPaginatorPages" @input="scrollToTop"/>
           </v-col>
         </v-row>
       </v-col>
@@ -177,9 +177,6 @@ export default {
     },
   },
   watch: {
-    filteredCars() {
-      this.offset = 1;
-    },
     loggedIn () {
       if (this.loggedIn) {
         this.initiate()
@@ -193,6 +190,12 @@ export default {
     initiate () {
       this.getAllCars()
       this.$store.dispatch('car/getCarBrands')
+    },
+    scrollToTop(){
+      window.scrollTo(0,0)
+    },
+    resetOffset(){
+      this.offset = 1;
     },
     getAllCars () {
       this.$store.dispatch('car/getAll')
@@ -216,14 +219,17 @@ export default {
       } else {
         this.clearCategoryFilter()
       }
+      this.resetOffset()
     },
     clearNameFilter () {
       this.activeNameFilter = ''
       this.nameSelector = c => c
+      this.resetOffset()
     },
     clearCategoryFilter () {
       this.selectedCategory = ''
       this.categorySelector = c => c
+      this.resetOffset()
     },
     resetFilters () {
       this.clearNameFilter()
