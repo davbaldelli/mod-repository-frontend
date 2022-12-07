@@ -53,7 +53,7 @@
           <v-col cols="6" lg="2">
             <v-select
               v-model.number="pageRows"
-              :items="[20,30,40,50,100]"
+              :items="[20,50,100]"
               outlined
               dense
               label="Rows Per Page"
@@ -136,7 +136,7 @@ export default {
     return {
       nameFilter: '',
       selectedNameFilter: '',
-      pageRows: 25,
+      pageRows: 20,
       offset: 1,
       sortOpts: [
         {
