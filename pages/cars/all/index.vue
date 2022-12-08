@@ -3,18 +3,17 @@
     <v-row>
       <v-col cols="0" lg="3" md="2" class="d-none d-md-block"/>
       <v-col cols="12" lg="6" md="8">
-        <v-breadcrumbs :items="breadCrumbs"></v-breadcrumbs>
-      </v-col>
-    </v-row>
-    <v-row class="my-3">
-      <v-col class="text-center" cols="12">
-        <h1 class="text-h2 mb-3">Cars Repository</h1>
-        <h2 class="text-h5"><em>A collection of quality cars</em></h2>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="0" lg="3" md="2" class="d-none d-md-block"/>
-      <v-col cols="12" lg="6" md="8">
+        <v-row>
+          <v-col>
+            <v-breadcrumbs :items="breadCrumbs" class="px-0"></v-breadcrumbs>
+          </v-col>
+        </v-row>
+        <v-row class="my-3">
+          <v-col class="text-center" cols="12">
+            <h1 class="text-h2 mb-3">Cars Repository</h1>
+            <h2 class="text-h5"><em>A collection of quality cars</em></h2>
+          </v-col>
+        </v-row>
         <v-row>
           <v-col>
             <v-text-field v-model="nameFilter" append-icon="mdi-magnify" clearable label="Type car name"
@@ -109,7 +108,6 @@ export default {
     let initialCategory = $route.query.category
     let initialBrand = $route.query.brand
     let initialAuthor = $route.query.author
-
     return {
       initialCategory,
       initialBrand,

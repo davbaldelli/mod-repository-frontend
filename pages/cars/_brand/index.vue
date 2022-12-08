@@ -3,19 +3,18 @@
     <v-row>
       <v-col cols="0" lg="3" md="2" class="d-none d-md-block"/>
       <v-col cols="12" lg="6" md="8">
-        <v-breadcrumbs :items="breadCrumbs"></v-breadcrumbs>
-      </v-col>
-    </v-row>
-    <v-row class="my-3">
-      <v-col class="text-center" cols="12">
-        <v-img v-if="brand" height="100px" :src="brand.logo" contain></v-img>
-        <h1 v-if="brand" class="text-h2 mb-3">{{brand.name}}</h1>
-        <h1 v-else class="text-h2 mb-3">{{brandName}}</h1>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="0" lg="3" md="2" class="d-none d-md-block"/>
-      <v-col cols="12" lg="6" md="8">
+        <v-row>
+          <v-col>
+            <v-breadcrumbs :items="breadCrumbs" class="px-0"></v-breadcrumbs>
+          </v-col>
+        </v-row>
+        <v-row class="my-3">
+          <v-col class="text-center" cols="12">
+            <v-img v-if="brand" height="100px" :src="brand.logo" contain></v-img>
+            <h1 v-if="brand" class="text-h2 mb-3">{{brand.name}}</h1>
+            <h1 v-else class="text-h2 mb-3">{{brandName}}</h1>
+          </v-col>
+        </v-row>
         <v-row>
           <v-col>
             <v-text-field v-model="nameFilter" append-icon="mdi-magnify" clearable label="Type car name"
@@ -66,7 +65,7 @@
         </v-row>
         <v-row v-if="this.totPaginatorPages" class="px-3">
           <v-col>
-            <v-pagination v-model="offset" :length="totPaginatorPages"/>
+            <v-pagination v-model="offset" :length="totPaginatorPages" @input="scrollToTop"/>
           </v-col>
         </v-row>
       </v-col>
@@ -177,9 +176,6 @@ export default {
     },
   },
   watch: {
-    filteredCars() {
-      this.offset = 1;
-    },
     loggedIn () {
       if (this.loggedIn) {
         this.initiate()
@@ -193,6 +189,12 @@ export default {
     initiate () {
       this.getAllCars()
       this.$store.dispatch('car/getCarBrands')
+    },
+    scrollToTop(){
+      window.scrollTo(0,0)
+    },
+    resetOffset(){
+      this.offset = 1;
     },
     getAllCars () {
       this.$store.dispatch('car/getAll')
@@ -216,14 +218,17 @@ export default {
       } else {
         this.clearCategoryFilter()
       }
+      this.resetOffset()
     },
     clearNameFilter () {
       this.activeNameFilter = ''
       this.nameSelector = c => c
+      this.resetOffset()
     },
     clearCategoryFilter () {
       this.selectedCategory = ''
       this.categorySelector = c => c
+      this.resetOffset()
     },
     resetFilters () {
       this.clearNameFilter()

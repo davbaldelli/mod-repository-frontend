@@ -73,7 +73,7 @@
       </v-list-item>
     </v-navigation-drawer>
     <v-main app>
-      <Nuxt :keep-alive-props="{include:['CarList','TracksList','BrandList','BrandCarList']}" keep-alive/>
+      <Nuxt :keep-alive-props="{include:['CarList','TracksList','BrandList','BrandCarList','TrackNations','NationTracks']}" keep-alive/>
     </v-main>
     <v-footer padless>
       <v-container>
