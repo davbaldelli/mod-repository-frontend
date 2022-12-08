@@ -110,6 +110,12 @@ import { tracksFilters, trackSort } from '@/_helpers'
 
 export default {
   name: 'TracksList',
+
+  head(){
+    return{
+      title : "All Tracks"
+    }
+  },
   asyncData ($route) {
     return {
       breadcrumbs : [
@@ -163,11 +169,6 @@ export default {
       authorSelector: t => t,
       selectedAuthor: undefined,
       selectedSort: undefined,
-    }
-  },
-  head(){
-    return{
-      title : "Tracks Repository"
     }
   },
   mounted () {
