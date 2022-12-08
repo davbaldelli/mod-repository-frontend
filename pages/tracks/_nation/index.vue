@@ -280,7 +280,10 @@ export default {
       if (this.loggedIn) {
         this.initiate()
       }
-    }
+    },
+    pageRows(){
+      this.resetOffset()
+    },
   },
 }
 </script>

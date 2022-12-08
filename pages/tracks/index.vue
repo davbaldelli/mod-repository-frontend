@@ -59,11 +59,21 @@ export default {
     loading(){
       return this.$store.getters['track/loadingNations'] && this.$store.getters['track/nations'].length === 0
     },
+    loggedIn () {
+      return this.$store.getters['authentication/loggedIn']
+    },
   },
   methods:{
     initiate() {
       this.$store.dispatch('track/getAllNations')
     }
+  },
+  watch: {
+    loggedIn () {
+      if (this.loggedIn) {
+        this.initiate()
+      }
+    },
   }
 }
 </script>
