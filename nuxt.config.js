@@ -12,8 +12,8 @@ export default {
       let endpoints = [`https://api.acmodrepository.com/brand/all`, `https://api.acmodrepository.com/nation/track/all`]
       return axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then(axios.spread((brands, nations) => {
         let routes = []
-        routes = brands.data.reduce((res, brand) => res.concat(`/cars/${brand.name}/`),routes)
-        routes = nations.data.reduce((res, nation) => res.concat(`/tracks/${nation.name}/`), routes)
+        routes = brands.data.reduce((res, brand) => res.concat(`/cars/${brand.name}`),routes)
+        routes = nations.data.reduce((res, nation) => res.concat(`/tracks/${nation.name}`), routes)
         return routes
       }))
     }
