@@ -3,7 +3,8 @@ import moment from 'moment-timezone/moment-timezone-utils'
 export const carSort = {
   sortByDate,
   sortByName,
-  sortByYear
+  sortByYear,
+  sortByRating,
 }
 
 function sortByDate () {
@@ -20,6 +21,11 @@ function sortByName (desc) {
 
 function sortByYear (desc) {
   return (a, b) => XOR(desc, b.year < a.year) ? 1 : -1
+}
+
+function sortByRating(){
+  return (a, b) => a.rating < b.rating
+
 }
 
 function XOR (a, b) {

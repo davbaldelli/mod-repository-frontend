@@ -60,7 +60,7 @@
                         </v-list-item>
                         <v-divider/>
                         <v-list-item>
-                          <strong>Construction Year</strong><v-spacer/>{{ track.year }}
+                          <strong>Year</strong><v-spacer/>{{ track.year }}
                         </v-list-item>
                         <v-divider/>
                       </v-list>

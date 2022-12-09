@@ -140,6 +140,10 @@ export default {
           label: 'Last Added',
           sorter: trackSort.sortBySubmission()
         },
+        {
+          label: 'Rating',
+          sorter: trackSort.sortByRating()
+        }
       ],
       offset : 1,
       tracksPerPage : 20,

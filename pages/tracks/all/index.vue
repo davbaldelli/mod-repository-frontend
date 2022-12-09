@@ -157,6 +157,10 @@ export default {
           label: 'Last Added',
           sorter: trackSort.sortBySubmission()
         },
+        {
+          label: 'Rating',
+          sorter: trackSort.sortByRating()
+        }
       ],
       sorter: trackSort.sortByName(true),
       nameSelector: t => t,

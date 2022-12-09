@@ -150,7 +150,12 @@ export default {
         {
           label: 'Production Year (Older)',
           sorter: carSort.sortByYear(false)
-        }
+        },
+
+        {
+          label: 'Rating',
+          sorter: carSort.sortByRating()
+        },
       ],
       nameFilter: '',
       activeNameFilter: '',
