@@ -18,7 +18,7 @@
       </v-row>
       <v-row>
         <v-col>
-          <NuxtLink to="/cars/all/">See all cars</NuxtLink>
+          <NuxtLink to="/cars/all">See all cars</NuxtLink>
         </v-col>
       </v-row>
       <v-row v-if="loading">

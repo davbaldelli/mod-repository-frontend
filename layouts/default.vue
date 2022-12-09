@@ -9,15 +9,15 @@
               <FontAwesomeIcon class="mr-1" icon="home"></FontAwesomeIcon>
               Home
             </v-btn>
-            <v-btn class="d-none d-sm-flex" plain to="/cars/">
+            <v-btn class="d-none d-sm-flex" plain to="/cars">
               <FontAwesomeIcon class="mr-1" icon="car"></FontAwesomeIcon>
               Cars
             </v-btn>
-            <v-btn class="d-none d-sm-flex" plain to="/tracks/">
+            <v-btn class="d-none d-sm-flex" plain to="/tracks">
               <FontAwesomeIcon class="mr-1" icon="road"></FontAwesomeIcon>
               Tracks
             </v-btn>
-            <v-btn class="d-none d-sm-flex" plain to="/logs/">
+            <v-btn class="d-none d-sm-flex" plain to="/logs">
               <FontAwesomeIcon class="mr-1" icon="clipboard-list"></FontAwesomeIcon>
               Logs
             </v-btn>
@@ -106,13 +106,13 @@ export default {
       drawer: false,
       menuItems : [
         {text : "Home", to : "/", icon : "home"},
-        {text : "Cars", to : "/cars/", icon : "car"},
-        {text : "Tracks", to : "/tracks/", icon : "road"},
-        {text : "Logs", to : "/logs/", icon : "clipboard-list"},
+        {text : "Cars", to : "/cars", icon : "car"},
+        {text : "Tracks", to : "/tracks", icon : "road"},
+        {text : "Logs", to : "/logs", icon : "clipboard-list"},
       ],
       adminOptions : [
-        {text: "Add Car", to :"/cars/new/", icon : "plus"},
-        {text: "Add Track", to :"/tracks/new/", icon : "plus"}
+        {text: "Add Car", to :"/cars/new", icon : "plus"},
+        {text: "Add Track", to :"/tracks/new", icon : "plus"}
       ],
     }
   },

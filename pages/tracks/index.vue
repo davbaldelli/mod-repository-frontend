@@ -16,7 +16,7 @@
         </v-row>
         <v-row>
           <v-col>
-            <NuxtLink to="/tracks/all/">See all tracks</NuxtLink>
+            <NuxtLink to="/tracks/all">See all tracks</NuxtLink>
           </v-col>
         </v-row>
         <v-row>

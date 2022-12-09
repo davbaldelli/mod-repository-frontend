@@ -21,7 +21,7 @@
           </template>
           <template v-slot:item.name="{item}">
             <NuxtLink
-              :to="item.name ? `/tracks/detail/${item.trackId}` : `/cars/${item.brand}/${item.model}/${item.year}/`"
+              :to="item.name ? `/tracks/detail/${item.trackId}` : `/cars/${item.brand}/${item.model}/${item.year}`"
             >
               {{ item.name ? item.name : `${item.brand} ${item.model}` }}
             </NuxtLink>
@@ -51,7 +51,7 @@ export default {
   },
   head() {
     return {
-      title : "Repository Logs"
+      title : "Repository Logs",
     }
   },
   data () {

@@ -6,7 +6,7 @@
       </v-col>
       <v-col cols="12">
         <v-card-title class="py-1 d-block" >
-          <NuxtLink :to="`/cars/${car.brand.name}/${car.modelName}/${car.year}/`">
+          <NuxtLink :to="`/cars/${car.brand.name}/${car.modelName}/${car.year}`">
             <div>
               <h3 class="text-h5 single-line" >{{ `${car.brand.name} ${car.modelName}` }}</h3>
             </div>
