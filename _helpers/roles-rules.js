@@ -4,7 +4,7 @@ export const rolesRules = {
 }
 
 function isPremium(userRole) {
-  return userRole === "admin" || userRole === "premium"
+  return userRole === "admin" || userRole === "premium" || userRole === "fsrteam"
 }
 
 function isAdmin(userRole) {
