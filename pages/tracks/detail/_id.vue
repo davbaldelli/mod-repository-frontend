@@ -100,7 +100,9 @@
             </v-row>
             <v-row>
               <v-col>
-                <v-btn block :href="track.downloadLink" :color="!track.premium || isPremium ? 'primary' : 'orange'" rel="noopener" target="_blank">{{!track.premium || isPremium ? "Download" : "Buy it here!"}}</v-btn>
+                <v-btn v-if="(!track.premium || isPremium) && !track.official"  block :href="track.downloadLink" color="primary" rel="noopener" target="_blank">Download</v-btn>
+                <v-btn v-else-if="!track.official" block :href="track.source" color="orange" rel="noopener" target="_blank">Buy it here!</v-btn>
+                <v-btn v-else disabled block>Official Content</v-btn>
               </v-col>
             </v-row>
           </v-col>
