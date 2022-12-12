@@ -4,6 +4,7 @@ export const tracksFilters = {
   filterByNation,
   filterByName,
   filterByAuthor,
+  filterByOfficial
 }
 
 function filterByNation (nation) {
@@ -24,4 +25,8 @@ function filterByName (name) {
 
 function filterByAuthor (name) {
   return tracks => tracks.filter(track => track.author.name === name)
+}
+
+function filterByOfficial(official){
+  return tracks => tracks.filter(t => t.official === official)
 }
