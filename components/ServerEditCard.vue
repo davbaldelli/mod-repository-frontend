@@ -2,9 +2,10 @@
   <v-card>
     <v-card-title>{{server.name}}</v-card-title>
     <v-card-text>
-      <strong v-if="!loadingTracks">{{track.name}}</strong><br>
-      <span v-if="!loadingCars" v-for="(car, index) in cars" :key="index">
-        <span v-if="index !==0">, </span>{{`${car.brand.name} ${car.modelName}`}}</span>
+      <strong v-if="!loadingTracks && track">{{track.name}}</strong><br>
+      <span v-if="!loadingCars && cars" v-for="(car, index) in cars" :key="index">
+        <span v-if="index !==0">, </span>{{`${car.brand.name} ${car.modelName}`}}
+      </span>
     </v-card-text>
     <v-card-actions>
       <v-btn :to="`/servers/admin/edit/${server.id}`" color="warning">Edit</v-btn>

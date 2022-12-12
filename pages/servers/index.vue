@@ -51,7 +51,9 @@ export default {
     },
     getServerCars(server){
       let carMods = []
-      server.cars.forEach(carId => carMods.push(this.$store.getters['car/getCarById'](carId)))
+      if(server.cars) {
+        server.cars.forEach(carId => carMods.push(this.$store.getters['car/getCarById'](carId)))
+      }
       return carMods
     },
     getServerTrack(server){
