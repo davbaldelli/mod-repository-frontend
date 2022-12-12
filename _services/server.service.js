@@ -23,7 +23,7 @@ function getAll(){
 
 function addServer(server){
   return axios
-    .post(`${API_URL}fsr/server/add`, server, {headers : authHeader()})
+    .post(`${API_URL}/fsr/server/add`, server, {headers : authHeader()})
     .then(response => response.data)
     .catch((error) => Promise.reject(error.response ? error.response : error))
 }

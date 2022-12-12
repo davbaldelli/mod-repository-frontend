@@ -7,8 +7,8 @@
         <span v-if="index !==0">, </span>{{`${car.brand.name} ${car.modelName}`}}</span>
     </v-card-text>
     <v-card-actions>
-      <v-btn :to="`/servers/admin/edit/${server.id}`" color="orange">Edit</v-btn>
-      <v-btn color="red">Delete</v-btn>
+      <v-btn :to="`/servers/admin/edit/${server.id}`" color="warning">Edit</v-btn>
+      <v-btn color="error">Delete</v-btn>
     </v-card-actions>
   </v-card>
 </template>

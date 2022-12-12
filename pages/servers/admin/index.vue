@@ -3,6 +3,16 @@
     <v-row>
       <v-col cols="0" lg="4" md="3" class="d-none d-md-block"/>
       <v-col cols="12" lg="4" md="6">
+        <v-row class="my-3">
+          <v-col class="text-center" cols="12">
+            <h1 class="text-h2 mb-3">Edit Servers</h1>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-btn color="success" to="/servers/admin/new" block>Add Server</v-btn>
+          </v-col>
+        </v-row>
         <v-row>
           <v-col v-for="(server, index) in servers" :key="index" cols="12">
             <server-edit-card :server="server" :get-track="getServerTrack" :get-cars="getServerCars"></server-edit-card>
@@ -17,11 +27,11 @@
 <script>
 
 export default {
-  name: 'Server Admin Page',
+  name: 'ServerAdminPage',
   middleware : 'fsradmin',
   head() {
     return {
-      title : "Edit Servers "
+      title : "Edit Servers"
     }
   },
   computed: {

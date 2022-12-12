@@ -77,4 +77,24 @@ export const actions = {
         })
     })
   },
+  async addServer ({
+    dispatch,
+    commit
+  }, server) {
+    return new Promise((res, rej) => {
+      commit('serverPushing')
+      serverService.addServer(server)
+        .then(server => {
+          commit('serverPushed')
+          dispatch('getAll')
+          dispatch('alert/success', server, { root: true })
+          res(server)
+        })
+        .catch(err => {
+          commit('serverPushError', err)
+          dispatch('alert/error', err, { root: true })
+          rej(err)
+        })
+    })
+  },
 }

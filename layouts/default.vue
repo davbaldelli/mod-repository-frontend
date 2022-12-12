@@ -56,7 +56,7 @@
                 </v-list-item>
               </v-list>
             </v-menu>
-            <v-btn v-if="admin" class="d-none d-sm-flex" plain @click="logOut">
+            <v-btn v-if="admin || fsrAdmin" class="d-none d-sm-flex" plain @click="logOut">
               <FontAwesomeIcon class="mr-1" icon="sign-out-alt"></FontAwesomeIcon>
               Logout
             </v-btn>
