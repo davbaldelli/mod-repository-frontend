@@ -17,13 +17,13 @@
               <FontAwesomeIcon class="mr-1" icon="road"></FontAwesomeIcon>
               Tracks
             </v-btn>
-            <v-btn class="d-none d-sm-flex" plain to="/logs">
-              <FontAwesomeIcon class="mr-1" icon="clipboard-list"></FontAwesomeIcon>
-              Logs
-            </v-btn>
             <v-btn class="d-none d-sm-flex" plain to="/servers">
               <FontAwesomeIcon class="mr-1" icon="fire"></FontAwesomeIcon>
               Servers
+            </v-btn>
+            <v-btn class="d-none d-sm-flex" plain to="/logs">
+              <FontAwesomeIcon class="mr-1" icon="clipboard-list"></FontAwesomeIcon>
+              Logs
             </v-btn>
             <v-spacer></v-spacer>
             <v-menu offset-y v-if="admin">
