@@ -3,8 +3,10 @@
 </template>
 
 <script>
+
 export default {
-  name: 'index'
+  name: 'Server Admin Page',
+  middleware : 'fsradmin'
 }
 </script>
 
