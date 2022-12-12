@@ -22,7 +22,7 @@
               <v-list-item-content>
                 <v-list-item-title v-html="`${car.brand.name} ${car.modelName}`"></v-list-item-title>
                 <v-list-item-subtitle>
-                  <a :href="car.downloadLink">Download Here</a>
+                  <a :href="car.downloadLink" rel="noopener" target="_blank">Download Here</a>
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
@@ -42,7 +42,7 @@
               <v-list-item-content>
                 <v-list-item-title v-html="`${track.name}`"></v-list-item-title>
                 <v-list-item-subtitle>
-                  <a :href="track.downloadLink">Download Here</a>
+                  <a :href="track.downloadLink" rel="noopener" target="_blank">Download Here</a>
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>

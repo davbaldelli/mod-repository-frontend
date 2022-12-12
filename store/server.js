@@ -9,6 +9,7 @@ export const state = () => initialState
 export const getters = {
   loadingServers: state => state.servers.fetching,
   servers: state => state.servers.items,
+  getById: state => (id) => state.servers.items.find(server => server.id === parseInt(id))
 }
 
 export const mutations = {
