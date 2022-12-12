@@ -22,7 +22,8 @@
               <v-list-item-content>
                 <v-list-item-title v-html="`${car.brand.name} ${car.modelName}`"></v-list-item-title>
                 <v-list-item-subtitle>
-                  <a :href="car.downloadLink" rel="noopener" target="_blank">Download Here</a>
+                  <a v-if="!car.official" :href="car.downloadLink" rel="noopener" target="_blank">Download Here</a>
+                  <span v-else>Official content</span>
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
@@ -42,7 +43,8 @@
               <v-list-item-content>
                 <v-list-item-title v-html="`${track.name}`"></v-list-item-title>
                 <v-list-item-subtitle>
-                  <a :href="track.downloadLink" rel="noopener" target="_blank">Download Here</a>
+                  <a v-if="!track.official" :href="track.downloadLink" rel="noopener" target="_blank">Download Here</a>
+                  <span v-else>Official content</span>
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
