@@ -69,7 +69,8 @@
                       <v-list>
                         <v-list-item>
                           <strong>Author</strong><v-spacer/>
-                          <a :href="track.author.link" rel="noopener" target="_blank">{{ track.author.name }}</a>
+                          <a  v-if="track.author.link && track.author.link !== '#'" :href="track.author.link" rel="noopener" target="_blank">{{ track.author.name }}</a>
+                          <span v-else>{{ track.author.name }}</span>
                         </v-list-item>
                         <v-divider/>
                         <v-list-item>
