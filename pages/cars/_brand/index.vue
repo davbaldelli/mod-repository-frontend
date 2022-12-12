@@ -167,7 +167,7 @@ export default {
       return this.$store.getters['authentication/loggedIn']
     },
     selector () {
-      return c => this.categorySelector(this.authorSelector(this.nameSelector(c)))
+      return c => this.categorySelector(this.authorSelector(this.nameSelector(carsFilters.filterOfficial(false)(c))))
     },
     filteredCars () {
       return [...this.selector(this.cars)].sort(this.sorter)

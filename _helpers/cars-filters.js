@@ -8,7 +8,8 @@ export const carsFilters = {
   lastUpdated,
   lastAdded,
   filterByAuthor,
-  filterByBrands
+  filterByBrands,
+  filterOfficial
 }
 
 function lastUpdated (n) {
@@ -31,6 +32,10 @@ function lastAdded (n) {
     })
     return cars.slice(0, n)
   }
+}
+
+function filterOfficial(official){
+  return cars => cars.filter(car => car.official === official)
 }
 
 function filterByAuthor (author) {

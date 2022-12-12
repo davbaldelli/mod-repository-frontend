@@ -180,7 +180,7 @@ export default {
       return this.$store.getters['track/layoutCategories']
     },
     filter () {
-      return t => this.authorSelector(this.nameSelector(this.layoutTypeSelector(this.trackTagsSelector(t))))
+      return t => this.authorSelector(this.nameSelector(this.layoutTypeSelector(this.trackTagsSelector(tracksFilters.filterByOfficial(false)(t)))))
     },
     loggedIn () {
       return this.$store.getters['authentication/loggedIn']

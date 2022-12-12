@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card v-if="car.official">
     <v-row class="no-gutters">
       <v-col cols="12">
         <v-img :src="car.image" alt="car thumbnail" class="ma-2 rounded" contain/>
