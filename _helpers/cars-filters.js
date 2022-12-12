@@ -34,8 +34,8 @@ function lastAdded (n) {
   }
 }
 
-function filterOfficial(official){
-  return cars => cars.filter(car => car.official === official)
+function filterOfficial(official, admin){
+  return cars => cars.filter(car => car.official === official || admin)
 }
 
 function filterByAuthor (author) {

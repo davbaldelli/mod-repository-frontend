@@ -196,10 +196,13 @@ export default {
       return this.$store.getters['track/loadingTracks'] && this.tracks.length === 0
     },
     filter () {
-      return t => this.authorSelector(this.nameSelector(this.layoutTypeSelector(this.trackTagsSelector(this.nationSelector(tracksFilters.filterByOfficial(false)(t))))))
+      return t => this.authorSelector(this.nameSelector(this.layoutTypeSelector(this.trackTagsSelector(this.nationSelector(tracksFilters.filterByOfficial(false, this.isAdmin)(t))))))
     },
     loggedIn () {
       return this.$store.getters['authentication/loggedIn']
+    },
+    isAdmin(){
+      return this.$store.getters['authentication/isAdmin']
     },
     tracks () {
       return this.$store.getters['track/tracks']
