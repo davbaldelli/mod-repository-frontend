@@ -126,6 +126,7 @@ export default {
       '/login',
       '/tracks/edit',
       '/cars/edit',
+      '/servers/admin'
     ],
     gzip: true,
   },
@@ -138,6 +139,7 @@ export default {
       '/login',
       '/tracks/edit',
       '/cars/edit',
+      '/servers/admin'
     ]
   },
 

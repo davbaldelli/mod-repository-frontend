@@ -24,6 +24,9 @@ export const getters = {
   isPremium : (state) => {
     return rolesRules.isPremium(state.user.role)
   },
+  isFsrAdmin : (state) => {
+    return rolesRules.isFsrAdmin(state.user.role)
+  },
   token: state => {
     return state.user.token
   },

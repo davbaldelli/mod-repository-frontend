@@ -21,6 +21,10 @@
               <FontAwesomeIcon class="mr-1" icon="clipboard-list"></FontAwesomeIcon>
               Logs
             </v-btn>
+            <v-btn class="d-none d-sm-flex" plain to="/servers">
+              <FontAwesomeIcon class="mr-1" icon="fire"></FontAwesomeIcon>
+              Servers
+            </v-btn>
             <v-spacer></v-spacer>
             <v-menu offset-y v-if="admin">
               <template v-slot:activator="{ on, attrs }">
@@ -31,6 +35,21 @@
               </template>
               <v-list>
                 <v-list-item v-for="(item, i) in adminOptions" :key="i" link :to="item.to">
+                  <v-list-item-content>
+                    <v-list-item-title v-text="item.text"></v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+            <v-menu offset-y v-if="fsrAdmin">
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn v-if="fsrAdmin" class="d-none d-sm-flex" plain v-on="on" v-bind="attrs">
+                  <FontAwesomeIcon class="mr-1" icon="user-cog"></FontAwesomeIcon>
+                  FSR
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item v-for="(item, i) in fsrAdminOptions" :key="i" link :to="item.to">
                   <v-list-item-content>
                     <v-list-item-title v-text="item.text"></v-list-item-title>
                   </v-list-item-content>
@@ -114,11 +133,17 @@ export default {
         {text: "Add Car", to :"/cars/new", icon : "plus"},
         {text: "Add Track", to :"/tracks/new", icon : "plus"}
       ],
+      fsrAdminOptions : [
+        {text: "Modify Servers", to : "/servers/admin"}
+      ]
     }
   },
   computed: {
     admin () {
       return this.$store.getters['authentication/isAdmin']
+    },
+    fsrAdmin() {
+      return this.$store.getters['authentication/isFsrAdmin']
     },
     alert () {
       return this.$store.getters['alert/alert']
