@@ -109,7 +109,9 @@
             </v-row>
             <v-row>
               <v-col>
-                <v-btn block :href="!car.premium || isPremium ? car.downloadLink: car.source " :color="!car.premium || isPremium ? 'primary' : 'orange'" rel="noopener" target="_blank">{{!car.premium || isPremium ? "Download" : "Buy it here!"}}</v-btn>
+                <v-btn v-if="(!car.premium || isPremium) && !car.official"  block :href="car.downloadLink" color="primary" rel="noopener" target="_blank">Download</v-btn>
+                <v-btn v-else-if="!car.official" block :href="car.source" color="orange" rel="noopener" target="_blank">Buy it here!</v-btn>
+                <v-btn v-else disabled block>Official Content</v-btn>
               </v-col>
             </v-row>
           </v-col>
