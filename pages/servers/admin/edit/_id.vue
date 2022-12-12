@@ -1,10 +1,10 @@
 <template>
- <lazy-server-form v-if="initialValue" :initial-value="initialValue"></lazy-server-form>
+ <lazy-server-form v-if="initialValue" :initial-value="initialValue" @submit="onSubmit"></lazy-server-form>
 </template>
 
 <script>
 export default {
-  name: 'Edit Server',
+  name: 'EditServer',
   middleware : 'fsradmin',
   head(){
     return {
@@ -30,9 +30,14 @@ export default {
   methods:{
     initiate(){
       this.$store.dispatch('server/getAll')
-      //this.$store.dispatch('car/getAll')
-      //this.$store.dispatch('track/getAllTracks')
     },
+    onSubmit(server){
+      this.$store.dispatch('server/updateServer', server).then(() =>
+        this.$router.back()
+      ).catch(e => {
+        window.alert(e)
+      })
+    }
   }
 }
 </script>

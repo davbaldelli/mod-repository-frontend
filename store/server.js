@@ -1,4 +1,5 @@
 import { serverService } from '@/_services/server.service'
+import { carService } from '@/_services'
 
 const initialState = {
   servers : {items : []}
@@ -28,6 +29,20 @@ export const mutations = {
       error
     }
   },
+  serverPushing (state) {
+    delete state.servers.error
+    state.servers.pushing = true
+  },
+  serverPushed (state) {
+    delete state.servers.pushing
+  },
+  serverPushError (state, error) {
+    delete state.servers.pushing
+    state.servers = {
+      items: state.servers.items,
+      error
+    }
+  },
 }
 
 export const actions = {
@@ -41,5 +56,25 @@ export const actions = {
         commit('serversFetchingError', error)
         dispatch('alert/error', error, {root : true})
       })
-  }
+  },
+  async updateServer ({
+    dispatch,
+    commit
+  }, server) {
+    return new Promise((res, rej) => {
+      commit('serverPushing')
+      serverService.updateServer(server)
+        .then(server => {
+          commit('serverPushed')
+          dispatch('getAll')
+          dispatch('alert/success', server, { root: true })
+          res(server)
+        })
+        .catch(err => {
+          commit('serverPushError', err)
+          dispatch('alert/error', err, { root: true })
+          rej(err)
+        })
+    })
+  },
 }
