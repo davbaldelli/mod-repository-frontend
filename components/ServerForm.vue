@@ -42,8 +42,33 @@
                </v-autocomplete>
              </v-col>
            </v-row>
+           <v-row v-for="(outsideCar, i) in form.outsideCars" :key="i">
+             <v-col>
+               <v-text-field v-model="outsideCar.name" label="Mod Name" required/>
+             </v-col>
+             <v-col>
+               <v-text-field v-model="outsideCar.downloadLink" label="Download Link" required/>
+             </v-col>
+             <v-col cols="2">
+               <v-btn color="red" icon @click="removeOutsideCar(i)">
+                 <v-icon>mdi-minus</v-icon>
+               </v-btn>
+             </v-col>
+           </v-row>
+           <v-row>
+             <v-spacer/>
+             <v-col cols="1">
+               <v-btn color="blue" icon @click="addOutsideCar">
+                 <v-icon>mdi-plus</v-icon>
+               </v-btn>
+             </v-col>
+           </v-row>
+           <v-row>
+             <v-col>
+               <v-btn block color="primary" type="submit">Submit</v-btn>
+             </v-col>
+           </v-row>
          </v-container>
-         <v-btn block color="primary" type="submit">Submit</v-btn>
        </v-form>
      </v-col>
      <v-col cols="0" md="4"/>
@@ -102,6 +127,15 @@ export default {
       this.confirm = false
       this.$emit('submit', this.form)
     },
+    removeOutsideCar (index) {
+      this.form.outsideCars.splice(index, 1)
+    },
+    addOutsideCar () {
+      this.form.outsideCars.push({
+        name: '',
+        downloadLink: '',
+      })
+    }
   }
 }
 </script>

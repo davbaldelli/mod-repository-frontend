@@ -6,6 +6,9 @@
       <span v-if="!loadingCars && cars" v-for="(car, index) in cars" :key="index">
         <span v-if="index !==0">, </span>{{`${car.brand.name} ${car.modelName}`}}
       </span>
+      <span v-if="server.outsideCars" v-for="(car, index) in server.outsideCars" :key="index">
+        <span v-if="cars.length>0">, </span>{{car.name}}
+      </span>
     </v-card-text>
     <v-card-actions>
       <v-btn :to="`/servers/admin/edit/${server.id}`" color="warning">Edit</v-btn>

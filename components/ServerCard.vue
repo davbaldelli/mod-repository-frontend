@@ -18,12 +18,23 @@
               <v-list-item-avatar>
                 <v-img :src="car.image"/>
               </v-list-item-avatar>
-
               <v-list-item-content>
                 <v-list-item-title v-html="`${car.brand.name} ${car.modelName}`"></v-list-item-title>
                 <v-list-item-subtitle>
                   <a v-if="!car.official" :href="car.downloadLink" rel="noopener" target="_blank">Download Here</a>
                   <span v-else>Official content</span>
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item
+              v-for="(car, index) in server.outsideCars" :key="index">
+              <v-list-item-avatar>
+                <v-img src="https://i.imgur.com/h23Gi6Ot.jpg"/>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title v-html="car.name"></v-list-item-title>
+                <v-list-item-subtitle>
+                  <a :href="car.downloadLink" rel="noopener" target="_blank">Download Here</a>
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
