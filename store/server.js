@@ -43,6 +43,20 @@ export const mutations = {
       error
     }
   },
+  serverDeleting(state) {
+    delete state.servers.error
+    state.servers.deleting = true
+  },
+  serverDeleted(state) {
+    delete state.servers.deleting
+  },
+  serverDeleteError (state, error) {
+    delete state.servers.deleting
+    state.servers = {
+      items: state.servers.items,
+      error
+    }
+  },
 }
 
 export const actions = {
@@ -97,4 +111,21 @@ export const actions = {
         })
     })
   },
+  async deleteServer({dispatch, commit}, server){
+    return new Promise((res, rej) => {
+      commit('serverDeleting')
+      serverService.deleteServer(server)
+        .then(server => {
+          commit('serverDeleted')
+          dispatch('getAll')
+          dispatch('alert/success', server, { root: true })
+          res(server)
+        })
+        .catch(err => {
+          commit('serverDeleteError', err)
+          dispatch('alert/error', err, {root: true})
+          rej(err)
+        })
+    })
+  }
 }

@@ -11,7 +11,8 @@ axios.interceptors.response.use((response) => {
 export const serverService = {
   getAll,
   addServer,
-  updateServer
+  updateServer,
+  deleteServer
 }
 
 function getAll(){
@@ -31,6 +32,13 @@ function addServer(server){
 function updateServer(server){
   return axios
     .post(`${API_URL}/fsr/server/update`, server, {headers : authHeader()})
+    .then(response => response.data)
+    .catch((error) => Promise.reject(error.response ? error.response : error))
+}
+
+function deleteServer(server){
+  return axios
+    .post(`${API_URL}/fsr/server/delete`, server, {headers : authHeader()})
     .then(response => response.data)
     .catch((error) => Promise.reject(error.response ? error.response : error))
 }

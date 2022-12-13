@@ -13,7 +13,7 @@
     </v-card-text>
     <v-card-actions>
       <v-btn :to="`/servers/admin/edit/${server.id}`" color="warning">Edit</v-btn>
-      <v-btn color="error">Delete</v-btn>
+      <v-btn color="error" @click="onDeleteClick">Delete</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -22,6 +22,7 @@
 export default {
   name: 'ServerEditCard',
   props : ['getCars', 'getTrack', 'server'],
+  emits : ['delete-click'],
   computed : {
     cars(){
       return this.getCars(this.server)
@@ -34,6 +35,11 @@ export default {
     },
     loadingTracks(){
       return this.$store.getters['track/loadingTracks']
+    }
+  },
+  methods : {
+    onDeleteClick(){
+      this.$emit('delete-click')
     }
   }
 }

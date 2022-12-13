@@ -15,12 +15,24 @@
         </v-row>
         <v-row>
           <v-col v-for="(server, index) in servers" :key="index" cols="12">
-            <server-edit-card :server="server" :get-track="getServerTrack" :get-cars="getServerCars"></server-edit-card>
+            <server-edit-card :server="server" :get-track="getServerTrack" :get-cars="getServerCars" @delete-click="onDelete(server)"></server-edit-card>
           </v-col>
         </v-row>
       </v-col>
       <v-col cols="0" lg="4" md="3" class="d-none d-md-block"/>
     </v-row>
+    <v-dialog v-model="confirm" max-width="290" v-on:keydown.enter="confirmed">
+      <v-card>
+        <v-card-title class="text-h5">
+          Are you sure you want to submit?
+        </v-card-title>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="confirm = false">No</v-btn>
+          <v-btn color="blue darken-1" text @click="confirmed">Yes</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -32,6 +44,12 @@ export default {
   head() {
     return {
       title : "Edit Servers"
+    }
+  },
+  data(){
+    return {
+      confirm : false,
+      pendingServer : ''
     }
   },
   computed: {
@@ -60,6 +78,14 @@ export default {
     },
     getServerTrack(server){
       return this.$store.getters['track/getTrackByName'](server.track)
+    },
+    onDelete(server){
+      this.pendingServer = server
+      this.confirm = true
+    },
+    confirmed(){
+      this.$store.dispatch('server/deleteServer', this.pendingServer)
+      this.confirm = false
     }
   }
 }
