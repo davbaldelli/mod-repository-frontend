@@ -11,6 +11,11 @@
                 <h2 class="text-h5"><em>Powered by <a href="https://discord.com/invite/uZ5mAJRpv2" rel="noopener" target="_blank">Fuddigno Sim Racing Team</a></em></h2>
               </v-col>
             </v-row>
+            <v-row class="my-3">
+              <v-col>
+                <v-img height="200px" src="https://i.imgur.com/OfxND7E.png" contain></v-img>
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
         <v-row v-if="!loadingServers">
