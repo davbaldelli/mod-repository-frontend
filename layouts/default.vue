@@ -131,7 +131,8 @@ export default {
       ],
       adminOptions : [
         {text: "Add Car", to :"/cars/new", icon : "plus"},
-        {text: "Add Track", to :"/tracks/new", icon : "plus"}
+        {text: "Add Track", to :"/tracks/new", icon : "plus"},
+        {text: "Add User", to : "/admin/add/user", icon: "plus"}
       ],
       fsrAdminOptions : [
         {text: "Modify Servers", to : "/servers/admin"}

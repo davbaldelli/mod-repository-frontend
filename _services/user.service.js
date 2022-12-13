@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { API_URL } from '@/_services/config'
+import { authHeader } from '@/_helpers'
 
 export const userService = {
   login,
+  signIn,
   logout,
 }
 
@@ -20,6 +22,18 @@ function login (username, password) {
       } else {
         console.log('no token amigo')
       }
+      return Promise.resolve(user)
+    }).catch(error => Promise.reject(error.response ? error.response : error))
+}
+
+function signIn (username, password, role) {
+  return axios.post(`${API_URL}/signin`, {
+    username,
+    password,
+    role
+  }, { validateStatus: status => status === 202 , headers: authHeader()}, )
+    .then(response => {
+      let user = response.data
       return Promise.resolve(user)
     }).catch(error => Promise.reject(error.response ? error.response : error))
 }

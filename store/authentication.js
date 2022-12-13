@@ -60,6 +60,29 @@ export const actions = {
     })
 
   },
+  signIn ({
+    dispatch,
+    commit
+  }, {
+    username,
+    password,
+    role
+  }) {
+    return new Promise((res, rej) => {
+      userService.signIn(username, password, role)
+        .then(
+          user => {
+            res(user)
+          }
+        ).catch(
+        error => {
+          dispatch('alert/error', error, { root: true })
+          rej(error)
+        }
+      )
+    })
+
+  },
   logout ({ commit }) {
     userService.logout()
     commit('logout')
