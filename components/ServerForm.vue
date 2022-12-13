@@ -29,9 +29,20 @@
              </v-col>
            </v-row>
            <v-row>
-             <v-col>
-               <v-autocomplete  v-model="form.track" :items="tracks" :item-text="t => `${t.name} ${t.year}`" item-value="id"
-                                label="Track" required/>
+             <v-col v-if="!form.outsideTrack" cols="10">
+               <v-autocomplete   v-model="form.track" :items="tracks" :item-text="t => `${t.name} ${t.year}`" item-value="id"
+                                label="Track" clearable/>
+             </v-col>
+             <v-col v-if="form.outsideTrack">
+               <v-text-field v-model="form.outsideTrackName" label="Track Name" required/>
+             </v-col>
+             <v-col v-if="form.outsideTrack">
+               <v-text-field v-model="form.outsideTrackLink" label="Track Link" required/>
+             </v-col>
+             <v-col cols="2">
+               <v-col cols="3" md="2">
+                 <v-checkbox v-model="form.outsideTrack" label="Outside Track" />
+               </v-col>
              </v-col>
            </v-row>
            <v-row>
@@ -97,6 +108,7 @@ export default {
     return {
       form : this.initialValue,
       serverPrivate : false,
+      outsideTrack : false,
       valid: true,
       confirm: false,
     }

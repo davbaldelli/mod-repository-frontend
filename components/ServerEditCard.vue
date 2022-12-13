@@ -2,8 +2,9 @@
   <v-card>
     <v-card-title>{{server.name}}</v-card-title>
     <v-card-text>
-      <strong v-if="!loadingTracks && track">{{track.name}}</strong><br>
-      <span v-if="!loadingCars && cars" v-for="(car, index) in cars" :key="index">
+      <strong v-if="!loadingTracks && !server.outsideTrack">{{track.name}}</strong>
+      <strong v-else>{{server.outsideTrackName}}</strong><br>
+      <span v-if="!loadingCars" v-for="(car, index) in cars" :key="index">
         <span v-if="index !==0">, </span>{{`${car.brand.name} ${car.modelName}`}}
       </span>
       <span v-if="server.outsideCars" v-for="(car, index) in server.outsideCars" :key="index">

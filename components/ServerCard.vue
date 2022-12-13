@@ -46,7 +46,7 @@
           <h3>Track on this server</h3>
         </v-col>
         <v-col cols="12">
-          <v-list v-if="!loadingTracks">
+          <v-list v-if="!loadingTracks && !server.outsideTrack">
             <v-list-item>
               <v-list-item-avatar>
                 <v-img :src="track.image"/>
@@ -56,6 +56,19 @@
                 <v-list-item-subtitle>
                   <a v-if="!track.official" :href="track.downloadLink" rel="noopener" target="_blank">Download Here</a>
                   <span v-else>Official content</span>
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+          <v-list v-else>
+            <v-list-item>
+              <v-list-item-avatar>
+                <v-img/>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title v-html="`${server.outsideTrackName}`"></v-list-item-title>
+                <v-list-item-subtitle>
+                  <a :href="server.outsideTrackLink" rel="noopener" target="_blank">Download Here</a>
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
