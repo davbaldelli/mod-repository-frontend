@@ -35,8 +35,10 @@ export default {
         joinLink: "",
         password: "",
         online: false,
-        track: 0,
-        cars: []
+        track: 9,
+        cars: [],
+        outsideCars : [],
+
       },
     }
   },
