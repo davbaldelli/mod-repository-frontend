@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     initialValue () {
-      return this.car ? this.car : null
+      return this.car ? {...this.car} : null
     },
     car () {
       return this.$store.getters['car/getCarById'](this.id)

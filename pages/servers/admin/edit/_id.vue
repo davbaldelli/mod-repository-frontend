@@ -21,7 +21,7 @@ export default {
       return this.$store.getters['server/getById'](this.id)
     },
     initialValue(){
-      return this.server ? this.server : null
+      return this.server ? {...this.server} : null
     }
   },
   mounted () {

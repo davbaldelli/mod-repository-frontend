@@ -63,7 +63,7 @@
           <v-list v-else>
             <v-list-item>
               <v-list-item-avatar>
-                <v-img/>
+                <v-img src="https://i.imgur.com/9N7ClFu.png"/>
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title v-html="`${server.outsideTrackName}`"></v-list-item-title>

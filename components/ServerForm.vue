@@ -31,7 +31,7 @@
            <v-row>
              <v-col v-if="!form.outsideTrack" cols="10">
                <v-autocomplete   v-model="form.track" :items="tracks" :item-text="t => `${t.name} ${t.year}`" item-value="id"
-                                label="Track" clearable/>
+                                label="Track"/>
              </v-col>
              <v-col v-if="form.outsideTrack">
                <v-text-field v-model="form.outsideTrackName" label="Track Name" required/>
