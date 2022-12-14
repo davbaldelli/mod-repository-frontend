@@ -114,7 +114,7 @@ export default {
           to: `/tracks/${params.nation}`,
         }
       ],
-      nationName : params.nation
+      nationName : params.nation.charAt(0).toUpperCase() + params.nation.slice(1)
     }
   },
   head(){
