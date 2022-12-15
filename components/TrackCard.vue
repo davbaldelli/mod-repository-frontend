@@ -2,9 +2,7 @@
   <v-card>
     <v-row no-gutters>
       <v-col cols="12" md="5" xl="4">
-        <div class="h-100">
-          <v-img :src="track.image" alt="track thumbnail" class="ma-3 rounded" contain/>
-        </div>
+        <v-img :src="track.image" height="220" alt="track thumbnail" class="ma-3 rounded"/>
       </v-col>
       <v-col cols="12" md="7" xl="8" class="d-flex flex-column">
         <v-card-title>
