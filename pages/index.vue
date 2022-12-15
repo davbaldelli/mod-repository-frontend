@@ -8,7 +8,7 @@
     </v-row>
     <v-row class="my-3">
       <v-col>
-        <v-img height="200px" src="https://i.imgur.com/OfxND7E.png" contain></v-img>
+        <v-img height="200px" src="/acmr-fsr.png" contain></v-img>
       </v-col>
     </v-row>
     <v-row>

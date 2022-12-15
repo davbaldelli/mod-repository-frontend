@@ -138,6 +138,12 @@ export default {
           to: '/tracks/',
         },
         {
+          text: this.track.nation.name,
+          disabled: false,
+          exact: true,
+          to: `/tracks/${this.track.nation.name}`,
+        },
+        {
           text: this.track.name,
           disabled: true,
           exact: true,
