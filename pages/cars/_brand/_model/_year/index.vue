@@ -13,7 +13,7 @@
             <h3 class="display-6">I'm sorry, but I can't find the car that you are looking for. You can turn back to the <NuxtLink to="/cars/">cars list</NuxtLink> and see if that exits.</h3>
           </v-col>
         </v-row>
-        <v-row v-if="loading">
+        <v-row v-else-if="loading">
           <v-col>
             <v-row>
               <v-col>
@@ -30,7 +30,7 @@
             </v-row>
           </v-col>
         </v-row>
-        <v-row v-if="car">
+        <v-row v-else>
           <v-col>
             <v-row>
               <v-col cols="12">
@@ -126,8 +126,12 @@
 <script>
 export default {
   name: 'CarDetail',
-  async asyncData ({ params, store }) {
-    await store.dispatch('car/getAll')
+  async asyncData ({ params, store, redirect }) {
+    await store.dispatch('car/getAll').catch(error => {
+      if (error && error.status === 401) {
+        redirect(401, '/login')
+      }
+    })
     return {
       car : store.getters['car/car'](params.brand, params.model, params.year),
       breadCrumbs : [

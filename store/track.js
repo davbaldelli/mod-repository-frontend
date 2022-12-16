@@ -1,4 +1,5 @@
 import { trackService } from '@/_services'
+import tracks from '@/pages/tracks'
 
 const initialState = {
   tracks: { items: [] },
@@ -84,21 +85,24 @@ export const getters = {
 }
 
 export const actions = {
-  async getAllTracks ({
+  getAllTracks ({
     dispatch,
     commit
   }) {
     commit('tracksFetching')
-
-    await trackService.getAll()
-      .then(tracks => {
+    return new Promise((res, rej) => {
+      trackService.getAll()
+        .then(tracks => {
           commit('tracksFetched', tracks)
-        }
-      )
-      .catch(error => {
-        commit('tracksFetchError', error)
-        dispatch('alert/error', error, { root: true })
-      })
+          res(tracks)
+          }
+        )
+        .catch(error => {
+          commit('tracksFetchError', error)
+          dispatch('alert/error', error, { root: true })
+          rej(error)
+        })
+    })
   },
   async getAllNations ({
     dispatch,

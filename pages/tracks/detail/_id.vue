@@ -117,10 +117,15 @@
 <script>
 export default {
   name: 'TrackDetail',
-  async asyncData ({ params,store }) {
+  async asyncData ({ params,store, redirect}) {
     await store.dispatch('track/getAllTracks')
+      .catch(error => {
+        if (error && error.status === 401) {
+          redirect(401, '/login')
+        }
+      })
     return {
-      track : store.getters['track/getTrackByName'](params.id),
+      track : store.getters['track/getTrackByName'](params.id)
     }
   },
   head() {
@@ -163,6 +168,9 @@ export default {
       return this.$store.getters['track/loadingTracks']
     }
   },
+  methods :{
+
+  }
 }
 </script>
 

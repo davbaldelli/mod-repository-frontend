@@ -43,19 +43,23 @@ export const actions = {
     dispatch,
     commit
   }) {
-    commit('carsFetching')
-    await carService.getAll()
-      .then(
-        cars => {
-          commit('carsFetched', cars)
-        }
-      )
-      .catch(
-        error => {
-          commit('carsFetchingError', error)
-          dispatch('alert/error', error, { root: true })
-        }
-      )
+    return new Promise((res, rej) => {
+      commit('carsFetching')
+      carService.getAll()
+        .then(
+          cars => {
+            commit('carsFetched', cars)
+            res(cars)
+          }
+        )
+        .catch(
+          error => {
+            commit('carsFetchingError', error)
+            dispatch('alert/error', error, { root: true })
+            rej(error)
+          }
+        )
+    })
   },
   async getCarTypes ({
     dispatch,
