@@ -1,5 +1,5 @@
 <template>
-  <LazyCarForm v-if="initialValue" :initial-value="initialValue" @submit="onSubmit"/>
+  <lazy-car-form v-if="initialValue" :initial-value="initialValue" @submit="onSubmit"/>
 </template>
 
 <script>
@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     initialValue () {
-      return this.car ? JSON.parse(JSON.stringify(this.car)) : null
+      return this.car ? {...this.car} : null
     },
     car () {
       return this.$store.getters['car/getCarById'](this.id)

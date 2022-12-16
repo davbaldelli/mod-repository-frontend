@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     initialValue () {
-      return this.track ? JSON.parse(JSON.stringify(this.track)) : null
+      return this.track ? {...this.track} : null
     },
     track () {
       return this.$store.getters['track/getTrackByName'](this.id)

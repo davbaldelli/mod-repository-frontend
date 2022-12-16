@@ -70,7 +70,8 @@
                         <v-divider />
                         <v-list-item>
                           <strong>Author</strong><v-spacer/>
-                          <a :href="car.author.link" rel="noopener" target="_blank">{{ car.author.name }}</a>
+                          <a v-if="car.author.link && car.author.link !== '#'" :href="car.author.link" rel="noopener" target="_blank">{{ car.author.name }}</a>
+                          <span v-else>{{ car.author.name }}</span>
                         </v-list-item>
                         <v-divider/>
                         <v-list-item>

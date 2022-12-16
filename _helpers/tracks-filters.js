@@ -8,7 +8,7 @@ export const tracksFilters = {
 }
 
 function filterByNation (nation) {
-  return tracks => tracks.filter(track => track.nation.name === nation)
+  return tracks => tracks.filter(track => track.nation.name.toLowerCase() === nation.toLowerCase())
 }
 
 function filterByLayoutCategory (category) {
@@ -27,6 +27,6 @@ function filterByAuthor (name) {
   return tracks => tracks.filter(track => track.author.name === name)
 }
 
-function filterByOfficial(official){
-  return tracks => tracks.filter(t => t.official === official)
+function filterByOfficial(official, admin){
+  return tracks => tracks.filter(t => t.official === official || admin)
 }

@@ -2,9 +2,7 @@
   <v-card>
     <v-row no-gutters>
       <v-col cols="12" md="5" xl="4">
-        <div class="h-100">
-          <v-img :src="track.image" alt="track thumbnail" class="ma-3 rounded" contain/>
-        </div>
+        <v-img :src="track.image" height="220" alt="track thumbnail" class="ma-3 rounded"/>
       </v-col>
       <v-col cols="12" md="7" xl="8" class="d-flex flex-column">
         <v-card-title>
@@ -34,7 +32,8 @@
         <v-card-actions class="mt-auto pa-4">
           <v-spacer></v-spacer>
           <v-btn v-if="isAdmin" :to="`/tracks/edit/${track.id}`" color="orange">Edit</v-btn>
-          <v-btn :href="track.downloadLink" :color="!track.premium || isPremium ? 'primary' : 'orange'" rel="noopener" target="_blank">{{!track.premium || isPremium ? "Download" : "Buy it here!"}}</v-btn>
+          <v-btn v-if="!track.premium || isPremium" :href="track.downloadLink" color="primary" rel="noopener" target="_blank">Download</v-btn>
+          <v-btn v-else :href="track.source" color="orange" rel="noopener" target="_blank">Buy it here!</v-btn>
         </v-card-actions>
       </v-col>
     </v-row>

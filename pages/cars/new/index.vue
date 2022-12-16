@@ -56,6 +56,7 @@ export default {
         categories: [],
         premium: false,
         personal : false,
+        official: false,
         rating: 0,
         version: '',
       }

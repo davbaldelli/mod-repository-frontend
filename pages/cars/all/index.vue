@@ -194,8 +194,11 @@ export default {
     loggedIn () {
       return this.$store.getters['authentication/loggedIn']
     },
+    isAdmin(){
+      return this.$store.getters['authentication/isAdmin']
+    },
     selector () {
-      return c => this.categorySelector(this.authorSelector(this.brandSelector(this.nameSelector((carsFilters.filterOfficial(false)(c))))))
+      return c => this.categorySelector(this.authorSelector(this.brandSelector(this.nameSelector(carsFilters.filterOfficial(false,this.isAdmin)(c)))))
     },
     filteredCars () {
       return [...this.selector(this.cars)].sort(this.sorter)

@@ -24,6 +24,9 @@ export const getters = {
   isPremium : (state) => {
     return rolesRules.isPremium(state.user.role)
   },
+  isFsrAdmin : (state) => {
+    return rolesRules.isFsrAdmin(state.user.role)
+  },
   token: state => {
     return state.user.token
   },
@@ -50,6 +53,29 @@ export const actions = {
         ).catch(
         error => {
           commit('loginFailure')
+          dispatch('alert/error', error, { root: true })
+          rej(error)
+        }
+      )
+    })
+
+  },
+  signIn ({
+    dispatch,
+    commit
+  }, {
+    username,
+    password,
+    role
+  }) {
+    return new Promise((res, rej) => {
+      userService.signIn(username, password, role)
+        .then(
+          user => {
+            res(user)
+          }
+        ).catch(
+        error => {
           dispatch('alert/error', error, { root: true })
           rej(error)
         }

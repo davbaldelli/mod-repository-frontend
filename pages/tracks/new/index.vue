@@ -41,6 +41,7 @@ export default {
         },
         premium: false,
         personal: false,
+        official: false,
         layouts: [
           {
             lengthM: 0,

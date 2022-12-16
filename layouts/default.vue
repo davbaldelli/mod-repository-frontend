@@ -5,21 +5,9 @@
         <v-row no-gutters>
           <v-col cols="0" lg="3" md="2"/>
           <v-col class="d-inline-flex" cols="12" lg="6" md="8">
-            <v-btn class="d-none d-sm-flex" plain to="/">
-              <FontAwesomeIcon class="mr-1" icon="home"></FontAwesomeIcon>
-              Home
-            </v-btn>
-            <v-btn class="d-none d-sm-flex" plain to="/cars">
-              <FontAwesomeIcon class="mr-1" icon="car"></FontAwesomeIcon>
-              Cars
-            </v-btn>
-            <v-btn class="d-none d-sm-flex" plain to="/tracks">
-              <FontAwesomeIcon class="mr-1" icon="road"></FontAwesomeIcon>
-              Tracks
-            </v-btn>
-            <v-btn class="d-none d-sm-flex" plain to="/logs">
-              <FontAwesomeIcon class="mr-1" icon="clipboard-list"></FontAwesomeIcon>
-              Logs
+            <v-btn v-for="(item, i) in menuItems" class="d-none d-sm-flex" plain :to="item.to" :key="i">
+              <FontAwesomeIcon class="mr-1" :icon="item.icon"></FontAwesomeIcon>
+              {{item.text}}
             </v-btn>
             <v-spacer></v-spacer>
             <v-menu offset-y v-if="admin">
@@ -37,7 +25,22 @@
                 </v-list-item>
               </v-list>
             </v-menu>
-            <v-btn v-if="admin" class="d-none d-sm-flex" plain @click="logOut">
+            <v-menu offset-y v-if="fsrAdmin">
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn v-if="fsrAdmin" class="d-none d-sm-flex" plain v-on="on" v-bind="attrs">
+                  <FontAwesomeIcon class="mr-1" icon="user-cog"></FontAwesomeIcon>
+                  FSR
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item v-for="(item, i) in fsrAdminOptions" :key="i" link :to="item.to">
+                  <v-list-item-content>
+                    <v-list-item-title v-text="item.text"></v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+            <v-btn v-if="admin || fsrAdmin" class="d-none d-sm-flex" plain @click="logOut">
               <FontAwesomeIcon class="mr-1" icon="sign-out-alt"></FontAwesomeIcon>
               Logout
             </v-btn>
@@ -108,17 +111,25 @@ export default {
         {text : "Home", to : "/", icon : "home"},
         {text : "Cars", to : "/cars", icon : "car"},
         {text : "Tracks", to : "/tracks", icon : "road"},
+        {text: 'Servers', to : '/servers', icon : 'fire'},
         {text : "Logs", to : "/logs", icon : "clipboard-list"},
       ],
       adminOptions : [
         {text: "Add Car", to :"/cars/new", icon : "plus"},
-        {text: "Add Track", to :"/tracks/new", icon : "plus"}
+        {text: "Add Track", to :"/tracks/new", icon : "plus"},
+        {text: "Add User", to : "/admin/add/user", icon: "plus"}
       ],
+      fsrAdminOptions : [
+        {text: "Modify Servers", to : "/servers/admin"}
+      ]
     }
   },
   computed: {
     admin () {
       return this.$store.getters['authentication/isAdmin']
+    },
+    fsrAdmin() {
+      return this.$store.getters['authentication/isFsrAdmin']
     },
     alert () {
       return this.$store.getters['alert/alert']
