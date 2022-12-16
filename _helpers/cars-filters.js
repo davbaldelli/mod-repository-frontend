@@ -62,9 +62,6 @@ function filterByName (name) {
   return cars => cars.filter(car => `${car.brand.name} ${car.modelName}`.toLowerCase().includes(name.toLowerCase()))
 }
 
-function filterOfficial(official){
-  return cars => cars.filter(car => car.official === official)
-}
 
 
 
