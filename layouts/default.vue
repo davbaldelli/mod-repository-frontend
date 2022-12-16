@@ -5,25 +5,9 @@
         <v-row no-gutters>
           <v-col cols="0" lg="3" md="2"/>
           <v-col class="d-inline-flex" cols="12" lg="6" md="8">
-            <v-btn class="d-none d-sm-flex" plain to="/">
-              <FontAwesomeIcon class="mr-1" icon="home"></FontAwesomeIcon>
-              Home
-            </v-btn>
-            <v-btn class="d-none d-sm-flex" plain to="/cars">
-              <FontAwesomeIcon class="mr-1" icon="car"></FontAwesomeIcon>
-              Cars
-            </v-btn>
-            <v-btn class="d-none d-sm-flex" plain to="/tracks">
-              <FontAwesomeIcon class="mr-1" icon="road"></FontAwesomeIcon>
-              Tracks
-            </v-btn>
-            <v-btn class="d-none d-sm-flex" plain to="/servers">
-              <FontAwesomeIcon class="mr-1" icon="fire"></FontAwesomeIcon>
-              Servers
-            </v-btn>
-            <v-btn class="d-none d-sm-flex" plain to="/logs">
-              <FontAwesomeIcon class="mr-1" icon="clipboard-list"></FontAwesomeIcon>
-              Logs
+            <v-btn v-for="(item, i) in menuItems" class="d-none d-sm-flex" plain :to="item.to" :key="i">
+              <FontAwesomeIcon class="mr-1" :icon="item.icon"></FontAwesomeIcon>
+              {{item.text}}
             </v-btn>
             <v-spacer></v-spacer>
             <v-menu offset-y v-if="admin">
@@ -127,6 +111,7 @@ export default {
         {text : "Home", to : "/", icon : "home"},
         {text : "Cars", to : "/cars", icon : "car"},
         {text : "Tracks", to : "/tracks", icon : "road"},
+        {text: 'Servers', to : '/servers', icon : 'fire'},
         {text : "Logs", to : "/logs", icon : "clipboard-list"},
       ],
       adminOptions : [

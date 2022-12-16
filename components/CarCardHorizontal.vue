@@ -35,7 +35,8 @@
           <NuxtLink v-if="isAdmin" :to="`/cars/edit/${car.id}`" class="mx-2">
             <v-btn color="orange">Edit</v-btn>
           </NuxtLink>
-          <v-btn :href="car.downloadLink" :color="!car.premium || isPremium ? 'primary' : 'orange'" rel="noopener" target="_blank">{{!car.premium || isPremium ? "Download" : "Buy it here!"}}</v-btn>
+          <v-btn v-if="!car.premium || isPremium" :href="car.downloadLink" color="primary" rel="noopener" target="_blank">Download</v-btn>
+          <v-btn v-else :href="car.source" color="orange" rel="noopener" target="_blank">Buy it here!</v-btn>
         </v-card-actions>
       </v-col>
     </v-row>

@@ -32,7 +32,8 @@
         <v-card-actions class="mt-auto pa-4">
           <v-spacer></v-spacer>
           <v-btn v-if="isAdmin" :to="`/tracks/edit/${track.id}`" color="orange">Edit</v-btn>
-          <v-btn :href="track.downloadLink" :color="!track.premium || isPremium ? 'primary' : 'orange'" rel="noopener" target="_blank">{{!track.premium || isPremium ? "Download" : "Buy it here!"}}</v-btn>
+          <v-btn v-if="!track.premium || isPremium" :href="track.downloadLink" color="primary" rel="noopener" target="_blank">Download</v-btn>
+          <v-btn v-else :href="track.source" color="orange" rel="noopener" target="_blank">Buy it here!</v-btn>
         </v-card-actions>
       </v-col>
     </v-row>
