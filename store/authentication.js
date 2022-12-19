@@ -1,9 +1,14 @@
 import { userService } from '@/_services'
 import {rolesRules} from '@/_helpers/roles-rules'
 
-
-const initialState = {
-    status: { loggedIn: false, notChecked : true},
+const user = JSON.parse(localStorage.getItem('user'))
+const initialState = user
+  ? {
+    status: { loggedIn: true },
+    user
+  }
+  : {
+    status: { loggedIn: false},
     user: { username: 'base' }
   }
 
@@ -27,9 +32,6 @@ export const getters = {
   },
   user: state => {
     return state.user
-  },
-  notChecked : state => {
-    return state.status.notChecked
   }
 }
 export const actions = {
@@ -84,9 +86,6 @@ export const actions = {
   logout ({ commit }) {
     userService.logout()
     commit('logout')
-  },
-  setCachedUser({commit}, user){
-    commit('userSet', user)
   }
 }
 
@@ -106,10 +105,6 @@ export const mutations = {
   logout (state) {
     state.status = { loggedIn : false}
     state.user = {}
-  },
-  userSet (state, user) {
-    state.status = { loggedIn: true }
-    state.user = user
   }
 }
 

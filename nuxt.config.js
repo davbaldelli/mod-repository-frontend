@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  ssr: true,
+  ssr: false,
   target: 'static',
 
   generate: {
@@ -91,6 +91,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/fontawesome.js',
+    '~/plugins/cookieconsent.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -114,37 +115,8 @@ export default {
 
     '@nuxtjs/firebase',
 
-    '@nuxtjs/robots',
-
-    ['nuxt-cookie-control',{
-      controlButton: true
-    }]
+    '@nuxtjs/robots'
   ],
-  cookies: {
-    necessary: [
-      {
-        name:  "Default cookies",
-        identifier: "technical",
-        description: "Used for cookie control.",
-        cookies: ["cookie_control_consent", "cookie_control_enabled_cookies"]
-      }
-    ],
-    optional: [
-      {
-        name: "Google Analytics",
-        identifier: "ga",
-        description : "Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.",
-        async: true,
-        cookies: ["_ga", "_ga_KFQQFD5MJW"],
-        accepted : () => {
-          window.$nuxt.$fire.analytics.setAnalyticsCollectionEnabled(true)
-        },
-        declined: () =>{
-          window.$nuxt.$fire.analytics.setAnalyticsCollectionEnabled(false)
-        }
-      }
-    ]
-  },
 
   sitemap: {
     hostname: 'https://www.acmodrepository.com',
@@ -210,7 +182,7 @@ export default {
     },
     services: {
       analytics: {
-        collectionEnabled: false
+        collectionEnabled: true
       }
     }
   },
