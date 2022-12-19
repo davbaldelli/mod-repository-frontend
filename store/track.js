@@ -2,7 +2,7 @@ import { trackService } from '@/_services'
 import tracks from '@/pages/tracks'
 
 const initialState = {
-  tracks: { items: [] },
+  tracks: { items: [], notInitialized: true },
   nations: { items: [] },
   authors: { items: [] },
   layoutCategories: {items : [
@@ -74,8 +74,9 @@ const initialState = {
 export const state = () => initialState
 export const getters = {
   tracks: state => state.tracks.items,
+  track: state => (nation, name, year, author) => state.tracks.items.find(t => t.nation.name === nation && t.name === name && t.year === parseInt(year) && t.author.name === author),
   getTrackByName: state => id => state.tracks.items.find(t => t.id === parseInt(id)),
-  loadingTracks: state => state.tracks.fetching,
+  loadingTracks: state => state.tracks.fetching || state.tracks.notInitialized,
   nations: state => state.nations.items,
   loadingNations: state => state.nations.fetching,
   authors: state => state.authors.items,

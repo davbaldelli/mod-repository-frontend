@@ -48,19 +48,19 @@
             <v-chip v-if="selectedCategory" close @click:close="clearCategoryFilter">Category: {{ this.selectedCategory }}</v-chip>
           </v-col>
         </v-row>
-        <v-row v-for="(car, index) in pageCars" :key="index">
-          <v-col cols="12">
-            <car-card-horizontal :car="car"/>
+        <v-row v-if="loading" class="mb-2">
+          <v-col cols="12" v-for="i in 20" :key="i">
+            <car-card-horizontal-skeleton/>
           </v-col>
         </v-row>
-        <v-row v-if="!$store.getters['car/loadingCars'] && filteredCars.length === 0">
+        <v-row v-else-if="filteredCars.length === 0">
           <v-col class="text-center">
             <h3 class="display-6">I'm sorry, no car matches your request</h3>
           </v-col>
         </v-row>
-        <v-row v-for="i in 20" v-if="loading" :key="i" class="mb-2">
-          <v-col>
-            <car-card-horizontal-skeleton/>
+        <v-row v-else>
+          <v-col v-for="(car, index) in pageCars" :key="index" cols="12">
+            <car-card-horizontal :car="car"/>
           </v-col>
         </v-row>
         <v-row v-if="this.totPaginatorPages" class="px-3">
@@ -154,7 +154,7 @@ export default {
       return this.$store.getters['car/carCategories']
     },
     loading(){
-      return this.$store.getters['car/loadingCars'] && this.cars.length === 0
+      return this.$store.getters['car/loadingCars']
     },
     totPaginatorPages () {
       if (this.filteredCars) {

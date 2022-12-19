@@ -124,16 +124,11 @@
 </template>
 
 <script>
+
 export default {
   name: 'CarDetail',
-  async asyncData ({ params, store, redirect }) {
-    await store.dispatch('car/getAll').catch(error => {
-      if (error && error.status === 401) {
-        redirect(401, '/login')
-      }
-    })
+  asyncData({params}) {
     return {
-      car : store.getters['car/car'](params.brand, params.model, params.year),
       breadCrumbs : [
         {
           text: 'Cars',
@@ -160,12 +155,18 @@ export default {
           to: `/cars/${params.brand}/${params.model}/${params.year}/`,
         },
       ],
+      model : params.model,
+      brand : params.brand,
+      year : params.year
     }
   },
   head() {
     return {
-      title: `${this.car.brand.name} ${this.car.modelName}`,
+      title: `${this.brand} ${this.model}`,
     }
+  },
+  mounted() {
+    this.init()
   },
   computed: {
     isPremium(){
@@ -173,8 +174,16 @@ export default {
     },
     loading () {
       return this.$store.getters['car/loadingCars']
+    },
+    car(){
+      return this.$store.getters['car/car'](this.brand, this.model, this.year)
     }
   },
+  methods : {
+    init(){
+      this.$store.dispatch('car/getAll')
+    }
+  }
 }
 </script>
 

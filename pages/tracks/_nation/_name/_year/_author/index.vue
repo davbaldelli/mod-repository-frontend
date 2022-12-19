@@ -13,7 +13,7 @@
             <h3 class="display-6">I'm sorry, but I can't find the track that you are looking for. You can turn back to the <NuxtLink to="/tracks/">tracks list</NuxtLink> and see if that exits.</h3>
           </v-col>
         </v-row>
-        <v-row v-if="loading">
+        <v-row v-else-if="loading">
           <v-col>
             <v-row>
               <v-col>
@@ -30,7 +30,7 @@
             </v-row>
           </v-col>
         </v-row>
-        <v-row v-if="track">
+        <v-row v-else>
           <v-col>
             <v-row>
               <v-col cols="12">
@@ -119,17 +119,47 @@ export default {
   name: 'TrackDetail',
   async asyncData ({ params}) {
     return {
-      id : params.id
+      nation : params.nation,
+      name : params.name,
+      year : params.year,
+      author : params.author,
+      breadCrumbs : [
+        {
+          text: 'Tracks',
+          disabled: false,
+          exact: true,
+          to: '/tracks/',
+        },
+        {
+          text: params.nation,
+          disabled: false,
+          exact: true,
+          to: `/tracks/${params.nation}`,
+        },
+        {
+          text: params.name,
+          disabled: true,
+          exact: true,
+          to: `/tracks/${params.nation}/${params.name}`,
+        },
+        {
+          text: params.year,
+          disabled: true,
+          exact: true,
+          to: `/tracks/${params.nation}/${params.name}/${params.year}`,
+        },
+        {
+          text: params.author,
+          disabled: true,
+          exact: true,
+          to: `/tracks/${params.nation}/${params.name}/${params.year}/${params.author}`,
+        },
+      ]
     }
   },
   head() {
     return {
-      title: 'Track Detail',
-    }
-  },
-  data(){
-    return {
-      breadCrumbs : []
+      title: `${this.name}`,
     }
   },
   mounted() {
@@ -143,7 +173,7 @@ export default {
       return this.$store.getters['track/loadingTracks']
     },
     track() {
-      return this.$store.getters['track/getTrackByName'](this.id)
+      return this.$store.getters['track/track'](this.nation, this.name, this.year, this.author)
     }
   },
   methods : {
@@ -151,38 +181,6 @@ export default {
       this.$store.dispatch('track/getAllTracks')
     }
   },
-  watch : {
-    track() {
-      if(this.track){
-        this.$options.head.title = this.track.name
-        this.breadCrumbs = [
-          {
-            text: 'Tracks',
-            disabled: false,
-            exact: true,
-            to: '/tracks/',
-          },
-          {
-            text: this.track.nation.name,
-            disabled: false,
-            exact: true,
-            to: `/tracks/${this.track.nation.name}`,
-          },
-          {
-            text: this.track.name,
-            disabled: true,
-            exact: true,
-          },
-          {
-            text: this.track.year,
-            disabled: true,
-            exact: true,
-            to: `/tracks/${this.track.id}/`,
-          },
-        ]
-      }
-    }
-  }
 }
 </script>
 
