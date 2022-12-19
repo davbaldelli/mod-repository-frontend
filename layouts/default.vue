@@ -87,7 +87,7 @@
         </v-row>
       </v-container>
     </v-footer>
-    <cookie-law theme="base"></cookie-law>
+    <CookieControl/>
   </v-app>
 </template>
 
@@ -134,6 +134,21 @@ export default {
     alert () {
       return this.$store.getters['alert/alert']
     },
+    notCheckedUser(){
+      return this.$store.getters['authentication/notChecked']
+    }
+  },
+  mounted() {
+    if(this.notCheckedUser){
+      let user = JSON.parse(localStorage.getItem('user'))
+      if (user){
+        this.$store.dispatch('authentication/setCachedUser', user)
+      }
+    }
+    const hasConsent = this.$cookies.isEnabled('ga')
+    console.log('has consent ', hasConsent)
+    this.$fire.analytics.setAnalyticsCollectionEnabled(hasConsent)
+
   },
   watch: {
     $route () {

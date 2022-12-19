@@ -124,8 +124,34 @@ export default {
           redirect(401, '/login')
         }
       })
+    let track =  store.getters['track/getTrackByName'](params.id)
     return {
-      track : store.getters['track/getTrackByName'](params.id)
+      track : track,
+      breadCrumbs : [
+        {
+          text: 'Tracks',
+          disabled: false,
+          exact: true,
+          to: '/tracks/',
+        },
+        {
+          text: track.nation.name,
+          disabled: false,
+          exact: true,
+          to: `/tracks/${track.nation.name}`,
+        },
+        {
+          text: track.name,
+          disabled: true,
+          exact: true,
+        },
+        {
+          text: track.year,
+          disabled: true,
+          exact: true,
+          to: `/tracks/${track.id}/`,
+        },
+      ]
     }
   },
   head() {
@@ -134,33 +160,6 @@ export default {
     }
   },
   computed: {
-    breadCrumbs () {
-      return [
-        {
-          text: 'Tracks',
-          disabled: false,
-          exact: true,
-          to: '/tracks/',
-        },
-        {
-          text: this.track.nation.name,
-          disabled: false,
-          exact: true,
-          to: `/tracks/${this.track.nation.name}`,
-        },
-        {
-          text: this.track.name,
-          disabled: true,
-          exact: true,
-        },
-        {
-          text: this.track.year,
-          disabled: true,
-          exact: true,
-          to: `/tracks/${this.track.id}/`,
-        },
-      ]
-    },
     isPremium(){
       return this.$store.getters['authentication/isPremium']
     },
