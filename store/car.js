@@ -8,7 +8,7 @@ const initialState = {
   nations: { items: [] },
   carCategories : { items : [
     { name: 'Endurance' },
-    { name: 'Formula' },
+    { name: 'Open Wheel' },
     { name: 'GT' },
     { name: 'Prototype' },
     { name: 'Rally' },

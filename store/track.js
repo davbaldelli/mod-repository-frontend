@@ -45,16 +45,8 @@ const initialState = {
       value: 'Open World'
     },
     {
-      text: 'City Track',
-      value: 'City Track'
-    },
-    {
       text: 'Touge',
       value: 'Touge'
-    },
-    {
-      text: 'Endurance',
-      value: 'Endurance'
     },
     {
       text: 'Street Circuit',
@@ -67,7 +59,12 @@ const initialState = {
     {
       text: 'Karting',
       value: 'Karting'
-    }]
+    },
+    {
+      text: 'Laser Scanned',
+      value: 'Laser Scan'
+    }
+    ]
   }
 }
 

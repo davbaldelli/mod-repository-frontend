@@ -45,7 +45,7 @@
                 <v-text-field v-model.number="form.year" :rules="rules.year" label="Year" required type="number"/>
               </v-col>
               <v-col>
-                <v-select v-model="form.tags" :items="trackTags" label="Tag" multiple return-object></v-select>
+                <v-select v-model="form.tags" :items="tagOpts" label="Tag" multiple></v-select>
               </v-col>
             </v-row>
             <v-row>
@@ -101,7 +101,7 @@
                 />
               </v-col>
               <v-col>
-                <v-select v-model="layout.category" :items="layoutTypeOptions" label="Layout Type"></v-select>
+                <v-select v-model="layout.category" :items="categoryOpts" label="Layout Type"></v-select>
               </v-col>
               <v-col cols="1">
                 <v-btn color="red" icon @click="removeLayout(i)">
@@ -156,34 +156,6 @@ export default {
       existingAuthor: true,
       form: this.initialValue,
       confirm: false,
-      trackTags: [
-        'F1',
-        'NASCAR',
-        'Historic',
-        'Rally',
-        'Drift',
-        'Open World',
-        'City Track',
-        'Touge',
-        'Endurance',
-        'Street Track',
-        'Fictional',
-        'Karting',
-      ],
-      layoutTypeOptions: [
-        {
-          text: 'Oval',
-          value: 'Oval'
-        },
-        {
-          text: 'Road Course',
-          value: 'Road Course'
-        },
-        {
-          text: 'A to B',
-          value: 'A to B'
-        },
-      ],
       rules: {
         name: [v => !!v || 'Name is required'],
         location: [v => !!v || 'Location is required'],
@@ -211,6 +183,12 @@ export default {
     authors () {
       return this.$store.getters['author/authors']
     },
+    tagOpts(){
+      return this.$store.getters['track/trackTags']
+    },
+    categoryOpts(){
+      return this.$store.getters['track/layoutCategories']
+    }
   },
   mounted () {
     this.initiate()
