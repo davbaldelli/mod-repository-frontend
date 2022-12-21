@@ -61,7 +61,7 @@ const initialState = {
       value: 'Karting'
     },
     {
-      text: 'Laser Scanned',
+      text: 'Laser Scanned/LiDAR',
       value: 'Laser Scan'
     }
     ]
