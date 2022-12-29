@@ -36,7 +36,7 @@ export default {
         weight: 0,
         topSpeed: 0,
         downloadLink: '',
-        image: '',
+        images: [{url:""}],
         modelName: '',
         author: {
           name: '',

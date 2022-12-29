@@ -119,9 +119,25 @@
                 />
               </v-col>
             </v-row>
-            <v-row>
+            <v-row v-for="(image, i) in form.images" :key="i">
               <v-col>
-                <v-text-field v-model="form.image" :rules="rules.image" label="Image Link" required type="url"/>
+                <v-text-field v-model="image.url" :rules="rules.image" label="Image Link" required type="url"/>
+              </v-col>
+              <v-col cols="1">
+                <v-img :src="image.url" contain height="50"></v-img>
+              </v-col>
+              <v-col cols="1">
+                <v-btn color="red" icon @click="removeImage(i)">
+                  <v-icon>mdi-minus</v-icon>
+                </v-btn>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-spacer/>
+              <v-col cols="1">
+                <v-btn color="blue" icon @click="addImage">
+                  <v-icon>mdi-plus</v-icon>
+                </v-btn>
               </v-col>
             </v-row>
             <v-row>
@@ -287,7 +303,13 @@ export default {
         name: '',
         code: '',
       }
-    }
+    },
+    addImage(){
+      this.form.images.push({url:""})
+    },
+    removeImage (index) {
+      this.form.images.splice(index, 1)
+    },
   }
 }
 </script>

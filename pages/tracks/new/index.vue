@@ -31,7 +31,7 @@ export default {
       message: '',
       form: {
         downloadLink: '',
-        image: '',
+        images: [{url:""}],
         name: '',
         location: '',
         tags: [],

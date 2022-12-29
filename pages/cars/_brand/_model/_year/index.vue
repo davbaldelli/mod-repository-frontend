@@ -34,7 +34,7 @@
           <v-col>
             <v-row>
               <v-col cols="12">
-                <v-img :src="car.image" contain></v-img>
+                <v-img :src="car.images[0].url" contain></v-img>
               </v-col>
             </v-row>
             <v-row>

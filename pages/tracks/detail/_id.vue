@@ -34,7 +34,7 @@
           <v-col>
             <v-row>
               <v-col cols="12">
-                <v-img :src="track.image" contain></v-img>
+                <v-img :src="track.images[0].url" contain></v-img>
               </v-col>
             </v-row>
             <v-row>
