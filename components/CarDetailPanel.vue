@@ -127,7 +127,7 @@
               </v-col>
               <v-col>
                 <v-card-actions>
-                  <v-btn block color="success">Download Here</v-btn>
+                  <v-btn :href="skin.downloadLink" block color="success" rel="noopener" target="_blank">Download Here</v-btn>
                 </v-card-actions>
               </v-col>
             </v-row>

@@ -87,7 +87,7 @@
         </v-row>
       </v-container>
     </v-footer>
-    <CookieControl/>
+    <cookie-control/>
   </v-app>
 </template>
 
@@ -117,11 +117,12 @@ export default {
       adminOptions : [
         {text: "Add Car", to :"/cars/new", icon : "plus"},
         {text: "Add Track", to :"/tracks/new", icon : "plus"},
-        {text: "Add User", to : "/admin/add/user", icon: "plus"}
+        {text: "Add User", to : "/admin/add/user", icon: "plus"},
+        {text: "Add Skin", to : "/admin/add/skin", icon: "plus"}
       ],
       fsrAdminOptions : [
         {text: "Modify Servers", to : "/servers/admin"}
-      ]
+      ],
     }
   },
   mounted() {

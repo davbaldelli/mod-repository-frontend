@@ -10,6 +10,7 @@ axios.interceptors.response.use((response) => {
 
 export const serverService = {
   getCarSkins,
+  addSkin,
 }
 
 function getCarSkins(carId){
@@ -17,4 +18,11 @@ function getCarSkins(carId){
     .get(`${API_URL}/skin`, {headers : authHeader(), params : {carId}})
     .then(response => response.data)
     .catch((error) => Promise.reject(error.response ? error.response : error))
+}
+
+function addSkin(skin){
+  return axios
+    .post(`${API_URL}/skin/add`, skin, { headers: authHeader() })
+    .then(res => res.data)
+    .catch(error => Promise.reject(error.response ? error.response : error))
 }
