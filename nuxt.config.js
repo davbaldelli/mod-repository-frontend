@@ -91,7 +91,6 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/fontawesome.js',
-    //'~/plugins/cookieconsent.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -115,8 +114,39 @@ export default {
 
     '@nuxtjs/firebase',
 
-    '@nuxtjs/robots'
+    '@nuxtjs/robots',
+
+    'nuxt-cookie-control'
   ],
+
+  cookies: {
+    necessary: [
+      {
+        name:  'Default Cookies',
+        description:  'Cookies used for this website to work',
+        cookies: ['cookie_control_consent', 'cookie_control_enabled_cookies']
+      }
+    ],
+    optional: [
+      {
+        name:  'Google Analitycs',
+
+        identifier: 'ga',
+
+        description:  'Used to improve your experience providing us data about how you use our website',
+
+        initialState: true,
+        src:  'https://www.googletagmanager.com/gtag/js?id=<API-KEY>',
+        async:  true,
+        cookies: ['_ga', '_ga_KFQQFD5MJW'],
+        accepted: () =>{
+
+        },
+        declined: () =>{
+        }
+      }
+    ]
+  },
 
   sitemap: {
     hostname: 'https://www.acmodrepository.com',

@@ -87,7 +87,7 @@
         </v-row>
       </v-container>
     </v-footer>
-    <cookie-law theme="base"></cookie-law>
+    <CookieControl/>
   </v-app>
 </template>
 
@@ -98,7 +98,7 @@ import { useVuelidate } from '@vuelidate/core'
 export default {
   name: 'App',
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
   },
   emits: ['loggedOut', 'loggedIn'],
   setup () {
