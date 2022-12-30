@@ -1,14 +1,8 @@
 import { userService } from '@/_services'
 import {rolesRules} from '@/_helpers/roles-rules'
 
-const user = JSON.parse(localStorage.getItem('user'))
-const initialState = user
-  ? {
-    status: { loggedIn: true },
-    user
-  }
-  : {
-    status: { loggedIn: false},
+const initialState =  {
+    status: { loggedIn: false, notChecked : true},
     user: { username: 'base' }
   }
 
@@ -32,9 +26,15 @@ export const getters = {
   },
   user: state => {
     return state.user
+  },
+  notChecked: state => {
+    return state.status.notChecked
   }
 }
 export const actions = {
+  setUser({commit}, user){
+    commit('setUser', user)
+  },
   login ({
     dispatch,
     commit
@@ -90,6 +90,10 @@ export const actions = {
 }
 
 export const mutations = {
+  setUser(state, user){
+    state.status = { loggedIn: true }
+    state.user = user
+  },
   loginRequest (state, user) {
     state.status = { loggingIn: true }
     state.user = user

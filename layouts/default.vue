@@ -87,7 +87,7 @@
         </v-row>
       </v-container>
     </v-footer>
-    <cookie-law theme="base"></cookie-law>
+    <CookieControl/>
   </v-app>
 </template>
 
@@ -98,7 +98,7 @@ import { useVuelidate } from '@vuelidate/core'
 export default {
   name: 'App',
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
   },
   emits: ['loggedOut', 'loggedIn'],
   setup () {
@@ -124,6 +124,14 @@ export default {
       ]
     }
   },
+  mounted() {
+    if(this.notCheckedUser){
+      let user = JSON.parse(localStorage.getItem('user'))
+      if(user) {
+        this.$store.dispatch('authentication/setUser', user)
+      }
+    }
+  },
   computed: {
     admin () {
       return this.$store.getters['authentication/isAdmin']
@@ -134,6 +142,9 @@ export default {
     alert () {
       return this.$store.getters['alert/alert']
     },
+    notCheckedUser() {
+      return this.$store.getters['authentication/notChecked']
+    }
   },
   watch: {
     $route () {
