@@ -108,6 +108,18 @@
           </v-card>
         </v-col>
       </v-row>
+      <v-row class="mt-6">
+        <v-col>
+          <h2 class="text-h4">Skins</h2>
+        </v-col>
+      </v-row>
+      <v-row class="mt-1">
+        <v-col>
+          <v-card v-for="(skin,id) in skins" :key="id" class="pa-4 mb-2">
+            {{skin.name}}
+          </v-card>
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
@@ -116,10 +128,21 @@
 export default {
   name: "CarDetailPanel",
   props: ['car'],
+  mounted() {
+    this.initialize()
+  },
   computed: {
     isPremium() {
       return this.$store.getters['authentication/isPremium']
     },
+    skins(){
+      return this.$store.getters["skin/skins"]
+    }
+  },
+  methods: {
+    initialize() {
+      this.$store.dispatch('skin/getCarSkins', this.car.id)
+    }
   }
 }
 </script>
