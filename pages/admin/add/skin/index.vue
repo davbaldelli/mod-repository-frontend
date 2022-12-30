@@ -14,14 +14,15 @@
 
 <script>
 export default {
-  name: "index",
+  name: "AddSkin",
   data() {
     return {
       initialValue : {
         name : "",
         imageUrl : "",
         downloadLink : "",
-        carId : null
+        carId : null,
+        message : "",
       },
       showMsg : false
     }

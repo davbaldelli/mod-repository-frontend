@@ -127,7 +127,14 @@
               </v-col>
               <v-col>
                 <v-card-actions>
-                  <v-btn :href="skin.downloadLink" block color="success" rel="noopener" target="_blank">Download Here</v-btn>
+                  <v-row>
+                    <v-col v-if="isAdmin">
+                      <v-btn  :to="`/admin/update/skin/${skin.id}`" color="warning" block><FontAwesomeIcon icon="pen-square"/></v-btn>
+                    </v-col>
+                    <v-col>
+                      <v-btn :href="skin.downloadLink" color="success" rel="noopener" target="_blank" block >Download</v-btn>
+                    </v-col>
+                  </v-row>
                 </v-card-actions>
               </v-col>
             </v-row>
@@ -139,9 +146,14 @@
 </template>
 
 <script>
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+
 export default {
   name: "CarDetailPanel",
   props: ['car'],
+  components: {
+    FontAwesomeIcon,
+  },
   mounted() {
     this.initialize()
   },
@@ -149,9 +161,12 @@ export default {
     isPremium() {
       return this.$store.getters['authentication/isPremium']
     },
+    isAdmin(){
+      return this.$store.getters['authentication/isAdmin']
+    },
     skins(){
-      return this.$store.getters["skin/skins"]
-    }
+      return this.$store.getters["skin/carSkins"](this.car.id)
+    },
   },
   methods: {
     initialize() {

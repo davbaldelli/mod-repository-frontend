@@ -8,7 +8,9 @@ export const state = () => initialState
 
 export const getters = {
   skins: state => state.skins.items,
-  loadingSkins : state => state.skins.fetching
+  carSkins: state => carId => state.skins.items.filter(s => s.carId === carId),
+  loadingSkins : state => state.skins.fetching,
+  skin : state => id => state.skins.items.find(s => s.id === parseInt(id))
 }
 
 export const mutations = {
@@ -60,12 +62,28 @@ export const actions = {
         })
     })
   },
+  getAllSkins ({dispatch, commit}){
+    commit('skinsFetching')
+    return new Promise((res, rej) => {
+      skinsService.getAllSkins()
+        .then(skins => {
+          commit('skinsFetched', skins)
+          res(skins)
+        })
+        .catch(error => {
+          commit('skinsFetchError', error)
+          dispatch('alert/error', error, { root: true })
+          rej(error)
+        })
+    })
+  },
   addSkin({dispatch, commit}, skin){
     commit("pushingSkin")
     return new Promise((res, rej) => {
       skinsService.addSkin(skin)
         .then(skin => {
           commit('skinPushed', skin)
+          dispatch('getAllSkins')
           dispatch('alert/success', skin, { root: true })
           res(skin)
         })
@@ -75,6 +93,23 @@ export const actions = {
           rej(err)
         })
     })
+  },
+  updateSkin({dispatch, commit}, skin){
+    commit("pushingSkin")
+    return new Promise((res, rej) => {
+      skinsService.updateSkin(skin)
+        .then(skin => {
+          commit('skinPushed', skin)
+          dispatch('getAllSkins')
+          dispatch('alert/success', skin, { root: true })
+          res(skin)
+        })
+        .catch(err => {
+          commit('skinPushingError', err)
+          dispatch('alert/error', err, { root: true })
+          rej(err)
+        })
+    })
+  },
 
-  }
 }

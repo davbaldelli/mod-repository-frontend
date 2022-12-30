@@ -42,7 +42,7 @@
 
 <script>
 export default {
-  name: 'index',
+  name: 'AddUser',
   middleware : 'admin',
   data() {
     return {
@@ -77,7 +77,7 @@ export default {
         username : this.username,
         password : this.password,
         role : this.role,
-      }).then((user) => {
+      }).then(() => {
         this.message = 'User added successfully'
         this.showMsg = true
       })
