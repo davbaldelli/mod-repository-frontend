@@ -1,40 +1,44 @@
 <template>
   <v-container fluid>
+
     <v-row>
-      <v-col class="text-center" cols="12">
-        <h1 class="text-h2 mb-3">Repository Logs</h1>
-        <h2 class="text-h5"><em>Stay updated on what's happening inside the repository</em></h2>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="0" lg="3" md="2" class="d-none d-md-block"/>
-      <v-col cols="12" lg="6" md="8">
-        <v-data-table
-          :headers="headers"
-          :items="logs"
-          class="elevation-1"
-          item-key="logId"
-        >
-          <template v-slot:item.type="{ item }">
-            <FontAwesomeIcon :icon="item.name ? 'road' : 'car'" class="p-mr-2"></FontAwesomeIcon>
-            <FontAwesomeIcon v-if="item.premium" icon="dollar-sign"></FontAwesomeIcon>
-          </template>
-          <template v-slot:item.name="{item}">
-            <NuxtLink
-              :to="item.name ? `/tracks/detail/${item.trackId}` : `/cars/${item.brand}/${item.model}/${item.year}`"
+      <v-col cols="0" xl="3" lg="2" md="1" class="d-none d-md-block"/>
+      <v-col cols="12" xl="6" lg="8" md="10">
+        <v-row>
+          <v-col class="text-center" cols="12">
+            <h1 class="text-h2 mb-3">Repository Logs</h1>
+            <h2 class="text-h5"><em>Stay updated on what's happening inside the repository</em></h2>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-data-table
+              :headers="headers"
+              :items="logs"
+              class="elevation-1"
+              item-key="logId"
             >
-              {{ item.name ? item.name : `${item.brand} ${item.model}` }}
-            </NuxtLink>
-          </template>
-          <template v-slot:item.action="{item}">
-            <v-chip :color="item.action==='Insert' ? 'green' : 'blue'" label>{{ item.action }}</v-chip>
-          </template>
-          <template v-slot:item.happenedAt="{item}">
-            {{ getDate(item.happenedAt) }}
-          </template>
-        </v-data-table>
+              <template v-slot:item.type="{ item }">
+                <FontAwesomeIcon :icon="item.name ? 'road' : 'car'" class="p-mr-2"></FontAwesomeIcon>
+                <FontAwesomeIcon v-if="item.premium" icon="dollar-sign"></FontAwesomeIcon>
+              </template>
+              <template v-slot:item.name="{item}">
+                <NuxtLink
+                  :to="item.name ? `/tracks/detail/${item.trackId}` : `/cars/${item.brand}/${item.model}/${item.year}`"
+                >
+                  {{ item.name ? item.name : `${item.brand} ${item.model}` }}
+                </NuxtLink>
+              </template>
+              <template v-slot:item.action="{item}">
+                <v-chip :color="item.action==='Insert' ? 'green' : 'blue'" label>{{ item.action }}</v-chip>
+              </template>
+              <template v-slot:item.happenedAt="{item}">
+                {{ getDate(item.happenedAt) }}
+              </template>
+            </v-data-table>
+          </v-col>
+        </v-row>
       </v-col>
-      <v-col cols="0" lg="3" md="2"/>
     </v-row>
   </v-container>
 </template>

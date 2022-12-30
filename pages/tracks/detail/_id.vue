@@ -1,8 +1,8 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="0" lg="4" md="3"/>
-      <v-col cols="12" lg="4" md="6">
+      <v-col cols="0" xl="4" lg="3" md="1"/>
+      <v-col cols="12" xl="4" lg="6" md="10">
         <v-row>
           <v-col>
             <v-breadcrumbs :items="breadCrumbs" class="px-0"></v-breadcrumbs>

@@ -113,10 +113,24 @@
           <h2 class="text-h4">Skins</h2>
         </v-col>
       </v-row>
-      <v-row class="mt-1">
+      <v-row v-for="(skin,id) in skins" :key="id" class="mt-1">
         <v-col>
-          <v-card v-for="(skin,id) in skins" :key="id" class="pa-4 mb-2">
-            {{skin.name}}
+          <v-card class="mb-2 pa-1" >
+            <v-row no-gutters align="center">
+              <v-col cols="2" >
+                <v-img :src="skin.imageUrl" height="70" class="rounded"/>
+              </v-col>
+              <v-col cols="7">
+                <v-card-title>
+                  <span class="single-line">{{skin.name}}</span>
+                </v-card-title>
+              </v-col>
+              <v-col cols="3">
+                <v-card-actions>
+                  <v-btn>Download Here</v-btn>
+                </v-card-actions>
+              </v-col>
+            </v-row>
           </v-card>
         </v-col>
       </v-row>
@@ -148,5 +162,15 @@ export default {
 </script>
 
 <style scoped>
-
+  .nowrap-overflow {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .single-line{
+    display: block !important;
+    white-space: nowrap ;
+    word-break: normal;
+    overflow: hidden ;
+    text-overflow: ellipsis;
+  }
 </style>

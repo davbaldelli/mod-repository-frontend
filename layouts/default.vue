@@ -3,8 +3,8 @@
     <v-app-bar app elevate-on-scroll elevation="1">
       <v-container fluid class="d-none d-sm-flex">
         <v-row no-gutters>
-          <v-col cols="0" lg="3" md="2"/>
-          <v-col class="d-inline-flex" cols="12" lg="6" md="8">
+          <v-col cols="0" xl="3" lg="2" md="1" class="d-none d-md-block"/>
+          <v-col class="d-inline-flex" cols="12" xl="6" lg="8" md="10">
             <v-btn v-for="(item, i) in menuItems" class="d-none d-sm-flex" plain :to="item.to" :key="i">
               <FontAwesomeIcon class="mr-1" :icon="item.icon"></FontAwesomeIcon>
               {{item.text}}
