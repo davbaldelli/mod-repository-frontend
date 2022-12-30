@@ -1,8 +1,8 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="0" lg="4" md="3" class="d-none d-md-block"/>
-      <v-col cols="12" lg="4" md="6">
+      <v-col cols="0" xl="3" lg="2" md="1" class="d-none d-md-block"/>
+      <v-col cols="12" xl="6" lg="8" md="10">
         <v-row>
           <v-col>
             <v-row class="my-3">
@@ -19,7 +19,6 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="0" lg="4" md="3" class="d-none d-md-block"/>
     </v-row>
   </v-container>
 </template>

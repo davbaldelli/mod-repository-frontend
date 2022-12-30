@@ -1,8 +1,8 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="0" lg="3" md="2" class="d-none d-md-block"/>
-      <v-col cols="12" lg="6" md="8">
+      <v-col cols="0" xl="3" lg="2" md="1" class="d-none d-md-block"/>
+      <v-col cols="12" xl="6" lg="8" md="10">
         <v-row class="my-3">
           <v-col class="text-center" cols="12">
             <h1 class="text-h2 mb-3">Tracks Repository</h1>
@@ -30,7 +30,6 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="0" lg="3" md="2"/>
     </v-row>
   </v-container>
 </template>

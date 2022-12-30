@@ -14,12 +14,12 @@ export const getters = {
 export const mutations = {
   skinsFetching (state) {
     state.skins = {
-      items: state.skins.items,
+      items: [],
       fetching: true
     }
   },
   skinsFetched(state, skins){
-    state.skins = {items : []}
+    state.skins = {items : skins}
   },
   skinsFetchError(state, error){
     state.tracks = {

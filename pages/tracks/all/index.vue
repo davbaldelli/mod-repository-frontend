@@ -1,8 +1,8 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="0" lg="3" md="2" class="d-none d-md-block"/>
-      <v-col cols="12" lg="6" md="8">
+      <v-col cols="0" xl="3" lg="2" md="1" class="d-none d-md-block"/>
+      <v-col cols="12" xl="6" lg="8" md="10">
         <v-row>
           <v-col>
             <v-breadcrumbs :items="breadcrumbs" class="px-0"></v-breadcrumbs>
@@ -100,7 +100,6 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="0" lg="3" md="2"/>
     </v-row>
   </v-container>
 </template>
