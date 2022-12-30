@@ -53,7 +53,7 @@
             <car-card-horizontal :car="car"/>
           </v-col>
         </v-row>
-        <v-row v-if="!$store.getters['car/loadingCars'] && filteredCars.length === 0">
+        <v-row v-if="!loading && filteredCars.length === 0">
           <v-col class="text-center">
             <h3 class="display-6">I'm sorry, no car matches your request</h3>
           </v-col>
@@ -153,7 +153,7 @@ export default {
       return this.$store.getters['car/carCategories']
     },
     loading(){
-      return this.$store.getters['car/loadingCars'] && this.cars.length === 0
+      return this.$store.getters['car/loadingCars']
     },
     totPaginatorPages () {
       if (this.filteredCars) {

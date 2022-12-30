@@ -188,7 +188,7 @@ export default {
       return this.$store.getters['authentication/isAdmin']
     },
     loading(){
-      return this.$store.getters['track/loadingTracks'] && this.tracks.length === 0
+      return this.$store.getters['track/loadingTracks']
     },
     nation(){
       return this.$store.getters['track/nations'].find(n => n.name.toLowerCase() === this.nationName.toLowerCase())
