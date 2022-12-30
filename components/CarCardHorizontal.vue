@@ -1,10 +1,10 @@
 <template>
   <v-card>
     <v-row class="no-gutters">
-      <v-col cols="12" md="5" xl="4">
+      <v-col cols="12" md="4">
         <v-img :src="car.images[0].url" alt="car thumbnail" class="ma-2 rounded" contain/>
       </v-col>
-      <v-col cols="12" md="7" xl="8" class="d-flex flex-column">
+      <v-col cols="12" md="8" class="d-flex flex-column">
         <v-card-title>
           <NuxtLink :to="`/cars/${car.brand.name}/${car.modelName}/${car.year}`">
             <h3 class="text-h5">{{ `${car.brand.name} ${car.modelName}` }}</h3>
@@ -61,5 +61,11 @@ export default {
 </script>
 
 <style scoped>
-
+  .single-line{
+    display: block !important;
+    white-space: nowrap ;
+    word-break: normal;
+    overflow: hidden ;
+    text-overflow: ellipsis;
+  }
 </style>

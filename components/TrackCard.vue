@@ -1,10 +1,10 @@
 <template>
   <v-card>
     <v-row no-gutters>
-      <v-col cols="12" md="5" xl="4">
+      <v-col cols="12" md="4">
         <v-img :src="track.images[0].url" height="220" alt="track thumbnail" class="ma-3 rounded"/>
       </v-col>
-      <v-col cols="12" md="7" xl="8" class="d-flex flex-column">
+      <v-col cols="12" md="8" xl="8" class="d-flex flex-column">
         <v-card-title>
           <NuxtLink :to="`/tracks/detail/${track.id}`">
             <h3 class="text-h7">{{ track.name }}</h3>

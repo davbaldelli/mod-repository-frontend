@@ -115,19 +115,19 @@
       </v-row>
       <v-row v-for="(skin,id) in skins" :key="id" class="mt-1">
         <v-col>
-          <v-card class="mb-2 pa-1" >
+          <v-card class="mb-2">
             <v-row no-gutters align="center">
-              <v-col cols="2" >
+              <v-col cols="12" lg="2" class="pa-2">
                 <v-img :src="skin.imageUrl" height="70" class="rounded"/>
               </v-col>
-              <v-col cols="7">
+              <v-col cols="12" lg="6" xl="7">
                 <v-card-title>
                   <span class="single-line">{{skin.name}}</span>
                 </v-card-title>
               </v-col>
-              <v-col cols="3">
+              <v-col>
                 <v-card-actions>
-                  <v-btn>Download Here</v-btn>
+                  <v-btn block color="success">Download Here</v-btn>
                 </v-card-actions>
               </v-col>
             </v-row>
@@ -162,10 +162,6 @@ export default {
 </script>
 
 <style scoped>
-  .nowrap-overflow {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-  }
   .single-line{
     display: block !important;
     white-space: nowrap ;
