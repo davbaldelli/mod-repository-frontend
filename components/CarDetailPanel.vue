@@ -108,7 +108,7 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-row class="mt-6">
+      <v-row class="mt-6" v-if="skins.length">
         <v-col>
           <h2 class="text-h4">Skins</h2>
         </v-col>
