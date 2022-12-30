@@ -22,7 +22,7 @@ export default {
       return this.track ? {...this.track} : null
     },
     track () {
-      return this.$store.getters['track/getTrackByName'](this.id)
+      return this.$store.getters['track/getTrackById'](this.id)
     },
     loading () {
       return this.$store.getters['track/loadingTracks']

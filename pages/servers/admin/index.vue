@@ -77,7 +77,7 @@ export default {
       return carMods
     },
     getServerTrack(server){
-      return this.$store.getters['track/getTrackByName'](server.track)
+      return this.$store.getters['track/getTrackById'](server.track)
     },
     onDelete(server){
       this.pendingServer = server

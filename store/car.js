@@ -1,7 +1,7 @@
 import { carService } from '@/_services'
 
 const initialState = {
-  cars: { items: [] },
+  cars: { items: [], notInitialized : true },
   brands: { items: [] },
   types: { items: [] },
   authors: { items: [] },
@@ -23,7 +23,7 @@ const initialState = {
 export const state = () => initialState
 
 export const getters = {
-  loadingCars: state => state.cars.fetching,
+  loadingCars: state => state.cars.fetching || state.cars.notInitialized,
   cars: state => state.cars.items,
   car: state => (brand, name, year) => state.cars.items.find(c => c.brand.name === brand && c.modelName === name && c.year === parseInt(year)),
   sortedCars: state => sorter => state.cars.items.sort(sorter),

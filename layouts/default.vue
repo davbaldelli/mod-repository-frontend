@@ -124,6 +124,14 @@ export default {
       ]
     }
   },
+  mounted() {
+    if(this.notCheckedUser){
+      let user = JSON.parse(localStorage.getItem('user'))
+      if(user) {
+        this.$store.dispatch('authentication/setUser', user)
+      }
+    }
+  },
   computed: {
     admin () {
       return this.$store.getters['authentication/isAdmin']
@@ -134,6 +142,9 @@ export default {
     alert () {
       return this.$store.getters['alert/alert']
     },
+    notCheckedUser() {
+      return this.$store.getters['authentication/notChecked']
+    }
   },
   watch: {
     $route () {

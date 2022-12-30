@@ -13,7 +13,7 @@
             <h3 class="display-6">I'm sorry, but I can't find the track that you are looking for. You can turn back to the <NuxtLink to="/tracks/">tracks list</NuxtLink> and see if that exits.</h3>
           </v-col>
         </v-row>
-        <v-row v-if="loading">
+        <v-row v-else-if="loading">
           <v-col>
             <v-row>
               <v-col>
@@ -42,25 +42,19 @@
 <script>
 export default {
   name: 'TrackDetail',
-  async asyncData ({ params,store, redirect}) {
-    await store.dispatch('track/getAllTracks')
-      .catch(error => {
-        if (error && error.status === 401) {
-          redirect(401, '/login')
-        }
-      })
+  async asyncData ({params}) {
     return {
-      track : store.getters['track/getTrackByName'](params.id)
+      id : params.id
     }
   },
   head() {
     return {
-      title: this.track.name,
+      title: this.track ? this.track.name : "",
     }
   },
   computed: {
     breadCrumbs () {
-      return [
+      return this.track ? [
         {
           text: 'Tracks',
           disabled: false,
@@ -84,15 +78,18 @@ export default {
           exact: true,
           to: `/tracks/${this.track.id}/`,
         },
-      ]
+      ] : []
+    },
+    track () {
+      return this.$store.getters['track/getTrackById'](this.id)
     },
     loading () {
       return this.$store.getters['track/loadingTracks']
-    }
+    },
   },
-  methods :{
-
-  }
+  mounted() {
+    this.$store.dispatch('track/getAllTracks')
+  },
 }
 </script>
 
