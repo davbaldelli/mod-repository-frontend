@@ -12,7 +12,7 @@
         <v-col>
           <div class="overflow-auto pb-4 d-flex flex-row flex-nowrap">
             <v-card v-for="image in car.images" :key="image.id" @click="changeCarImage(image.url)" class="mr-2">
-              <v-img :src="image.url" width="150"></v-img>
+              <v-img :src="image.url" width="130"></v-img>
             </v-card>
           </div>
         </v-col>
