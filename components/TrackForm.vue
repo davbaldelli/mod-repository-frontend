@@ -78,6 +78,9 @@
                 <v-img :src="image.url" contain height="50"></v-img>
               </v-col>
               <v-col cols="1">
+                <v-checkbox v-model="image.favorite" label="Fav"></v-checkbox>
+              </v-col>
+              <v-col cols="1">
                 <v-btn color="red" icon @click="removeImage(i)">
                   <v-icon>mdi-minus</v-icon>
                 </v-btn>

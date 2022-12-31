@@ -3,7 +3,16 @@
     <v-col>
       <v-row>
         <v-col cols="12">
-          <v-img :src="track.images[0].url" contain></v-img>
+          <v-img :src="selectedImageUrl" contain class="rounded"></v-img>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <div class="overflow-auto pb-4 d-flex flex-row flex-nowrap">
+            <v-card v-for="image in track.images" :key="image.id" @click="changeSelectedImage(image.url)" class="mr-2">
+              <v-img :src="image.url" width="150"></v-img>
+            </v-card>
+          </div>
         </v-col>
       </v-row>
       <v-row>
@@ -23,6 +32,9 @@
           <v-btn v-if="(!track.premium || isPremium) && !track.official"  block :href="track.downloadLink" color="primary" rel="noopener" target="_blank">Download</v-btn>
           <v-btn v-else-if="!track.official" block :href="track.source" color="orange" rel="noopener" target="_blank">Buy it here!</v-btn>
           <v-btn v-else disabled block>Official Content</v-btn>
+        </v-col>
+        <v-col v-if="isAdmin" cols="12" md="2">
+          <v-btn  :to="`/tracks/edit/${track.id}`" color="warning" block><FontAwesomeIcon icon="pen-square"/></v-btn>
         </v-col>
       </v-row>
       <v-row>
@@ -80,13 +92,32 @@
 </template>
 
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 export default {
   name: "TrackDetailPanel",
   props: ["track"],
+  components :{FontAwesomeIcon},
+  data() {
+    return {
+      selectedImageUrl : this.getFavImage(this.track.images).url
+    }
+  },
   computed:{
     isPremium(){
       return this.$store.getters['authentication/isPremium']
     },
+    isAdmin(){
+      return this.$store.getters['authentication/isAdmin']
+    }
+  },
+  methods : {
+    getFavImage(images){
+      return images.find(img => img.favorite)
+    },
+    changeSelectedImage(url){
+      this.selectedImageUrl = url
+    }
   }
 }
 </script>

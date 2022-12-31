@@ -16,7 +16,7 @@
             <v-list-item
               v-for="(car, index) in cars" :key="index">
               <v-list-item-avatar>
-                <v-img :src="car.images[0].url"/>
+                <v-img :src="getFavImage(car.images).url"/>
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title v-html="`${car.brand.name} ${car.modelName}`"></v-list-item-title>
@@ -50,7 +50,7 @@
           <v-list v-if="!loadingTracks && !server.outsideTrack">
             <v-list-item>
               <v-list-item-avatar>
-                <v-img :src="track.images[0].url"/>
+                <v-img :src="getFavImage(track.images).url"/>
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title v-html="`${track.name}`"></v-list-item-title>
@@ -102,6 +102,11 @@ export default {
     },
     isPremium(){
       return this.$store.getters['authentication/isPremium']
+    },
+  },
+  methods : {
+    getFavImage(images){
+      return images.find(img => img.favorite)
     },
   }
 }

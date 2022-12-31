@@ -2,7 +2,7 @@
   <v-card>
     <v-row class="no-gutters">
       <v-col cols="12" md="4">
-        <v-img :src="car.images[0].url" alt="car thumbnail" class="ma-2 rounded" contain/>
+        <v-img :src="getFavImage(car.images).url" alt="car thumbnail" class="ma-2 rounded" contain/>
       </v-col>
       <v-col cols="12" md="8" class="d-flex flex-column">
         <v-card-title>
@@ -55,6 +55,11 @@ export default {
     },
     isAdmin() {
       return this.$store.getters['authentication/isAdmin']
+    }
+  },
+  methods : {
+    getFavImage(images){
+      return images.find(img => img.favorite)
     }
   }
 }
