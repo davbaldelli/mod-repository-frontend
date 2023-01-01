@@ -77,7 +77,7 @@
 import { carsFilters, carSort } from '@/_helpers'
 
 export default {
-  name: 'BrandCarList',
+  name: 'BrandCars',
   asyncData ({ params }) {
     return{
       brandName : params.brand.charAt(0).toUpperCase() + params.brand.slice(1),

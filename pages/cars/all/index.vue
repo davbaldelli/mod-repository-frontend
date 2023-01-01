@@ -100,7 +100,7 @@
 import { carsFilters, carSort } from '@/_helpers'
 
 export default {
-  name: 'CarList',
+  name: 'AllCars',
   scrollToTop : true,
   asyncData ($route) {
 

@@ -108,8 +108,7 @@
 import { tracksFilters, trackSort } from '@/_helpers'
 
 export default {
-  name: 'TracksList',
-
+  name: 'AllTracks',
   head(){
     return{
       title : "All Tracks"
