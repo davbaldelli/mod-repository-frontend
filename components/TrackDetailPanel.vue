@@ -10,7 +10,7 @@
         <v-col>
           <div class="overflow-auto pb-4 d-flex flex-row flex-nowrap">
             <v-card v-for="image in track.images" :key="image.id" @click="changeSelectedImage(image.url)" class="mr-2">
-              <v-img :src="image.url" width="130"></v-img>
+              <v-img :src="image.url" :width="imageThumbnailWidth"></v-img>
             </v-card>
           </div>
         </v-col>
@@ -109,7 +109,16 @@ export default {
     },
     isAdmin(){
       return this.$store.getters['authentication/isAdmin']
-    }
+    },
+    imageThumbnailWidth () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return 100
+        case 'sm': return 130
+        case 'md': return 130
+        case 'lg': return 130
+        case 'xl': return 130
+      }
+    },
   },
   methods : {
     getFavImage(images){

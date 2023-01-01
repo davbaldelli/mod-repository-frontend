@@ -12,7 +12,7 @@
         <v-col>
           <div class="overflow-auto pb-4 d-flex flex-row flex-nowrap">
             <v-card v-for="image in car.images" :key="image.id" @click="changeCarImage(image.url)" class="mr-2">
-              <v-img :src="image.url" width="130"></v-img>
+              <v-img :src="image.url" :width="imageThumbnailWidth"></v-img>
             </v-card>
           </div>
         </v-col>
@@ -187,10 +187,15 @@ export default {
     skins(){
       return this.$store.getters["skin/carSkins"](this.car.id)
     },
-    imageContainer(){
-      this.thumbnailContainerHeight = this.$refs.imageContainer ? this.$refs.imageContainer.clientHeight : null
-      return this.$refs.imageContainer ? this.$refs.imageContainer.clientHeight : null
-    }
+    imageThumbnailWidth () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return 100
+        case 'sm': return 130
+        case 'md': return 130
+        case 'lg': return 130
+        case 'xl': return 130
+      }
+    },
   },
   methods: {
     initialize() {
