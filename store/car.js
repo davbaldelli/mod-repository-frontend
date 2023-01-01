@@ -25,7 +25,7 @@ export const state = () => initialState
 export const getters = {
   loadingCars: state => state.cars.fetching || state.cars.notInitialized,
   cars: state => state.cars.items,
-  car: state => (brand, name, year) => state.cars.items.find(c => c.brand.name === brand && c.modelName === name && c.year === parseInt(year)),
+  car: state => (brand, name, year) => state.cars.items.find(c => c.brand.name.toLowerCase() === brand.toLowerCase() && c.modelName.toLowerCase() === name.toLowerCase() && c.year === parseInt(year)),
   sortedCars: state => sorter => state.cars.items.sort(sorter),
   getCarById: state => (id) => state.cars.items.find(c => c.id === parseInt(id)),
   loadingBrands: state => state.brands.fetching,

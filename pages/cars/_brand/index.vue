@@ -78,24 +78,23 @@ import { carsFilters, carSort } from '@/_helpers'
 
 export default {
   name: 'BrandCars',
-  asyncData ({ params }) {
-    return{
-      brandName : params.brand.charAt(0).toUpperCase() + params.brand.slice(1),
-      breadCrumbs : [
-        {
-          text: 'Cars',
-          disabled : false,
-          exact : true,
-          to: '/cars/',
-        },
-        {
-          text: params.brand,
-          disabled : true,
-          exact : true,
-          to: `/cars/${params.brand}`,
-        }
-      ],
-    }
+  async asyncData ({ params }) {
+    const brandName = params.brand
+    const breadCrumbs = [
+      {
+        text: 'Cars',
+        disabled : false,
+        exact : true,
+        to: '/cars/',
+      },
+      {
+        text: params.brand,
+        disabled : true,
+        exact : true,
+        to: `/cars/${params.brand}`,
+      }
+    ]
+    return{ brandName, breadCrumbs}
   },
   data () {
     return {
