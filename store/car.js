@@ -7,7 +7,6 @@ const initialState = {
   authors: { items: [] },
   nations: { items: [] },
   carCategories : { items : [
-    { name: 'Endurance' },
     { name: 'Open Wheel' },
     { name: 'GT' },
     { name: 'Prototype' },
