@@ -34,11 +34,6 @@
                       outlined @change="v => onLayoutTypeSelected(v)"
             ></v-select>
           </v-col>
-          <v-col cols="6" lg="2">
-            <v-autocomplete v-model="selectedAuthor" :items="authors"
-                            dense item-text="name" item-value="name" label="Author" outlined @change="v => onAuthorSelected(v)"
-            ></v-autocomplete>
-          </v-col>
           <v-spacer/>
           <v-col cols="6" lg="2">
             <v-select
@@ -46,7 +41,7 @@
               :items="[20,50,100]"
               outlined
               dense
-              label="Rows Per Page"
+              label="Rows"
             ></v-select>
           </v-col>
           <v-col cols="4" lg="2">
@@ -262,21 +257,6 @@ export default {
     clearTagFilter () {
       this.selectedTag = undefined
       this.trackTagsSelector = t => t
-      //this.updateQuery()
-      this.resetOffset()
-    },
-    onAuthorSelected (name) {
-      if (name) {
-        this.authorSelector = tracksFilters.filterByAuthor(name)
-      } else {
-        this.clearAuthorFilter()
-      }
-      //this.updateQuery()
-      this.resetOffset()
-    },
-    clearAuthorFilter () {
-      this.selectedAuthor = undefined
-      this.authorSelector = t => t
       //this.updateQuery()
       this.resetOffset()
     },

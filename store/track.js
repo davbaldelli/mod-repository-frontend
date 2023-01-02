@@ -21,14 +21,6 @@ const initialState = {
     ]},
   trackTags: {items : [
     {
-      text: 'F1',
-      value: 'F1'
-    },
-    {
-      text: 'NASCAR',
-      value: 'NASCAR'
-    },
-    {
       text: 'Historic',
       value: 'Historic'
     },
@@ -41,24 +33,20 @@ const initialState = {
       value: 'Drift'
     },
     {
-      text: 'Open World',
-      value: 'Open World'
-    },
-    {
-      text: 'Touge',
-      value: 'Touge'
+      text: 'Freeroam',
+      value: 'Freeroam'
     },
     {
       text: 'Street Circuit',
-      value: 'Street Track'
+      value: 'Street Circuit'
     },
     {
       text: 'Fictional',
       value: 'Fictional'
     },
     {
-      text: 'Karting',
-      value: 'Karting'
+      text: 'Kart',
+      value: 'Kart'
     },
     {
       text: 'Laser Scanned/LiDAR',
