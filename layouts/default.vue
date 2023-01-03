@@ -127,7 +127,7 @@ export default {
   },
   mounted() {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      this.$vuetify.theme.dark = true
+      //this.$vuetify.theme.dark = true
     }
     if(this.notCheckedUser){
       let user = JSON.parse(localStorage.getItem('user'))
