@@ -79,7 +79,7 @@ import { carsFilters, carSort } from '@/_helpers'
 export default {
   name: 'BrandCars',
   async asyncData ({ params }) {
-    const brandName = params.brand
+    const brandName = params.brand.charAt(0).toUpperCase() + params.brand.slice(1)
     const breadCrumbs = [
       {
         text: 'Cars',
