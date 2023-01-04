@@ -34,7 +34,7 @@
           <v-btn v-else disabled block>Official Content</v-btn>
         </v-col>
         <v-col v-if="isAdmin" cols="12" md="2">
-          <v-btn  :to="`/tracks/edit/${track.id}`" color="warning" block><FontAwesomeIcon icon="pen-square"/></v-btn>
+          <v-btn  :to="`/admin/update/track/${track.id}`" color="warning" block><FontAwesomeIcon icon="pen-square"/></v-btn>
         </v-col>
       </v-row>
       <v-row>
