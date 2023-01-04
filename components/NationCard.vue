@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-2 light-grey" :to="`/tracks/${nation.name}`" nuxt>
+  <v-card :class="`pa-5 ${light ? 'light-grey' : ''}`" :to="`/tracks/${nation.name}`" nuxt>
     <v-img contain :src="`https://flagcdn.com/h240/${nation.code}.png`" height="240"></v-img>
     <v-card-title v-text="nation.name" class="justify-center"></v-card-title>
   </v-card>
@@ -8,7 +8,12 @@
 <script>
 export default {
   name: 'NationCard',
-  props: ['nation']
+  props: ['nation'],
+  computed : {
+    light() {
+      return !this.$vuetify.theme.dark
+    }
+  }
 }
 </script>
 
