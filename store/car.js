@@ -102,7 +102,7 @@ export const actions = {
       commit('carPushing')
       carService.updateCar(car)
         .then(car => {
-          commit('carPushed')
+          commit('carPushed', car)
           dispatch('getAll')
           dispatch('alert/success', car, { root: true })
           res(car)
@@ -172,8 +172,9 @@ export const mutations = {
     delete state.cars.error
     state.cars.pushing = true
   },
-  carPushed (state) {
+  carPushed (state, car) {
     delete state.cars.pushing
+    state.cars.items.push(car)
   },
   carPushError (state, error) {
     delete state.cars.pushing

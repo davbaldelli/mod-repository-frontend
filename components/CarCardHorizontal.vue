@@ -32,7 +32,7 @@
         </v-card-text>
         <v-card-actions class="mt-auto px-4 pb-4 pt-0">
           <v-spacer></v-spacer>
-          <NuxtLink v-if="isAdmin" :to="`/cars/edit/${car.id}`" class="mx-2">
+          <NuxtLink v-if="isAdmin" :to="`/admin/update/car/${car.id}`" class="mx-2">
             <v-btn color="orange">Edit</v-btn>
           </NuxtLink>
           <v-btn v-if="!car.premium || isPremium" :href="car.downloadLink" color="primary" rel="noopener" target="_blank">Download</v-btn>

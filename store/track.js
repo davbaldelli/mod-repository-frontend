@@ -207,9 +207,9 @@ export const mutations = {
     delete state.tracks.error
     state.tracks.pushing = true
   },
-  trackPushed (state, car) {
+  trackPushed (state, track) {
     delete state.tracks.pushing
-    state.tracks.items.push(car)
+    state.tracks.items.push(track)
   },
   trackPushError (state, error) {
     delete state.tracks.pushing

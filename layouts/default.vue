@@ -115,13 +115,13 @@ export default {
         {text : "Logs", to : "/logs", icon : "clipboard-list"},
       ],
       adminOptions : [
-        {text: "Add Car", to :"/cars/new", icon : "plus"},
-        {text: "Add Track", to :"/tracks/new", icon : "plus"},
+        {text: "Add Car", to :"/admin/add/car", icon : "plus"},
+        {text: "Add Track", to :"/admin/add/track", icon : "plus"},
         {text: "Add User", to : "/admin/add/user", icon: "plus"},
         {text: "Add Skin", to : "/admin/add/skin", icon: "plus"}
       ],
       fsrAdminOptions : [
-        {text: "Modify Servers", to : "/servers/admin"}
+        {text: "Modify Servers", to : "/admin/servers"}
       ],
     }
   },

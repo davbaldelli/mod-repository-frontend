@@ -150,13 +150,8 @@ export default {
   sitemap: {
     hostname: 'https://www.acmodrepository.com',
     exclude: [
-      '/cars/new',
-      '/tracks/new',
       '/login',
-      '/tracks/edit',
-      '/cars/edit',
-      '/servers/admin',
-      '/admin'
+      '/admin/*'
     ],
     gzip: true,
   },
@@ -164,13 +159,8 @@ export default {
   robots: {
     UserAgent: '*',
     Disallow: [
-      '/cars/new',
-      '/tracks/new',
       '/login',
-      '/tracks/edit',
-      '/cars/edit',
-      '/servers/admin',
-      '/admin'
+      '/admin/*'
     ]
   },
 

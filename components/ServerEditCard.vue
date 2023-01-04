@@ -12,7 +12,7 @@
       </span>
     </v-card-text>
     <v-card-actions>
-      <v-btn :to="`/servers/admin/edit/${server.id}`" color="warning">Edit</v-btn>
+      <v-btn :to="`/admin/update/server/${server.id}`" color="warning">Edit</v-btn>
       <v-btn color="error" @click="onDeleteClick">Delete</v-btn>
     </v-card-actions>
   </v-card>
