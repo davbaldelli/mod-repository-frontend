@@ -59,6 +59,7 @@ const initialState = {
 export const state = () => initialState
 export const getters = {
   tracks: state => state.tracks.items,
+  track: state => (name, year) => state.tracks.items.find(t => t.name.toLowerCase() === name.toLowerCase() && t.year === parseInt(year)),
   getTrackById: state => id => state.tracks.items.find(t => t.id === parseInt(id)),
   loadingTracks: state => state.tracks.fetching || state.tracks.notInitialized,
   nations: state => state.nations.items,

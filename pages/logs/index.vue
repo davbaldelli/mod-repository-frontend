@@ -23,11 +23,9 @@
                 <FontAwesomeIcon v-if="item.premium" icon="dollar-sign"></FontAwesomeIcon>
               </template>
               <template v-slot:item.name="{item}">
-                <NuxtLink
-                  :to="item.name ? `/tracks/detail/${item.trackId}` : `/cars/${item.brand}/${item.model}/${item.year}`"
-                >
-                  {{ item.name ? item.name : `${item.brand} ${item.model}` }}
+                <NuxtLink v-if="item.name" :to="`/tracks/${item.nation}/${item.name}/${item.year}`">{{ item.name}}
                 </NuxtLink>
+                <NuxtLink v-else :to="`/cars/${item.brand}/${item.model}/${item.year}`">{{`${item.brand} ${item.model}`}}</NuxtLink>
               </template>
               <template v-slot:item.action="{item}">
                 <v-chip :color="item.action==='Insert' ? 'green' : 'blue'" label>{{ item.action }}</v-chip>
