@@ -22,8 +22,8 @@
       </v-row>
       <v-row class="mt-0">
         <v-col>
-          <v-rating v-model="track.rating" background-color="orange lighten-3" color="orange" dense length="10"
-                    readonly
+          <v-rating v-model="track.rating/2" background-color="orange lighten-3" color="orange" dense length="5"
+                    readonly half-increments
           />
         </v-col>
       </v-row>
