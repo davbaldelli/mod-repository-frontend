@@ -1,6 +1,6 @@
 <template>
   <v-card :class="`pa-5 ${light? 'light-grey' : ''}`" :to="`/cars/${brand.name}`">
-    <v-img contain :src="brand.logo" height="200px" ></v-img>
+    <v-img contain :src="brand.logo" height="200px" :alt="`${brand.name} logo`"></v-img>
     <v-card-title v-text="brand.name" class="justify-center" ></v-card-title>
   </v-card>
 </template>

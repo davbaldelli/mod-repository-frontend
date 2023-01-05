@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="12" md="12" >
           <div ref="imageContainer">
-            <v-img :src="carImage" class="rounded" contain></v-img>
+            <v-img :src="carImage" class="rounded" contain alt="car image"></v-img>
           </div>
         </v-col>
       </v-row>
@@ -12,7 +12,7 @@
         <v-col>
           <div class="overflow-auto pb-4 d-flex flex-row flex-nowrap">
             <v-card v-for="image in car.images" :key="image.id" @click="changeCarImage(image.url)" class="mr-2">
-              <v-img :src="image.url" :width="imageThumbnailWidth"></v-img>
+              <v-img :src="image.url" :width="imageThumbnailWidth" alt="car image preview"></v-img>
             </v-card>
           </div>
         </v-col>
@@ -132,7 +132,7 @@
           <v-card class="mb-2">
             <v-row no-gutters align="center">
               <v-col cols="12" lg="2" class="pa-2">
-                <v-img :src="skin.imageUrl" height="70" class="rounded"/>
+                <v-img :src="skin.imageUrl" height="70" class="rounded" alt="car skin thumbnail"/>
               </v-col>
               <v-col cols="12" lg="6" xl="7">
                 <v-card-title>

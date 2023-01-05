@@ -3,14 +3,14 @@
     <v-col>
       <v-row>
         <v-col cols="12">
-          <v-img :src="selectedImageUrl" contain class="rounded"></v-img>
+          <v-img :src="selectedImageUrl" contain class="rounded" alt="track image"></v-img>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <div class="overflow-auto pb-4 d-flex flex-row flex-nowrap">
             <v-card v-for="image in track.images" :key="image.id" @click="changeSelectedImage(image.url)" class="mr-2">
-              <v-img :src="image.url" :width="imageThumbnailWidth"></v-img>
+              <v-img :src="image.url" :width="imageThumbnailWidth" alt="track image preview"></v-img>
             </v-card>
           </div>
         </v-col>
