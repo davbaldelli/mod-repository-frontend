@@ -155,7 +155,7 @@ export const actions = {
 export const mutations = {
   carsFetching (state) {
     state.cars = {
-      items: [state.cars.items],
+      items: state.cars.items,
       fetching: true
     }
   },
