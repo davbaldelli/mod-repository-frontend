@@ -1,6 +1,6 @@
 <template>
-  <v-card>
-    <v-row class="pa-3">
+  <v-card class="pa-3">
+    <v-row>
       <v-col cols="12" md="4">
         <div class="h-100">
           <v-skeleton-loader

@@ -15,19 +15,7 @@
         </v-row>
         <v-row v-else-if="loading">
           <v-col>
-            <v-row>
-              <v-col>
-                <v-skeleton-loader style="width: 100%" type="image"></v-skeleton-loader>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col>
-                <v-skeleton-loader
-                  class="mx-auto"
-                  type="article, actions"
-                ></v-skeleton-loader>
-              </v-col>
-            </v-row>
+            <track-detail-panel-skeleton/>
           </v-col>
         </v-row>
         <client-only v-else>

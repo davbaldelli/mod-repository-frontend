@@ -13,7 +13,7 @@
             </v-row>
           </v-col>
         </v-row>
-        <v-row v-if="!loadingServers">
+        <v-row v-if="!loading">
           <v-col v-for="(server, index) in servers" :key="index" cols="12">
             <server-card :get-cars="getServerCars" :get-track="getServerTrack" :server="server"/>
           </v-col>
@@ -35,8 +35,10 @@ export default {
     servers(){
       return this.$store.getters['server/servers']
     },
-    loadingServers(){
+    loading(){
       return this.$store.getters['server/loadingServers']
+        || this.$store.getters["car/loadingCars"]
+        || this.$store.getters["track/loadingTracks"]
     }
   },
   mounted () {

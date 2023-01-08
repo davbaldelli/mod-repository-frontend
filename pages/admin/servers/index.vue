@@ -10,7 +10,7 @@
         </v-row>
         <v-row>
           <v-col>
-            <v-btn color="success" to="/admin/server/add" block>Add Server</v-btn>
+            <v-btn color="success" to="/admin/add/server" block>Add Server</v-btn>
           </v-col>
         </v-row>
         <v-row>

@@ -71,19 +71,19 @@
             </v-chip>
           </v-col>
         </v-row>
-        <v-row>
-          <v-col cols="12" v-for="(car, index) in pageCars" :key="index">
-            <car-card-horizontal :car="car" @chip-clicked="onCategoryChipSelected"/>
-          </v-col>
-        </v-row>
-        <v-row v-if="!$store.getters['car/loadingCars'] && filteredCars.length === 0">
+        <v-row v-if="!loading && filteredCars.length === 0">
           <v-col class="text-center">
             <h3 class="display-6">I'm sorry, no car matches your request</h3>
           </v-col>
         </v-row>
-        <v-row v-for="i in 20" v-if="loading" :key="i" class="mb-2">
-          <v-col>
-            <car-card-horizontal-skeleton/>
+        <v-row v-else-if="loading && filteredCars.length === 0" class="mb-2">
+          <v-col v-for="i in 20" :key="i" cols="12">
+            <car-card-skeleton/>
+          </v-col>
+        </v-row>
+        <v-row v-else>
+          <v-col cols="12" v-for="(car, index) in pageCars" :key="index">
+            <car-card :car="car" @chip-clicked="onCategoryChipSelected"/>
           </v-col>
         </v-row>
         <v-row v-if="this.totPaginatorPages" class="px-3">

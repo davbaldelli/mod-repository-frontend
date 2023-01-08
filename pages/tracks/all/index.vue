@@ -79,19 +79,19 @@
             </v-chip>
           </v-col>
         </v-row>
-        <v-row v-for="(track, index) in pageTracks" :key="index">
-          <v-col cols="12">
-            <TrackCard :track="track" @tag-click="onCardTagSelected"/>
-          </v-col>
-        </v-row>
-        <v-row v-if="!$store.getters['track/loadingTracks'] && filteredTracks.length === 0">
+        <v-row v-if="!loading && filteredTracks.length === 0">
           <v-col class="text-center">
             <h3 class="display-6">I'm sorry, no track matches your request</h3>
           </v-col>
         </v-row>
-        <v-row v-for="i in 20" v-if="loading" :key="i" class="mb-2">
-          <v-col>
+        <v-row v-else-if="loading && filteredTracks.length === 0">
+          <v-col v-for="i in 20" :key="i" cols="12">
             <track-card-skeleton/>
+          </v-col>
+        </v-row>
+        <v-row v-else>
+          <v-col cols="12" v-for="(track, index) in pageTracks" :key="index">
+            <TrackCard :track="track" @tag-click="onCardTagSelected"/>
           </v-col>
         </v-row>
         <v-row v-if="this.totPaginatorPages">
