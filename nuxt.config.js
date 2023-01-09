@@ -29,7 +29,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Download a large selection of quality cars and tracks mods for Assetto Corsa. Only good stuff, tested for you.'
+        content: 'Download a large selection of quality cars and tracks for Assetto Corsa. Only the best mods, tested for you.'
       },
       {
         name: 'format-detection',
@@ -59,7 +59,7 @@ export default {
         hid:"og:url",name:"og:url",content :"www.acmodrepository.com"
       },
       {
-        name:"og:description",content :"A user friendly website where you can download a large selection of quality cars and tracks for Assetto Corsa."
+        name:"og:description",content :"Download a large selection of quality cars and tracks for Assetto Corsa. Only the best mods, tested for you."
       },
       {
         hid:"og:image",name:"og:image",content :"https://i.imgur.com/tUa6yJt.png"
@@ -132,7 +132,7 @@ export default {
 
         identifier: 'ga',
 
-        description:  'Used to improve your experience providing us data about how you use our website',
+        description:  'Used to improve your experience, providing us data about how you use our website',
 
         initialState: true,
         src:  'https://www.googletagmanager.com/gtag/js?id=<API-KEY>',
@@ -176,12 +176,12 @@ export default {
       lang: 'en',
       name: 'AC Mod Repository',
       short_name: 'AC Mod Repo',
-      description: "The best collection of quality cars and tracks mods for Assetto Corsa. Every mod is free, tested and up-to-date",
+      description: "The best collection of quality cars and tracks for Assetto Corsa. Every mod is tested and up-to-date",
       useWebmanifestExtension: false,
     },
     meta : {
       title: "AC Mod Repository",
-      description: "The best collection of quality cars and tracks mods for Assetto Corsa. Every mod is free, tested and up-to-date",
+      description: "The best collection of quality cars and tracks for Assetto Corsa. Every is tested and up-to-date",
       author: "davbaldelli",
       ogUrl: "www.acmodrepository.com",
       ogImage: "https://i.imgur.com/tUa6yJt.png"
