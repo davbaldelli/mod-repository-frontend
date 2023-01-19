@@ -3,10 +3,9 @@
   "version": "1.2.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "dev:host": "nuxt --hostname localhost --port 3000",
+    "dev": "nuxt --hostname localhost",
     "build": "nuxt build",
-    "start": "nuxt start --hostname localhost --port 3000",
+    "start": "nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {
