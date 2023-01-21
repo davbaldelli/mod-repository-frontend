@@ -24,7 +24,7 @@ function sortByYear (desc) {
 }
 
 function sortByRating(){
-  return (a, b) => a.rating < b.rating
+  return (a, b) => a.rating < b.rating ? 1 : -1
 
 }
 
