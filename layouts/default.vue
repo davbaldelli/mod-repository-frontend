@@ -165,42 +165,7 @@ export default {
     },
   },
   methods: {
-    handleSubmit (isFormValid) {
-      this.submitted = true
-      if (!isFormValid) {
-        return
-      }
-
-      this.$store.dispatch('authentication/login', {
-        username: this.username,
-        password: this.password
-      })
-        .then(() => {
-          this.$store.dispatch('alert/clear')
-          this.$emit('logged')
-          this.closeDialog()
-        })
-        .catch(() => {
-          alert('wrong username or password!')
-        })
-
-    },
-    toggleDialog () {
-      this.display = true
-    },
-    closeDialog () {
-      this.display = false
-    },
-    resetModal () {
-      if (!this.submitted && this.alert.message && this.alert.message.status === 401) {
-        this.logOut()
-      }
-      this.username = ''
-      this.password = ''
-      this.submitted = false
-    },
     async logOut () {
-      this.closeDialog()
       await this.$store.dispatch('authentication/logout').then(() =>
         this.$store.dispatch('alert/clear')
       )

@@ -3,9 +3,7 @@
     <v-col>
       <v-row>
         <v-col cols="12" md="12" >
-          <div ref="imageContainer">
-            <v-img :src="carImage" class="rounded" contain alt="car image"></v-img>
-          </div>
+          <v-img :src="carImage" class="rounded" contain alt="car image"></v-img>
         </v-col>
       </v-row>
       <v-row>

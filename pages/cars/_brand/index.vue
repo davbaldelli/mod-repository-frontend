@@ -8,11 +8,10 @@
             <v-breadcrumbs :items="breadCrumbs" class="px-0"></v-breadcrumbs>
           </v-col>
         </v-row>
-        <v-row class="my-3">
+        <v-row class="my-3" v-if="brand">
           <v-col class="text-center" cols="12">
-            <v-img v-if="brand" height="100px" :src="brand.logo" contain></v-img>
-            <h1 v-if="brand" class="text-h2 mb-3">{{brand.name}}</h1>
-            <h1 v-else class="text-h2 mb-3">{{brandName}}</h1>
+            <v-img height="100px" :src="brand.logo" contain></v-img>
+            <h1 class="text-h2 mb-3">{{brand.name}}</h1>
           </v-col>
         </v-row>
         <v-row>
@@ -22,7 +21,7 @@
             />
           </v-col>
         </v-row>
-        <v-row v-if="this.totPaginatorPages" class="px-3 my-3">
+        <v-row v-if="this.brand" class="px-3 my-3">
           <v-col>
             <v-pagination v-model="offset" :length="totPaginatorPages"/>
           </v-col>
@@ -78,8 +77,8 @@ import { carsFilters, carSort } from '@/_helpers'
 
 export default {
   name: 'BrandCars',
-  async asyncData ({ params }) {
-    const brandName = params.brand.charAt(0).toUpperCase() + params.brand.slice(1)
+  asyncData ({ params }) {
+    const brandName = params.brand
     const breadCrumbs = [
       {
         text: 'Cars',

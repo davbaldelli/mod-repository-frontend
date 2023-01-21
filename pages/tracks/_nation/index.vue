@@ -8,10 +8,10 @@
             <v-breadcrumbs :items="breadCrumbs" class="px-0"></v-breadcrumbs>
           </v-col>
         </v-row>
-        <v-row class="my-3">
+        <v-row class="my-3" v-if="nation">
           <v-col class="text-center" cols="12">
-            <v-img v-if="nation" height="120px" :src="`https://flagcdn.com/h120/${nation.code}.png`" contain class="mb-3"></v-img>
-            <h1 class="text-h2 mb-3">{{nationName}}</h1>
+            <v-img height="120px" :src="`https://flagcdn.com/h120/${nation.code}.png`" contain class="mb-3"></v-img>
+            <h1 class="text-h2 mb-3">{{nation.name}}</h1>
           </v-col>
         </v-row>
         <v-row>
@@ -113,7 +113,7 @@ export default {
           to: `/tracks/${params.nation}`,
         }
       ],
-      nationName : params.nation.charAt(0).toUpperCase() + params.nation.slice(1)
+      nationName : params.nation
     }
   },
   head(){

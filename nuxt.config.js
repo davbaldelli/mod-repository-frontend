@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  ssr: false,
+  ssr: true,
   target: 'static',
 
   generate: {
@@ -11,8 +11,8 @@ export default {
       let endpoints = [`https://api.acmodrepository.com/brand/all`, `https://api.acmodrepository.com/nation/track/all`]
       return axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then(axios.spread((brands, nations) => {
         let routes = []
-        routes = brands.data.reduce((res, brand) => res.concat(`/cars/${brand.name}`),routes)
-        routes = nations.data.reduce((res, nation) => res.concat(`/tracks/${nation.name}`), routes)
+        //brands.data.forEach(brand => routes.push(`/cars/${brand.name.toLowerCase()}`))
+        //nations.data.forEach(nation => routes.push(`/tracks/${nation.name.toLowerCase()}`))
         return routes
       }))
     }
