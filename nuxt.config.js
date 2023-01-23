@@ -2,6 +2,7 @@ import axios from 'axios'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  ssr: false,
   target: 'static',
 
   generate: {
