@@ -2,10 +2,10 @@ import axios from 'axios'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  ssr: true,
   target: 'static',
 
   generate: {
+    fallback: true,
     routes() {
       let endpoints = [`https://api.acmodrepository.com/brand/all`, `https://api.acmodrepository.com/nation/track/all`]
       return axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then(axios.spread((brands, nations) => {
