@@ -61,13 +61,7 @@ export default {
           text: this.name,
           disabled: true,
           exact: true,
-        },
-        {
-          text: this.year,
-          disabled: true,
-          exact: true,
-          to: `/tracks/${this.year}/`,
-        },
+        }
       ] : []
     },
     track () {

@@ -52,13 +52,7 @@ export default {
           disabled : true,
           exact : true,
           to: `/cars/${params.brand}/${params.model}/`,
-        },
-        {
-          text: params.year,
-          disabled : true,
-          exact : true,
-          to: `/cars/${params.brand}/${params.model}/${params.year}/`,
-        },
+        }
       ],
     }
   },
