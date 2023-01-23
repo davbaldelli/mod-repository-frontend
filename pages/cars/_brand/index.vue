@@ -77,7 +77,25 @@ import { carsFilters, carSort } from '@/_helpers'
 
 export default {
   name: 'BrandCars',
-  asyncData ({ params }) {
+  asyncData ({ params,payload}) {
+    if(payload){
+      const brandName = payload
+      const breadCrumbs = [
+        {
+          text: 'Cars',
+          disabled : false,
+          exact : true,
+          to: '/cars/',
+        },
+        {
+          text: payload,
+          disabled : true,
+          exact : true,
+          to: `/cars/${payload}`,
+        }
+      ]
+      return{brandName, breadCrumbs}
+    }
     const brandName = params.brand
     const breadCrumbs = [
       {
@@ -93,7 +111,7 @@ export default {
         to: `/cars/${params.brand}`,
       }
     ]
-    return{ brandName, breadCrumbs}
+    return{brandName, breadCrumbs}
   },
   data () {
     return {

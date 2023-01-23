@@ -10,10 +10,19 @@ export default {
     routes() {
       let endpoints = [`https://api.acmodrepository.com/brand/all`, `https://api.acmodrepository.com/nation/track/all`]
       return axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then(axios.spread((brands, nations) => {
-        let routes = []
-        //brands.data.forEach(brand => routes.push(`/cars/${brand.name.toLowerCase()}`))
-        //nations.data.forEach(nation => routes.push(`/tracks/${nation.name.toLowerCase()}`))
-        return routes
+        let brandsRoutes = brands.data.map(brand => {
+          return {
+            route : `/cars/${brand.name}`,
+            payload : brand.name
+          }
+        })
+        let nationsRoutes = nations.data.map(nation => {
+          return {
+            route : `/tracks/${nation.name}`,
+            payload : nation.name
+          }
+        })
+        return brandsRoutes.concat(nationsRoutes)
       }))
     }
   },

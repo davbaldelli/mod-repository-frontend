@@ -97,7 +97,26 @@ import { tracksFilters, trackSort } from '@/_helpers'
 
 export default {
   name: 'NationTracks',
-  asyncData ({ params }) {
+  asyncData ({ params, payload }) {
+    if (payload){
+      return {
+        breadCrumbs : [
+          {
+            text: 'Tracks',
+            disabled : false,
+            exact : true,
+            to: '/tracks/',
+          },
+          {
+            text: payload,
+            disabled : true,
+            exact : true,
+            to: `/tracks/${payload}`,
+          }
+        ],
+        nationName : payload
+      }
+    }
     return {
       breadCrumbs : [
         {
