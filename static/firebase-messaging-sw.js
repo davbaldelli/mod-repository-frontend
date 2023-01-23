@@ -1,4 +1,3 @@
-
     importScripts(
       'https://www.gstatic.com/firebasejs/9.8.4/firebase-app-compat.js'
     )
@@ -40,4 +39,3 @@
   }
 })
 
-    

@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@nuxt/types": "~2.15.0",
+    "@nuxtjs/netlify-files": "^1.2.0",
     "@nuxtjs/vuetify": "^1.12.3"
   }
 }

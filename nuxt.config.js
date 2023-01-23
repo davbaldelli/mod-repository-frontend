@@ -6,7 +6,6 @@ export default {
   target: 'static',
 
   generate: {
-    fallback: true,
     routes() {
       let endpoints = [`https://api.acmodrepository.com/brand/all`, `https://api.acmodrepository.com/nation/track/all`]
       return axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then(axios.spread((brands, nations) => {
@@ -107,7 +106,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -124,7 +123,9 @@ export default {
 
     '@nuxtjs/robots',
 
-    'nuxt-cookie-control'
+    'nuxt-cookie-control',
+
+    '@nuxtjs/netlify-files',
   ],
 
   cookies: {
