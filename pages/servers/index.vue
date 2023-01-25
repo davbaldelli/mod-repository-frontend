@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     servers(){
-      return this.$store.getters['server/servers']
+      return this.$store.getters['server/servers'].filter(server => server.online)
     },
     loading(){
       return this.$store.getters['server/loadingServers']

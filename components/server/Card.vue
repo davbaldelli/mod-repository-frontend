@@ -19,7 +19,7 @@
                 <v-img :src="getFavImage(car.images).url"/>
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title v-html="`${car.brand.name} ${car.modelName}`"></v-list-item-title>
+                <v-list-item-title>{{`${car.brand.name} ${car.modelName}`}}</v-list-item-title>
                 <v-list-item-subtitle>
                   <a v-if="(!car.premium || isPremium) && !car.official" :href="car.downloadLink" rel="noopener" target="_blank">Download Here</a>
                   <a v-else-if="!car.official" :href="car.source" rel="noopener" target="_blank">Buy Here</a>

@@ -6,11 +6,14 @@
        <v-form ref="form" v-model="valid" @submit.prevent="onsubmit">
          <v-container>
            <v-row>
-             <v-col cols="9" md="10">
+             <v-col cols="6" md="8">
                <v-text-field v-model="form.name" label="Name" required/>
              </v-col>
              <v-col cols="3" md="2">
                <v-checkbox v-model="serverPrivate" label="Private"/>
+             </v-col>
+             <v-col cols="3" md="2">
+               <v-checkbox v-model="form.online" label="Online"/>
              </v-col>
            </v-row>
            <v-row>
