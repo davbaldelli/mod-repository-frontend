@@ -8,7 +8,7 @@ export default {
   generate: {
     fallback: true,
     routes() {
-      let endpoints = [`https://api.acmodrepository.com/brand/all`, `https://api.acmodrepository.com/nation/track/all`]
+      let endpoints = [`https://api.acmodrepository.com:6316/brand/all`, `https://api.acmodrepository.com:6316/nation/track/all`]
       return axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then(axios.spread((brands, nations) => {
         let brandsRoutes = brands.data.map(brand => {
           return {
