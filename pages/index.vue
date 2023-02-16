@@ -6,13 +6,7 @@
         <v-row>
           <v-col class="mt-5">
             <h1 class="text-h2 mb-3">Assetto Corsa Mod Repository</h1>
-            <h2 class="text-h5"><em>Powered by <a href="https://discord.com/invite/uZ5mAJRpv2" rel="noopener"
-                                                  target="_blank">Fuddigno Sim Racing Team</a></em></h2>
-          </v-col>
-        </v-row>
-        <v-row class="my-3">
-          <v-col>
-            <v-img height="200px" src="/acmr-fsr.png" contain></v-img>
+            <h2 class="text-h5"><em>A collection of quality mods</em></h2>
           </v-col>
         </v-row>
         <v-row>

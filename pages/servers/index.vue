@@ -8,7 +8,7 @@
             <v-row class="my-3">
               <v-col class="text-center" cols="12">
                 <h1 class="text-h2 mb-3">Repository Servers</h1>
-                <h2 class="text-h5"><em>Powered by <a href="https://discord.com/invite/uZ5mAJRpv2" rel="noopener" target="_blank">Fuddigno Sim Racing Team</a></em></h2>
+                <h2 class="text-h5"><em>Powered by <a href="https://discord.com/invite/uZ5mAJRpv2" rel="noopener" target="_blank">FSR</a></em></h2>
               </v-col>
             </v-row>
           </v-col>
