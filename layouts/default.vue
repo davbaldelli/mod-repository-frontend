@@ -111,7 +111,7 @@ export default {
         {text : "Home", to : "/", icon : "home"},
         {text : "Cars", to : "/cars", icon : "car"},
         {text : "Tracks", to : "/tracks", icon : "road"},
-        {text: 'Servers', to : '/servers', icon : 'fire'},
+        //{text: 'Servers', to : '/servers', icon : 'fire'},
         {text : "Logs", to : "/logs", icon : "clipboard-list"},
       ],
       adminOptions : [
