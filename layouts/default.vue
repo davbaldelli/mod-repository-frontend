@@ -93,7 +93,6 @@
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { useVuelidate } from '@vuelidate/core'
 
 export default {
   name: 'App',
@@ -102,7 +101,9 @@ export default {
   },
   emits: ['loggedOut', 'loggedIn'],
   setup () {
-    return { v$: useVuelidate() }
+    return {
+
+    }
   },
   data () {
     return {
