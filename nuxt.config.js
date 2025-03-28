@@ -202,7 +202,7 @@ export default {
   firebase : {
     config: {
       // REQUIRED: Official config for firebase.initializeApp(config):
-      apiKey: "AIzaSyDIYM65D5DNLNsOSUToov_JcJEh6AupUlg",
+      apiKey: "AIzaSyBtHE7O6Ma2FVONLQlZb9n52h06bMW01H4",
       authDomain: "ac-mod-repo.firebaseapp.com",
       projectId: "ac-mod-repo",
       storageBucket: "ac-mod-repo.appspot.com",
